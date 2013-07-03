@@ -37,35 +37,43 @@ class UserModel extends Model
 		
 	function ChangePassword()
 		{
+		echo "up in ChangePassword";
 		if(!$this->CheckLogin())
 			{
 			$this->HandleError("Not logged in!");
+			echo "fail 1";
 			return false;
 			}		
 		if(empty($_POST['oldpwd']))
 			{
 			$this->HandleError("Old password is empty!");
+			echo "fail 2";
 			return false;
 			}
 		if(empty($_POST['newpwd']))
 			{
 			$this->HandleError("New password is empty!");
+			echo "fail 3";
 			return false;
 			}		
 		$user_rec = array();
 		if(!$this->GetUserFromEmail($this->UserEmail(),$user_rec))
 			{
+			echo "fail 4";
 			return false;
 			}			
 		$pwd = trim($_POST['oldpwd']);		
 		if($user_rec['password'] != md5($pwd))
 			{
 			$this->HandleError("The old password does not match!");
+			echo "fail 5";
 			return false;
 			}
-		$newpwd = trim($_POST['newpwd']);		
-		if(!$this->ChangePasswordInDB($user_rec, $newpwd))
+		$newpwd = trim($_POST['newpwd']);	
+		echo"<p>$newpwd<<  <br /> $pwd <<< <br /> $user_rec</p>";
+		if(!Model::ChangePasswordInDB($user_rec, $newpwd))
 			{
+			echo "fail 6";
 			return false;
 			}
 		return true;

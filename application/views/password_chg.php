@@ -1,6 +1,6 @@
 <!-- Form Code Start -->
 <div id='fg_membersite'>
-<form id='changepwd' action='<?php echo $this->action; ?>' method='post' accept-charset='UTF-8'>
+<form id='changepwd' action='<?php echo $vars['action']; ?>' method='post' accept-charset='UTF-8'>
 <fieldset >
 <legend>Change Password</legend>
 
@@ -8,12 +8,12 @@
 
 <div class='short_explanation'>* required fields</div>
 
-<div><span class='error'><?php echo $this->error_message; ?></span></div>
+<div><span class='error'><?php echo $vars['errors']; ?></span></div>
 <div class='container'>
     <label for='oldpwd' >Old Password*:</label><br/>
     <div class='pwdwidgetdiv' id='oldpwddiv' ></div><br/>
     <!-- <noscript> -->
-    <input type='password' name='oldpwd' id='oldpwd' maxlength="50" />
+    <input type='password' name='oldpwd' id='oldpwd' value = '<?php  echo $vars['oldpwd']; ?>'maxlength="50" />
     <!-- </noscript>  -->   
     <span id='changepwd_oldpwd_errorloc' class='error'></span>
 </div>

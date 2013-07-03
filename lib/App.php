@@ -115,10 +115,11 @@ class App {
 		
 		
 		
-	public function execute($controller, $task, $key= null)
+	public function execute($controller, $task, $arg=false)
 		{
 		if (!$controller = App::fetchController($controller, $task)) {return false;}
-		if(!$controller::$task()){return false;}
+		if(!$controller::$task($value = ($arg != false) ? $arg : null)){return false;}
+		return true;
 		}
 		
 	public function init()

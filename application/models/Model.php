@@ -190,8 +190,10 @@ class Model {
 		
 		function ChangePasswordInDB($user_rec, $newpwd)
 		{
-		$newpwd = $this->SanitizeForSQL($newpwd);		
-		$qry = "Update $this->tablename Set password='".md5($newpwd)."' Where  id_user=".$user_rec['id_user']."";		
+		echo "up in here bitch";
+		$newpwd = $this->SanitizeForSQL($newpwd);	
+		echo "clean password is $newpwd";	
+		$qry = "Update $this->tablename Set password='".md5($newpwd)."' Where  user_id=".$user_rec['user_id']."";		
 		if(!mysql_query( $qry ,$this->connection))
 			{
 			$this->HandleDBError("Error updating the password \nquery:$qry");
@@ -221,9 +223,33 @@ class Model {
         return true;
 		}
 		
-		function HandleDBError($err)
+	function HandleDBError($err)
 		{
 		$this->HandleError($err."\r\n mysqlerror:".mysql_error());
+		}
+		
+	function CheckLoginInDB($username,$password)
+		{
+		if(!$this->DBLogin())
+			{
+			$this->HandleError("Database login failed!");
+			echo "fail 4";
+			return false;
+			}          
+		$username = $this->SanitizeForSQL($username);
+		$pwdmd5 = md5($password);
+		$qry = "Select CONCAT(first_name, ' ', last_name) as name, email, user_id from $this->tablename where username='$username' and password='$pwdmd5' and confirmcode='y'";	
+		$result = mysql_query($qry,$this->connection);		
+		if(!$result || mysql_num_rows($result) <= 0)
+			{
+			$this->HandleError("Error logging in. The username or password does not match");
+			return false;
+			}		
+		$row = mysql_fetch_assoc($result);	
+		$_SESSION['name_of_user']  = $row['name'];
+		$_SESSION['email_of_user'] = $row['email'];				
+		$_SESSION['user_id'] = $row['user_id'];				
+		return true;
 		}
 	
 	

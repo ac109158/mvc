@@ -38,32 +38,7 @@ class LoginModel extends Model
 			}	
 		$_SESSION[$this->GetLoginSessionVar()] = $username;		
 		return true;
-	   }
-	
-	function CheckLoginInDB($username,$password)
-		{
-		if(!$this->DBLogin())
-			{
-			$this->HandleError("Database login failed!");
-			echo "fail 4";
-			return false;
-			}          
-		$username = $this->SanitizeForSQL($username);
-		$pwdmd5 = md5($password);
-		$qry = "Select CONCAT(first_name, ' ', last_name) as name, email, user_id from $this->tablename where username='$username' and password='$pwdmd5' and confirmcode='y'";	
-		$result = mysql_query($qry,$this->connection);		
-		if(!$result || mysql_num_rows($result) <= 0)
-			{
-			$this->HandleError("Error logging in. The username or password does not match");
-			return false;
-			}		
-		$row = mysql_fetch_assoc($result);	
-		$_SESSION['name_of_user']  = $row['name'];
-		$_SESSION['email_of_user'] = $row['email'];				
-		$_SESSION['user_id'] = $row['user_id'];				
-		return true;
-		}
-		
+	   }		
 		
 	function ResetUserPassword()
 		{

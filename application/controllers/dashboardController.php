@@ -58,23 +58,24 @@ class ControllerDashboard extends Controller
 	
 		
 		public function user_password_chg()
-		{
-		if(!$this->controller->model->CheckLogin())
-			{
-			$this->controller->model->RedirectToURL("?controller=login");
-			exit;
-			}		
+		{		
 		if(isset($_POST['password_chg_submitted']))
-			{
-			if($this->user->model->ChangePassword())
+			echo "form submitted";
+			if(App::fetchModel('user','ChangePassword'))
 				{
 				$msg = "Your password is updated!";
-				$this->controller->model->RedirectToURL("?controller=dashboard");
-				exit;
+				App::execute('dashboard', 'display', $msg);
+				
 				}
-			}
-		$this->controller->getView($this->controller, "Change Password");
-		$this->controller->view->render('password_chg');
+		echo "unsubmitted render";
+		$view = App::fetchView();
+		$vars['oldpwd'] = App::request($_REQUEST['oldpwd']);
+		$vars = App::sticky($vars);
+		echo $vars['oldpwd'];
+		$vars['title'] = "Change Password";
+		$vars['action'] = "?controller=dashboard&task=user_password_chg";
+		$vars['errors'] = App::fetchModel('error','GetErrorMessage');
+		$view::render('password_chg',$vars);
 		exit;
 
 		}
