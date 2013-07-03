@@ -10,6 +10,30 @@ class App {
 		$vars = array();
 */
 		}
+		
+	function GetLoginSessionVar()
+    	{
+        //$retvar = md5($this->rand_key);
+        $retvar = md5($rand_key);
+        $retvar = 'usr_'.substr($retvar,0,10);
+        return $retvar;
+		}
+		
+	public function detectLogin() 
+		{
+		return $this->CheckLogin();
+		}
+	
+	private function CheckLogin()
+    	{
+         if(!isset($_SESSION)){ session_start(); }
+         $sessionvar = $this->GetLoginSessionVar();   
+         if(empty($_SESSION[$sessionvar]))
+	         {
+	            return false;
+	         }
+         return true;
+		 }
     
     public function setErrorMsg($msg)
     	{
@@ -29,15 +53,6 @@ class App {
 		}
 */
     
-    public function checkLogin() 
- 		{
- 		//echo "Inside of app checking login";
-		 	if(App::execute('login', 'checkLogin'))
-			 	{
-				 return true;
-			 	}
-			 return false;
-	 	}
  
 	public function request($param){
 		if (isset($param)) 
