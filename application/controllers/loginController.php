@@ -6,7 +6,8 @@ class ControllerLogin extends Controller {
     }
     
     public function checkLogin() {
-	    return App::fetchModel('user', 'detectLogin');
+	    $model = App::fetchModel('user');
+	    return $model::detectLogin();
     }
     
     public function validate()

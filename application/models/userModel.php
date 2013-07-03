@@ -1,9 +1,10 @@
 <?php
-require_once MODEL.'dbModel.php';
-class UserModel extends DbModel
+class UserModel extends Model
 	{
     public function __construct()
 	    {
+		parent::__construct();
+					
 		}
 		
 	function UserFullName()
@@ -19,7 +20,8 @@ class UserModel extends DbModel
 		
 	public function detectLogin() 
 		{
-		return UserModel::CheckLogin();
+		$detect = UserModel::CheckLogin();
+		return $detect;
 		}
 	
 	private function CheckLogin()
@@ -35,6 +37,7 @@ class UserModel extends DbModel
 		
 	function ChangePassword()
 		{
+		echo "up in ChangePassword";
 		if(!$this->CheckLogin())
 			{
 			$this->HandleError("Not logged in!");
@@ -67,6 +70,7 @@ class UserModel extends DbModel
 			return false;
 			}
 		$newpwd = trim($_POST['newpwd']);	
+		echo"<p>$newpwd<<  <br /> $pwd <<< <br /> $user_rec</p>";
 		if(!Model::ChangePasswordInDB($user_rec, $newpwd))
 			{
 			echo "fail 6";
