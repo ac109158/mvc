@@ -29,14 +29,11 @@ function main()
 	if(!$app::execute($url['controller'], $url['task'], $url['action'], $url['key']))
 	{
 	//echo "instruction failed";
-	echo $app->detectLogin().'<<';
-	if($app->detectLogin())
+	if($app::checkLogin())
 		{
-		echo 1;
 		$app::execute('dashboard', 'index');
 		exit;
 		}
-	echo 2;
 	$app::execute('index', 'index');
 	exit;
 	}
