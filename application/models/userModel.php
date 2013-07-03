@@ -20,8 +20,7 @@ class UserModel extends Model
 		
 	public function detectLogin() 
 		{
-		$detect = UserModel::CheckLogin();
-		return $detect;
+		return UserModel::CheckLogin();
 		}
 	
 	private function CheckLogin()

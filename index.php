@@ -28,8 +28,7 @@ function main()
 	//print_r($url);
 	if(!$app::execute($url['controller'], $url['task'], $url['action'], $url['key']))
 	{
-	//echo "instruction failed";
-	if($app::checkLogin())
+	if($app->checkLogin())
 		{
 		$app::execute('dashboard', 'index');
 		exit;
