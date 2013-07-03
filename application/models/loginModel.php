@@ -156,6 +156,7 @@ class LoginModel extends Model
 
 	function SendResetPasswordLink($user_rec)
 		{
+		echo "here";
 		$email = $user_rec['email'];		
 		$mailer = new PHPMailer();		
 		$mailer->CharSet = 'utf-8';		
@@ -163,7 +164,7 @@ class LoginModel extends Model
 		$mailer->Subject = "Your reset password request at ".$this->sitename;		
 		$mailer->From = $this->GetFromAddress();		
 		$link = $this->GetAbsoluteURLFolder().
-		'/?controller=login&action=resetpwd&email='.
+		'/?controller=login&task=reset_pwd&email='.
 		urlencode($email).'&code='.
 		urlencode($this->GetResetPasswordCode($email));		
 		$mailer->Body ="Hello ".$user_rec['name']."\r\n\r\n".

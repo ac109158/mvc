@@ -118,13 +118,12 @@ class Model {
 		
 	function GetEmailHost($email)
 		{
+		echo "email is $email";
 		$email = $email;
 		$sign_loc = strpos("$email", "@");
 		$dot_loc = strrpos("$email", ".");
 		if ($sign_loc != false && $dot_loc != false && $dot_loc > $sign_loc)
 			{
-			//echo 3;
-			//$msg .= 'Email: '.$email;
 			$email = substr($email, 0,$dot_loc);
 			$host = substr($email, (strpos($email, '@')+1));
 			//$msg.=' Host: '.$host.' ';
@@ -220,6 +219,11 @@ class Model {
             return false;
 			}
         return true;
+		}
+		
+		function HandleDBError($err)
+		{
+		$this->HandleError($err."\r\n mysqlerror:".mysql_error());
 		}
 	
 	

@@ -65,6 +65,19 @@ class ControllerLogin extends Controller {
 		
 		} // end of switch 
 		} // end of action	
+		
+	public function reset_pwd()
+		{
+		if(App::fetchModel('login', 'ResetUserPassword'))
+			{
+			$email = App::request($_REQUEST['email']);
+			$link = App::fetchModel('base',"GetEmailHost($email)");
+			ControllerLogin::password_reset__success_message($link, $email);
+			exit;
+			}
+		ControllerLogin::password_reset__success_message("$link","$email");
+		exit;		
+		}
 	
     function password_reset__success_message($link, $email)
 		{
@@ -72,8 +85,10 @@ class ControllerLogin extends Controller {
 		An email was sent to your email address that contains your new password..<br />'
 		.'Go to '. "$link ". "for " . "$email.". '<br />'
 		.'<a href="?controller=index">Home</a></center.';
-		$this->controller->getView($this->controller, 'Password Sucess', $msg);
-		$this->controller->view->render('message');
+		$view = App::fetchView();
+		$vars['title'] = 'Password Success';
+		$vars['msg'] = $msg;
+		$view::render('message',$vars);
 		exit;
 		}
 		
@@ -83,8 +98,10 @@ class ControllerLogin extends Controller {
 		$msg = '<center><h2>The attempt to reset your password was unsuccessful!</h2><br />
 		<p>Please try again or contact your system administrator.</p><br /> 
 		<a href="?controller=index">Login</a></center.';
-		$this->controller->getView($this->controller, 'Password Success', $msg);
-		$this->controller->view->render('message');
+		$view = App::fetchView();
+		$vars['title'] = 'Password Failure';
+		$vars['msg'] = $msg;
+		$view::render('message',$vars);
 		exit;
 		}
 	
@@ -94,11 +111,11 @@ class ControllerLogin extends Controller {
 		$emailsent = false;
 		if(isset($_REQUEST['submitted_email_reset']))
 			{
-			if($this->controller->model->EmailResetPasswordLink())
+			if(App::fetchModel('login','EmailResetPasswordLink'))
 				{
-				$email = $_REQUEST['email'];
-				$link = $this->controller->model->GetEmailHost($email);
-				$this->password_reset_message("$link", "$email");
+				$email = App::request( $_REQUEST['email']);
+				$link = App::fetchModel('login', 'GetEmailHost',"$email");
+				ControllerLogin::password_reset_message("$link", "$email");
 				exit;
 				}
 			else
@@ -111,9 +128,15 @@ class ControllerLogin extends Controller {
 			$msg = "Please provide the email that you registered with.";
 			}
 		//echo"3-render form<br /> ";
-		$this->controller->getView($this->controller, "Password Reset",$msg);
-		$this->controller->view->action = "?controller=login&action=pass_reset";
-		$this->controller->view->render('password_req');
+		$view = App::fetchView();
+		$vars['email'] = App::request('email');		
+		$vars['errors'] = App::fetchModel('error','GetErrorMessage');	
+		$vars['action'] = '?controller=login&task=password_reset_request';
+		$vars['title'] = "Password Reset";
+		$vars['message'] = '';
+		$vars = App::sticky($vars);
+		$view->render('password_req', $vars);
+		exit;
 		}//end of password_reset_request		
 		
 	function password_reset_message($link, $email)
@@ -122,8 +145,11 @@ class ControllerLogin extends Controller {
 		An email is sent to your email address that contains the link to reset the password..<br />'
 		.'Go to '. "$link ". "for " . "$email.". '<br />'
 		.'<a href="?controller=index">Home</a></center.';
-		$this->controller->getView($this->controller, 'Thank You', $msg);
-		$this->controller->view->render('message');
+		$view = App::fetchView();
+		$vars['title'] = "Thank you";
+		$vars = App::sticky($vars);
+		$vars['msg'] = $msg;
+		$view::render('message', $vars);
 		}	
 
 }

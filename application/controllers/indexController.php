@@ -18,7 +18,7 @@ class ControllerIndex extends Controller {
     
    function index()
    {
-   $model=App::fetchModel("database");
+   $model=App::fetchModel("error");
    $vars['title'] = 'SHIFT BUDDY';
 	$view = App::fetchView();
 	$vars['errors'] = $model->GetErrorMessage();

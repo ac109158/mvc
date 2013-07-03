@@ -32,7 +32,7 @@ class App {
     public function checkLogin() 
  		{
  		//echo "Inside of app checking login";
-		 	if(App::execute('login', 'checkLogin', null, null))
+		 	if(App::execute('login', 'checkLogin'))
 			 	{
 				 return true;
 			 	}
@@ -48,7 +48,7 @@ class App {
 		return null;
 		}
 		
-	public function fetchModel($model, $action=false)
+	public function fetchModel($model, $action=false, $arg = false)
 		{
 		$path = MODEL.$model.'Model.php';
 		$class_name = ucfirst($model).'Model';
@@ -64,8 +64,8 @@ class App {
 				{
 				return false;
 				}
+			return $model->$action($value = ($arg != false) ? $arg : void);
 			}
-		$model = new $class_name();
 		return $model;
 		}
 	

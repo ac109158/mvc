@@ -1,7 +1,7 @@
 <!-- Form Code Start -->
 
 <div id='fg_membersite'>
-<form id='resetreq' action='<?php echo $this->action; ?>' method='post' accept-charset='UTF-8'>
+<form id='resetreq' action='<?php echo $vars['action']; ?>' method='post' accept-charset='UTF-8'>
 <fieldset >
 <legend>Reset Password</legend>
 
@@ -9,10 +9,10 @@
 
 <div class='short_explanation'>* required fields</div>
 
-<div><span class='error'><?php echo $this->error_message;?></span></div>
+<div><span class='error'><?php echo $vars['errors'];?></span></div>
 <div class='container'>
     <label for='username' >Your Email*:</label><br/>
-    <input type='text' name='email' id='email' value='<?php echo $this->email;?>' maxlength="50" /><br/>
+    <input type='text' name='email' id='email' value='<?php echo $vars['email']?>' maxlength="50" /><br/>
     <span id='resetreq_email_errorloc' class='error'></span>
 </div>
 <div class='short_explanation'>A link to reset your password will be sent to the email address</div>
@@ -22,7 +22,7 @@
 
 </fieldset>
 </form>
-<div id="msg"><?php echo $this->msg; ?></div>
+<div id="msg"><?php echo $vars['msg'] ?></div>
 
 <!-- client-side Form Validations:
 Uses the excellent form validation script from JavaScript-coder.com-->
