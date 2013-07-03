@@ -57,6 +57,7 @@ class App {
 			return false;
 			}
 		require_once "$path";
+		$model = new $class_name();
 		if($action)
 			{
 			if (!method_exists("$class_name", "$action") )
@@ -114,19 +115,10 @@ class App {
 		
 		
 		
-	public function execute($controller, $task, $model = null, $action = null, $key= null)
+	public function execute($controller, $task, $key= null)
 		{
 		if (!$controller = App::fetchController($controller, $task)) {return false;}
-		if (isset($model))
-			{
-			if (!$model = App::fetchModel($model, $task)) {return false;}
-			if ((!$controller::$task()) || (!$model::action)){return false;}
-			if ((!$controller::$task()) || (!$model::action)){return false;}
-			}
-		else
-			{
-			if(!$controller::$task()){return false;}
-			}
+		if(!$controller::$task()){return false;}
 		}
 		
 	public function init()
