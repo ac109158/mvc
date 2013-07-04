@@ -30,7 +30,7 @@ function main()
 	{
 	if($app->checkLogin())
 		{
-		$app::execute('dashboard', 'index');
+		$app::execute('dashboard', 'display');
 		exit;
 		}
 	$app::execute('index', 'index');
