@@ -3,78 +3,121 @@ class LoginModel extends Model
 	{
     public function __construct()
     {
-        parent::__construct();
-        require_once LIB.'class.phpmailer.php';
+        parent::__construct();   
     }
 
-    public function index()
-    {
-    //require_once LIB.'formvalidator.php';
-	}
 	
 	function Login()
 		{
 		if(empty($_POST['username']))
 		{
-		    $this->HandleError("UserName is empty!");
-		    //echo "fail 1";
-		    return false;
-		}		
+		   return  array(false,'UserName is empty!');
+		}
 		if(empty($_POST['password']))
 		{
-		    $this->HandleError("Password is empty!");
-		    echo "fail 2";
-		    return false;
-		}		
+		    return array(false, 'Password is empty!');
+		}
 		$username = trim($_POST['username']);
-		$password = trim($_POST['password']);
-		
+		$password = trim($_POST['password']);		
 		if(!isset($_SESSION)){ session_start(); }
-		
-		if(!$this->CheckLoginInDB($username,$password))
+		$result = $this->CheckLoginInDB($username,$password);
+		if($result !== true )
 			{
-			echo "fail 3";
-		    return false;
-			}	
+		    return $result[] = 'The Username or Password does not match!';
+			}
 		$_SESSION[$this->GetLoginSessionVar()] = $username;		
 		return true;
-	   }		
+	   }
+	   
+	   
+	   
+	   public function CheckLoginInDB($username,$password)
+		{
+			$result = $this->DBLogin();
+			if($result !== true)
+				{
+				return $result[] = "Database login failed!";
+				}          
+			$username = $this->SanitizeForSQL($username);
+			$pwdmd5 = md5($password);
+			$qry = "Select CONCAT(first_name, ' ', last_name) as name, email, user_id from $this->tablename where username='$username' and password='$pwdmd5' and confirmcode='y'";	
+			$result = mysql_query($qry,$this->connection);		
+			if(!$result || mysql_num_rows($result) <= 0)
+				{
+				return array(false, "Error logging in. The username or password does not match");
+				}		
+			$row = mysql_fetch_assoc($result);	
+			$_SESSION['name_of_user']  = $row['name'];
+			$_SESSION['email_of_user'] = $row['email'];				
+			$_SESSION['user_id'] = $row['user_id'];				
+			return true;
+		}
+	function DBLogin()
+    	{
+        $this->connection = mysql_connect($this->db_host,$this->username,$this->pwd);
+        if(!$this->connection)
+        	{   
+            return array(false,"Database Login failed! Please make sure that the DB login credentials provided are correct");
+			}
+        if(!mysql_select_db($this->database, $this->connection))
+        	{
+            return array(false,"Failed to select database: '.$this->database.' Please make sure that the database name provided is correct");
+			}
+        if(!mysql_query("SET NAMES 'UTF8'",$this->connection))
+        	{
+            return array(false,'Error setting utf8 encoding');
+			}
+        return true;
+		}
+		
+	function GetUserFromEmail($email,&$user_rec)
+		{
+		$result = LoginModel::DBLogin();
+        if($result !== true)
+        	{
+            return $result[] = 'Database login failed!';
+			}   
+        $email = $this->SanitizeForSQL($email);        
+        $result = mysql_query("Select * from $this->tablename where email='$email'",$this->connection); 
+        if(!$result || mysql_num_rows($result) <= 0)
+        	{
+            return array("There is no user with email: $email");
+			}
+        $user_rec = mysql_fetch_assoc($result);        
+        return true;
+		}
+		
 		
 	function ResetUserPassword()
 		{
 		if(empty($_GET['email']))
 			{
-			$this->HandleError("Email is empty!");
-			return false;
+			return "Email is empty!";
 			}
 		if(empty($_GET['code']))
 			{
-			$this->HandleError("reset code is empty!");
-			return false;
+			return "Reset code is empty!";
 			}
 		$email = trim($_GET['email']);
 		$code = trim($_GET['code']);
 		
 		if($this->GetResetPasswordCode($email) != $code)
 			{
-			$this->HandleError("Bad reset code!");
-			return false;
+			return "Bad reset code!";
 			}		
 		$user_rec = array();
 		if(!$this->GetUserFromEmail($email,$user_rec))
 			{
-			return false;
+			return "Error";
 			}		
 		$new_password = $this->ResetUserPasswordInDB($user_rec);
 		if(false === $new_password || empty($new_password))
 			{
-			$this->HandleError("Error updating new password");
-			return false;
+			return "Error updating new password";
 			}		
 		if(false == $this->SendNewPassword($user_rec,$new_password))
 			{
-			$this->HandleError("Error sending new password");
-			return false;
+			return "Error sending new password";
 			}
 		return true;
 		}
@@ -94,6 +137,7 @@ class LoginModel extends Model
 		
 	private function SendNewPassword($user_rec, $new_password)
 		{
+		require_once LIB.'class.phpmailer.php';
 		$email = $user_rec['email'];		
 		$mailer = new PHPMailer();		
 		$mailer->CharSet = 'utf-8';		
@@ -131,7 +175,7 @@ class LoginModel extends Model
 
 	function SendResetPasswordLink($user_rec)
 		{
-		echo "here";
+		require_once LIB.'class.phpmailer.php';
 		$email = $user_rec['email'];		
 		$mailer = new PHPMailer();		
 		$mailer->CharSet = 'utf-8';		
@@ -159,17 +203,16 @@ class LoginModel extends Model
 		{
 		if(empty($_POST['email']))
 			{
-			$this->HandleError("Email is empty!");
-			return false;
+			return array("Email is empty!");
 			}
 		$user_rec = array();
 		if(false === $this->GetUserFromEmail($_POST['email'], $user_rec))
 			{
-			return false;
+			return array("Error");
 			}
 		if(false === $this->SendResetPasswordLink($user_rec))
 			{
-			return false;
+			return array("That email is not registered to a user!");
 			}
 		return true;
 		}

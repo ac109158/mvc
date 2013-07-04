@@ -20,11 +20,15 @@ class RegisterModel extends Model
 	   
 	function RegisterUser()
 	{
-		if(!isset($_POST['submitted'])) { return false; }
+		if(!isset($_POST['submitted'])) { return array(false); }
 		$formvars = array();	
-		if(!$this->ValidateRegistrationSubmission()) { return false; }
-		$this->CollectRegistrationSubmission($formvars); if ( !$this->SaveToDatabase($formvars) ) { return false; }
-		if(!$this->SendUserConfirmationEmail($formvars)) { return false; }
+		$result = $this->ValidateRegistrationSubmission();
+		if($result !== true) { return $result; }
+		$this->CollectRegistrationSubmission($formvars); 
+		$result = $this->SaveToDatabase($formvars);
+		if($result !== true) { return $result; }
+		$result = $this->SendUserConfirmationEmail($formvars);
+		if($result !== true) { return $result; }
 		$this->SendAdminIntimationEmail($formvars);	
 		return true;
 		}//end of RegisterUser function
@@ -45,9 +49,9 @@ class RegisterModel extends Model
 		if(!empty($_POST[ $this->GetSpamTrapInputName() ] ) ) 
 		{ 
 			//The proper error is not given intentionally
-			$this->HandleError("Automated submission prevention: case 2 failed");
-			return false;
+			return array("Automated submission prevention: case 2 failed", false);
 		}
+		require_once LIB.'formvalidator.php';
 		$validator = new FormValidator();
 		$validator->addValidation("first_name","req","Please fill in first name");
 		$validator->addValidation("last_name","req","Please fill in last name");
@@ -64,10 +68,9 @@ class RegisterModel extends Model
 			$error_hash = $validator->GetErrors();
 			foreach($error_hash as $inpname => $inp_err)
 				{
-				$error .= $inpname.':'.$inp_err."\n";
+				$error .= $inpname.':'.$inp_err."<br />";
 				}
-			$this->HandleError($error);
-			return false;
+			return array(false, $error);
 			}
 		return true;
 		}       
@@ -117,10 +120,10 @@ class RegisterModel extends Model
 		
 	function SaveToDatabase(&$formvars)
 	{
-		if ( !$this->DBLogin() ) { $this->HandleError("Database login failed!"); return false; }
-		if ( !$this->IsFieldUnique( $formvars,'email' ) ) { $this->HandleError("This email is already registered"); return false; }
-		if ( !$this->IsFieldUnique( $formvars,'username') ) 	{ $this->HandleError( 'This UserName is already used. Please try another username' ); return false; }        
-		if ( !$this->InsertIntoDB( $formvars ) ) { $this->HandleError( 'Inserting to Database failed!' ); return false; }
+		if ( !$this->DBLogin() ) { return array(false,'Database login failed!'); }
+		if ( !$this->IsFieldUnique( $formvars,'email' ) ) { return array(false,"This email is already registered"); }
+		if ( !$this->IsFieldUnique( $formvars,'username') ) 	{ return array(false,'This UserName is already used. Please try another username'); }        
+		if ( !$this->InsertIntoDB( $formvars ) ) { return array(false, 'Inserting to Database failed!'); }
 		return true;
 	}
 		
@@ -182,7 +185,7 @@ class RegisterModel extends Model
 		"Webmaster\r\n".
 		$this->sitename;	
 		
-		if(!$mailer->Send())	{$this->HandleError("Failed sending user welcome email.");return false;}
+		if(!$mailer->Send())	{return array(false, "Failed sending user welcome email.");}
 		return true;
 	}
 		
@@ -238,7 +241,7 @@ class RegisterModel extends Model
 		"Name: ".$formvars['name']."\r\n".
 		"Email address: ". $formvars['email'] . "\r\n".
 		"UserName: ". $formvars['username'];
-		if ( !$mailer->Send() ) { return false; }
+		if ( !$mailer->Send() ) { return array(false); }
 		return true;
 	}
 		

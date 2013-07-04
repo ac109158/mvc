@@ -89,7 +89,6 @@ $date = date(“format”, $timestamp);
 				<div id="main_panel">
 			    	<div class="grid" id="main_content">
 				    	<center><h2>Welcome to Shift Buddy</h2></center>
-				    	<div class="error_msg"><p><?php echo $vars['errors']; ?></p></div>
 				    	<div id="msg"><?php echo $vars['msg']; ?></div>
 			    	</div>
 			    </div><!-- end of main_panel -->

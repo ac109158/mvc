@@ -6,9 +6,8 @@ class ControllerRegister extends Controller {
         parent::__construct();
     }   
     
-    public function display() 
+    public function display($msg = null) 
     {
-		$model = App::fetchModel("register");
 		if (isset($_POST['submitted']))
 			{
 			$vars['first_name'] = App::request('first_name');
@@ -17,11 +16,11 @@ class ControllerRegister extends Controller {
 			$vars['phone_number'] = App::request('phone_number');
 			$vars['username'] = App::request('username');
 			$vars['password'] = App::request('password');
-			$vars = App::sticky($vars);
+			$vars = App::cleanArray($vars);
 			}
-		$vars['spamInputTrapName'] = $model->GetSpamTrapInputName();
+		$vars['spamInputTrapName'] = App::fetchModel('base','GetSpamTrapInputName');
 		$vars['title'] = 'Register';
-		$vars['errors'] = $model->GetErrorMessage();
+		$vars['errors'] = $msg;
 		$view = App::fetchView();
 		$view::render('register',$vars);
 		exit;
@@ -31,15 +30,16 @@ class ControllerRegister extends Controller {
     {
 		if (isset($_POST['submitted']))
 			{
-			$model = App::fetchModel('register');
-			if($model->RegisterUser())
+			$result = App::fetchModel('register', 'RegisterUser');
+			if($result === true)
 				{
 				$email = $_REQUEST['email'];
-				$link = $model->GetEmailHost($email);
+				$link = App::fetchModel('base', 'GetEmailHost',$email);
 				if (!ControllerRegister::validated("$link", "$email")) { return false; }
 			} else 
 					{
-					ControllerRegister::display(); exit;
+					$result = array_pop($result);
+					ControllerRegister::display($result); exit;
 					}			
 		}
 	}

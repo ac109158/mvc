@@ -55,7 +55,8 @@ class UserModel extends Model
 			return false;
 			}		
 		$user_rec = array();
-		if(!$this->GetUserFromEmail($this->UserEmail(),$user_rec))
+		App::fetchModel('login');
+		if(!LoginModel::GetUserFromEmail($this->UserEmail(),$user_rec))
 			{
 			echo "fail 4";
 			return false;
@@ -99,19 +100,17 @@ class UserModel extends Model
 		
 	function getUserProfile($user_id)
 		{
-		if(!$this->DBLogin())
+		$result = App::fetchModel( 'login', 'DBLogin' );
+		if ( $result !== true )
 			{
-			$this->HandleError("Database login failed!");
-			echo "fail 4";
-			return false;
+			return $result[] = "Database login failed!";
 			}          
 		$user_id = $this->SanitizeForSQL($user_id);
 		$qry = "Select * from $this->tablename where user_id='$user_id'";
 		$result = mysql_query($qry,$this->connection);		
 		if(!$result || mysql_num_rows($result) <= 0)
 			{
-			$this->HandleError("Error retrieving info. This user does not exist");
-			return false;
+			return "Error retrieving info. This user does not exist";
 			}
 		$row = mysql_fetch_assoc($result);
 		$uservars = array();	

@@ -5,6 +5,8 @@ class App {
     	{
 		require './config.php';  // Global vars and database
 		require CONTROLLER."Controller.php"; // Base Controller Class
+		$error_messages = array();
+		
 /*
 		$errors = array();
 		$vars = array();
@@ -21,13 +23,6 @@ class App {
     	{
 	    return $errors;
     	}
-    	
-/*
-    public function setVar($name,$value) 
-    	{
-		$vars["$name"] = $value;
-		}
-*/
     
     public function checkLogin() 
 	{
@@ -99,5 +94,6 @@ class App {
 		$url['key'] = App::request($_REQUEST['key']);
 		return $url;
 	}
+	
 
 }

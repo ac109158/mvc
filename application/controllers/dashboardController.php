@@ -19,7 +19,7 @@ class ControllerDashboard extends Controller
 		$view = App::fetchView();
 		$vars['title'] = 'Dashboard';
 		$vars['user_name'] = $model->UserFullName();
-		$vars['errors'] = $model->GetErrorMessage();
+		$vars['errors'] = $msg;
 		$vars['msg'] = $msg;
 		$vars['profile'] = ControllerDashboard::userProfileArray($_SESSION['user_id']);
         $view::render('dashboard',$vars,1);
@@ -93,7 +93,7 @@ class ControllerDashboard extends Controller
 		exit;
 	}	
 	
-	private function UserList()
+	public function UserList()
 	{
 		$msg = '';
 		foreach ((App::fetchModel('user', 'listBuddies')) as $user){

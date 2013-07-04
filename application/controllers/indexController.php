@@ -4,6 +4,7 @@ class ControllerIndex extends Controller {
 
     function __construct() {
         parent::__construct();
+		//$error_messages = array();
     }
     
     function display($view, $vars) {
@@ -18,11 +19,9 @@ class ControllerIndex extends Controller {
     
    function index()
    {
-   $model=App::fetchModel("error");
    $vars['title'] = 'SHIFT BUDDY';
 	$view = App::fetchView();
-	$vars['errors'] = $model->GetErrorMessage();
-	$view::render('landing', 1,$vars);
+	$view::render('landing', $vars, 1);
 	exit;
    }            
 	

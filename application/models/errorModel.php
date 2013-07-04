@@ -6,6 +6,7 @@ class ErrorModel extends Model
         parent::__construct();
         $this->db_errors = '';
         $this->form_errors = '';
-    }	
-	
+        $this->error_message = '';
+    }
+    
 	}
