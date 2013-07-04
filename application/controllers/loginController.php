@@ -38,33 +38,7 @@ class ControllerLogin extends Controller {
 		$view::render('login',$vars);
 		exit;
 		}
-	
-	private function action($action)
-		{
-		switch ($action) 
-		{
-		case "pass_reset":
-			//echo "0-init request<br /> ";
-			$this->password_reset_request();
-			break;
-		case "resetpwd":
-			//NEED TO PUT SOME SECURITY BUFFERS HERE
-			if ($this->controller->model->ResetUserPassword());
-				{
-				$email = $_REQUEST['email'];
-				$link = $this->controller->model->GetEmailHost($email);
-				$this->password_reset__success_message($link, $email);
-				exit;
-				}
-			$this->password_reset__failure_message();
-			break;
 
-		default:
-			$this->password_reset__failure_message();
-		
-		} // end of switch 
-		} // end of action	
-		
 	public function reset_pwd()
 		{
 		if(App::fetchModel('login', 'ResetUserPassword'))
@@ -126,7 +100,6 @@ class ControllerLogin extends Controller {
 			{
 			$msg = "Please provide the email that you registered with.";
 			}
-		//echo"3-render form<br /> ";
 		$view = App::fetchView();
 		$vars['email'] = App::request('email');		
 		$vars['errors'] = App::fetchModel('error','GetErrorMessage');	

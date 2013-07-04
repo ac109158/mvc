@@ -58,7 +58,7 @@ $date = date(“format”, $timestamp);
 								</ul>
 							</li>
 							<li><a href="#">My Schedule</a></li>
-							<li><a href="?controller=dashboard&task=listBuddies">My Buddies</a></li>
+							<li><a href="?controller=dashboard&task=UserList">My Buddies</a></li>
 							<li><a href="#">Resources</a></li>
 						</ul>
 					</li>

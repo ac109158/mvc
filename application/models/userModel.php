@@ -36,7 +36,6 @@ class UserModel extends Model
 		
 	function ChangePassword()
 		{
-		echo "up in ChangePassword";
 		if(!$this->CheckLogin())
 			{
 			$this->HandleError("Not logged in!");
@@ -69,7 +68,6 @@ class UserModel extends Model
 			return false;
 			}
 		$newpwd = trim($_POST['newpwd']);	
-		echo"<p>$newpwd<<  <br /> $pwd <<< <br /> $user_rec</p>";
 		if(!Model::ChangePasswordInDB($user_rec, $newpwd))
 			{
 			echo "fail 6";
@@ -123,9 +121,6 @@ class UserModel extends Model
 		return $uservars;
 		}
 	
-	function hey() {
-		echo "wassssssuuuuuuppp";
-	}
 		
 		
 	} //end of UserModel

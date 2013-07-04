@@ -1,13 +1,13 @@
 <?php
 class ControllerRegister extends Controller {
 
-    function __construct() {
+    function __construct() 
+    {
         parent::__construct();
-    }
-    
+    }   
     
     public function display() 
-    	{
+    {
 		$model = App::fetchModel("register");
 		if (isset($_POST['submitted']))
 			{
@@ -20,15 +20,15 @@ class ControllerRegister extends Controller {
 			$vars = App::sticky($vars);
 			}
 		$vars['spamInputTrapName'] = $model->GetSpamTrapInputName();
-		$vars['title'] = 'Confirmation';
+		$vars['title'] = 'Register';
 		$vars['errors'] = $model->GetErrorMessage();
 		$view = App::fetchView();
 		$view::render('register',$vars);
 		exit;
-		}
+	}
     
     public function validate()
-    	{
+    {
 		if (isset($_POST['submitted']))
 			{
 			$model = App::fetchModel('register');
@@ -36,23 +36,16 @@ class ControllerRegister extends Controller {
 				{
 				$email = $_REQUEST['email'];
 				$link = $model->GetEmailHost($email);
-				if (!ControllerRegister::validated("$link", "$email"))
+				if (!ControllerRegister::validated("$link", "$email")) { return false; }
+			} else 
 					{
-					echo "cannot validate";
-					return false;
-					}
-				}
-			else 
-			{
-			ControllerRegister::display();
-			exit;
-			}
-			
+					ControllerRegister::display(); exit;
+					}			
 		}
-		exit;
-		}
+	}
 	
-	private function validated($link,$email) {
+	private function validated($link,$email) 
+	{
 		$msg = '<center><h2>Thanks for registering!</h2><br />
 		Your confirmation email is on its way. Please click the link in the email to complete the registration.<br />'
 		.'Go to '. "$link ". "for " . "$email.". '<br />'

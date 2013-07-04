@@ -5,12 +5,12 @@ Please enter the confirmation code in the box below
 
 <!-- Form Code Start -->
 <div id='fg_membersite'>
-<form id='confirm' action="?controller=confirm&task=validate" method='POST' accept-charset='UTF-8'>
+<form id = 'confirm' action = '<?php echo $vars['action'] ?>' method='POST' accept-charset='UTF-8'>
 <div class='short_explanation'>* required fields</div>
 <div><span class='error'><?php echo $vars['errors']; ?></span></div>
 <div class='container'>
     <label for='code' >Confirmation Code:* </label><br/>
-    <input type='text'  id='key' name='key' value="<?php echo $vars['key'];?>" length="32" maxlength="32" /><br/>
+    <input type='text'  id='key' name='key' value="<?php echo $vars['key'];?>" length="34" maxlength="34" /><br/>
     <span id='register_key_errorloc' class='error'></span>
 </div>
 <div class='container'>

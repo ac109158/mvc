@@ -7,39 +7,33 @@ class ControllerConfirm extends Controller {
     }    
 
     private function render() 
-    	{
-    	$model=App::fetchModel("confirm");
-		$model::index();
-    	$key = (isset($_REQUEST['key'])) ? $_REQUEST['key']:'';
+    {
     	$view = App::fetchView();
     	$vars['title'] = 'Confirm Registration';
-    	$vars['key'] = $key;
-    	$view::render('confirm',$vars,1);
-		}
-		
-    
-     public function validate()
-    	{
-		if(isset($_REQUEST['key']))
-			{
-			$model = App::fetchModel('confirm');
-			if($model->ConfirmUser())
-				{
-				$display = false;
+    	$vars['key'] = App::request( $_REQUEST[ 'key' ] );
+    	$vars['action'] = '?controller=confirm&task=validate';
+    	$view::render('confirm',$vars);
+	}		
+
+	public function validate()
+    {
+		if ( isset( $_REQUEST['key'] ) ) 
+		{
+			if ( App::fetchModel( 'register', 'ConfirmUser' ) ) 
+			{ 
+				$display = false; 
 				ControllerConfirm::validated();
 				exit;
-				}
-				else
-				{
-				$display = false;
-				ControllerConfirm::render();
-				exit;
-				}
-			}
+			 } else 
+			 		{ 
+						$display = false; 
+						ControllerConfirm::failure(); 
+						exit; 
+					}
+		}
 		ControllerConfirm::failure();
 		exit;
-		}//end of validate
-		
+	}//end of validate		
 		
 	private function validated () {
 		$msg = '<center><h2>Thanks for registering!</h2><br /> 

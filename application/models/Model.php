@@ -118,7 +118,6 @@ class Model {
 		
 	function GetEmailHost($email)
 		{
-		echo "email is $email";
 		$email = $email;
 		$sign_loc = strpos("$email", "@");
 		$dot_loc = strrpos("$email", ".");
@@ -190,9 +189,7 @@ class Model {
 		
 		function ChangePasswordInDB($user_rec, $newpwd)
 		{
-		echo "up in here bitch";
 		$newpwd = $this->SanitizeForSQL($newpwd);	
-		echo "clean password is $newpwd";	
 		$qry = "Update $this->tablename Set password='".md5($newpwd)."' Where  user_id=".$user_rec['user_id']."";		
 		if(!mysql_query( $qry ,$this->connection))
 			{
