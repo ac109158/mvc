@@ -68,6 +68,19 @@ class App {
 		return $sticky;	
 	}
 	
+	
+	public function getDefaultVars($array,$errMsg=null)
+	{
+
+		$array['site'] =  SITENAME;
+		$array['title']= SITENAME;
+		$array['slogan'] = SLOGAN;
+		$array['time'] = getdate();	
+		$array['form']= VIEW.'login.php';
+		$array['errors'] = $errMsg;	
+		return $array;	
+	}
+	
 	public function fetchController($controller, $task)
 	{
 		$path = CONTROLLER.$controller.'Controller.php';

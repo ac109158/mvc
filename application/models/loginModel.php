@@ -23,7 +23,7 @@ class LoginModel extends Model
 		$result = $this->CheckLoginInDB($username,$password);
 		if($result !== true )
 			{
-		    return $result[] = 'The Username or Password does not match!';
+		    return array(false,'The Username or Password does not match!');
 			}
 		$_SESSION[$this->GetLoginSessionVar()] = $username;		
 		return true;

@@ -23,9 +23,9 @@
 </div>
 
 <div class='container'>
-    <input class = "ajax_trigger" type='submit' name='Submit' value='Submit' />
+    <input  type='submit' name='Submit' value='Submit' />
 </div>
-<div class='short_explanation'><a class='ajax_trigger' href="./application/views/password_req.php">Forgot Password?</a></div>
+<div class='short_explanation'><a href="?controller=login&task=password_reset_request">Forgot Password?</a></div>
 
 </fieldset>
 </form>
@@ -46,7 +46,7 @@ Uses the excellent form validation script from JavaScript-coder.com-->
 // ]]>
 </script>
 </div>
-</div></div>
+ </div></div>
 <!--
 Form Code End (see html-form-guide.com for more info.)
 -->

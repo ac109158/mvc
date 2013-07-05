@@ -1,130 +1,155 @@
+html {
+	margin:none;
+	padding: 0px;
+}
 body {
 	background-color: white;
 }
-
 #container {
 	margin: 0px auto;
 	padding: 0px;
 	width: 1200px;
-	padding:10px;
-	min-height: 500px;
+	min-height: 700px;
+	background: #3260b5;
+	border:1px solid  orange;
 }
 
 /*******************Landing Page CSS***********************/
 
-#flipbox {
-	display: block;
-	background:tan;
-	min-height: 650px;
+#flipbox {			/* gives the option to rotate the main conatiner for effect*/
+	width:100%;
+	height: 100%;
 }
 
 #landing_header {
 	width:100%;
 	height:100px;
-	background: #4a98ab;
-}
+	background: #ff8a04;
+	}
 
 #logo {
-	width:70%;
-	height: 100%;
+	width:100%;
+	height: 50%;
 	font-size: 24pt;
-	color:white;
-	text-align: center;
-	background: grey;
-	line-height: 250%;
+	color:orange;
+	background: white
+}
+
+#landing_date {
+	position: relative;
+	top:5px;
+	left:-5px;
+	width:300px;
+	height: 50px;
+	float: right;
+	font-size: 20pt;
+	background: white;
+	border-bottom: white 2px solid;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius:10px;
+	-webkit-box-shadow: 0 8px 6px -6px black;
+	-moz-box-shadow: 0 8px 6px -6px black;
+	box-shadow: 0 8px 6px -6px black;
+		}
+	
+#landing_date_list {
+	height:50%;
+	width:80%;
+	margin:0px;
+	padding: 0px;
+	list-style: none;
+	margin-left:15%;
+	margin-top:4%;
+	}
+
+#landing_date li {
+	float:left;
+
 }
 
 #landing_nav {
-	width:30%;
-	margin: 0px;
-	padding: 0px;
-	min-height: 500px;
-	background: black;
-	float: left;
+	width:100%;
+	height:50%;
 }
-#landing_date {
+
+#landing_links_list {
+	padding:0px;
+	margin:0px; 
+	list-style: none;
+	width:520px;
+	height: 100%;
+	background: #ff8a04;
 	position: relative;
-	top:-10px;
-	margin:0px;
-	padding: 0px;
-	display: block;
-	font-size: 20pt;
-	height: 50px;
-	background: white; 
-	margin-bottom: 10px;
+	top:-5px;
+	left:5px;
+	border-top: #ff8a04 2px solid;
+	border-top-right-radius: 10px;
+	border-top-left-radius:10px;
+	-webkit-box-shadow: 0px -2px 4px black;
+    -moz-box-shadow: 0px -2px 4px black;
+    box-shadow:   0px  -2px 4px black;
 }
 
-#landing_date li {
-	margin:1%;
-	list-style: none;
-	display: inline-block;
+#landing_links_list li {
 	float:left;
+	height: 100%;
+	width:130px;
 }
 
-#landing_date li a {
-	list-style: none;
-	color:white;
-	text-decoration: none;
-}
 
-#flipboxx {
-	margin:0px;
-	list-style: none;	
-	display: block;
-	height: 450px;
-	background: pink;
-}
 
-#landing_nav_links {
-	list-style: none;
+#landing_links_list li a {
 	display: block;
-	height: 300px;
-	margin:0px;
-	padding: 0px;
-	background-color: purple;
-}
-#login_pull {
-	display: block;
-	margin:0px;
-	height: 100px;
-	text-decoration: none;
+	font-size: 1.5em;
+	height:50px;
+	line-height: 50px;
 	text-align: center;
-	background-color: white;
-	margin-bottom: 10px;
-	font-size: 30pt;
-	line-height: 100px;
+	background: white;
+	text-decoration: none;
+}
+
+#landing_links_list li:hover {
+	position: relative;
+	background-color: #ff8a04;
+	box-shadow: -15px 0 15px -10px rgba(0, 0, 0, 0.6),
+             				  15px 0 15px -10px rgba(0, 0, 0, 0.6);
+	top:-5px;
+	padding-top:5px;
+	margin-bottom: -5px;
+	border-top-right-radius: 5px;
+	border-top-left-radius:5px;
 	
-.form_wrapper {
-	width:200px;
-	height:400px;
-	background-color: white;
-}
-
-
-}
-#landing_nav_links li a {
-	display: block;
-	margin:0px;
-	height: 75px;
-	text-decoration: none;
-	text-align: center;
-	background-color: white;
-	margin-bottom: 10px;
-	font-size: 30pt;
-	line-height: 100px;
 	}
 
+#landing_content {
+	
+}
+	
+.form_wrapper {
+	left:400px;
+	zoom: 1;
+	filter: alpha(opacity=100);
+	opacity: 1;
+	margin:0px auto;
+	width:200px;
+	min-height:500px;
+	
+}
+
+
+
 #landing_main_content {
+	display: block;
 	float: left;
 	width:70%;
 	min-height: 500px;
-	background: red;
 }
 
 
 #landing_footer {
+	display: block;
 	width:100%;
-	min-height: 100px;
+	height: 50px;
 	background: yellow;
 }
 
@@ -210,7 +235,7 @@ ul.drop li:hover > ul {
 #content {
 	display: block;
 	width:100%;
-	height:500px;
+	min_height:500px;
 }
 
 #left_panel {
@@ -301,16 +326,25 @@ ul.drop li:hover > ul {
 }
 
 
-
+legend {
+font-size: 1.5em;
+}
 .form_wrapper fieldset
 {
-   width: 230px;
-   padding:20px;
-   border:1px solid #ccc;
--moz-border-radius: 10px;
--webkit-border-radius: 10px;
--khtml-border-radius: 10px;
-border-radius: 10px;   
+	width: 230px;
+	min-height: 400px;
+	padding:20px;
+	margin:0px auto;
+	border:1px solid #ccc;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-khtml-border-radius: 10px;
+	border-radius: 10px;  
+	background-color: ivory;
+	zoom: 1;
+	filter: alpha(opacity=100);
+	opacity: 1;
+}
 }
 
 .form_wrapper legend, .form_wrapper h2
@@ -462,4 +496,10 @@ padding-bottom:10px;
    font-size: 1.5em;
    font-weight:bold;
    color:#333;
+}
+
+.transparent {
+	zoom: 1;
+	filter: alpha(opacity=100);
+	opacity: 1;
 }

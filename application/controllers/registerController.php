@@ -18,11 +18,14 @@ class ControllerRegister extends Controller {
 			$vars['password'] = App::request('password');
 			$vars = App::cleanArray($vars);
 			}
+		$vars = App::getDefaultVars($vars,$msg);
 		$vars['spamInputTrapName'] = App::fetchModel('base','GetSpamTrapInputName');
 		$vars['title'] = 'Register';
-		$vars['errors'] = $msg;
+		//$vars['errors'] = $msg;
+		$vars['form'] = VIEW.'register.php';
+		
 		$view = App::fetchView();
-		$view::render('register',$vars);
+		$view::render('landing',$vars);
 		exit;
 	}
     

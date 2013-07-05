@@ -35,14 +35,18 @@ class ControllerLogin extends Controller {
 		{
 		$model = App::fetchModel('login');
 		$view = App::fetchView();
-		$vars['title'] = "Login";
 		if (isset($_POST['submitted']))
 			{
 			$vars['username'] = App::request('username');
 			$vars = App::cleanArray($vars);
 			}
+		$vars['title'] = 'LOGIN';
+		$vars['site'] = "SHIFT BUDDY";
+	    $vars['slogan'] = ".......... making shit easier";
+	    $vars['time'] = getdate();
 		$vars['errors'] = $msg;
-		$view::render('login',$vars);
+		$vars['form'] = VIEW.'login.php';
+		$view::render('landing',$vars);
 		exit;
 		}
 
@@ -100,7 +104,7 @@ class ControllerLogin extends Controller {
 				}
 			else
 				{
-				$msg = array_pop($result);	
+				$msg = array_pop($result);
 				}
 		}
 		else
@@ -110,12 +114,21 @@ class ControllerLogin extends Controller {
 		$view = App::fetchView();
 		$vars['email'] = App::request('email');
 		$vars = App::cleanArray($vars);
+		$vars['site'] = 'SHIFT BUDDY';
+		$vars['slogan'] = ".......... making shit easier";
 		$vars['action'] = '?controller=login&task=password_reset_request';
 		$vars['title'] = "Password Reset";
 		$vars['errors'] = $msg;
-		$view->render('password_req', $vars);
+		$vars['time'] = getdate();
+		$vars['form'] =  VIEW.'password_req.php';
+		$view->render('landing', $vars);
 		exit;
-		}//end of password_reset_request		
+		}//end of password_reset_request
+		
+		
+		
+   
+   	
 		
 	function password_reset_message($link, $email)
 		{

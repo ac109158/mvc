@@ -2,42 +2,35 @@
 	<div id="flipbox">	
 		<div id='landing_header'>
 			<div id = "logo">
-				<?php echo $vars['title'] . $vars['slogan'] ;?>
+				<?php echo $vars['site'] . $vars['slogan'] ;?>
+				<div id='landing_date'>
+					<ul id = "landing_date_list">
+						<li><?php echo $vars['time']['weekday']; ?> &nbsp;</li>
+						<li><?php echo $vars['time']['month']; ?>&nbsp;</li>
+						<li><?php echo $vars['time']['mday']; ?>,&nbsp;</li>
+						<li><?php echo $vars['time']['year']; ?></li>
+					<ul>
+				</div> <!-- end of landing date -->	
 			</div> <!-- end of logo -->
+			<div id="landing_nav">
+				<ul id = "landing_links_list">				
+				<li><a  href="index.php?controller=login&task=display">LOGIN</a></li>
+				<li><a  href="index.php?controller=register&task=display">REGISTER</a></li>
+				<li><a href="#">ABOUT</a></li>
+				<li><a href="#">CONTACT</a></li>
+				</ul>						
+			</div> <!-- end of landing_nav -->		
 		</div> <!-- end of landing_header -->
 			<div style="clear:both"></div>
+
 	
 	
 	
 	<div id="landing_content">
-		<div id="landing_nav">
-			<div id='landing_date'>
-				<ul>
-					<li><?php echo $vars['time']['weekday']; ?> &nbsp;</li>
-					<li><?php echo $vars['time']['month']; ?></li>
-					<li><?php echo $vars['time']['mday']; ?>,</li>
-					<li><?php echo $vars['time']['year']; ?></li>
-				<ul>
-			</div> <!-- end of landing date -->
-			<div>
-				<ul id = "landing_nav_links">				
-					<li><a class = "ajax_trigger" href="<?php echo VIEW.'login.php' ?>">LOGIN</a></li>
-					<li><a class = "ajax_trigger" href="<?php echo VIEW.'register.php' ?>">REGISTER</a></li>
-					<li><a href="#">ABOUT</a></li>
-					<li><a href="#">CONTACT</a></li>
-				</ul>
-			</div>				
-		</div> <!-- end of landing_nav -->
-		<div id='landing_main_content'>
-			<div class="ajax_content">
-				<div class="ajax_pull">
-				</div> <!-- end of ajax_pull -->			
-			</div>	 <!-- end of ajax_content -->
+		<div class = "transparent" id='landing_main_content'>
+			<?php include $vars['form']; ?>
 		</div><!-- end of landing_main_content -->
 	</div> <!-- end of landing_content -->
-	<div id="landing_footer">
-		footer
-	</div> <!-- end of footer -->
 	</div> <!-- end of flipbox -->
 </div> <!-- end of main container -->
 <div id="flipPad">

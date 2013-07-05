@@ -1,4 +1,6 @@
 <?php
+define('SITENAME', 'SHIFT BUDDY');
+define('SLOGAN', '...simple gets done');
 define('BASE_URL', ($_SERVER['DOCUMENT_ROOT']).'/mvc');
 define('URL', 'http://andy.plusonedevelopment.com/mvc');
 define('CONTROLLER', './application/controllers/');

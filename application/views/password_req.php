@@ -1,4 +1,3 @@
-
 <div class='ajax_content'>
 <div class='ajax_pull'>
 <div class='form_wrapper'>
@@ -45,6 +44,8 @@ Uses the excellent form validation script from JavaScript-coder.com-->
 </div>
 </div>
 </div>
+
+
 <!--
 Form Code End (see html-form-guide.com for more info.)
 -->
