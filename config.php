@@ -7,6 +7,7 @@ define('VIEW', './application/views/');
 define('LIB', './lib/');
 define('SCRIPT', './scripts/');
 define('CSS', './css/');
+define('JS', './js/');
 
 
 define('DB_TYPE', 'mysql');

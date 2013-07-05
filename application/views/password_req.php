@@ -1,6 +1,7 @@
-<!-- Form Code Start -->
 
-<div id='fg_membersite'>
+<div class='ajax_content'>
+<div class='ajax_pull'>
+<div class='form_wrapper'>
 <form id='resetreq' action='<?php echo $vars['action']; ?>' method='post' accept-charset='UTF-8'>
 <fieldset >
 <legend>Reset Password</legend>
@@ -12,7 +13,7 @@
 <div><span class='error'><?php echo $vars['errors'];?></span></div>
 <div class='container'>
     <label for='username' >Your Email*:</label><br/>
-    <input type='text' name='email' id='email' value='<?php echo $vars['email']?>' maxlength="50" /><br/>
+    <input type='text' name='email' id='email' value="<?php echo $vars['email']?>" maxlength="50" /><br/>
     <span id='resetreq_email_errorloc' class='error'></span>
 </div>
 <div class='short_explanation'>A link to reset your password will be sent to the email address</div>
@@ -40,6 +41,9 @@ Uses the excellent form validation script from JavaScript-coder.com-->
 // ]]>
 </script>
 
+</div>
+</div>
+</div>
 </div>
 <!--
 Form Code End (see html-form-guide.com for more info.)

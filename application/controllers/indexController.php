@@ -19,9 +19,14 @@ class ControllerIndex extends Controller {
     
    function index()
    {
-   $vars['title'] = 'SHIFT BUDDY';
+   $vars = array(
+   'title' => 'SHIFT BUDDY',
+   'slogan' => ".......... making shit easier",
+   'time' => getdate() );
 	$view = App::fetchView();
-	$view::render('landing', $vars, 1);
+	$path = '<div id="form_wrapper"><div id="ajax_content"><div id="ajax_pull">Ajax Content</div></div></div>';
+	$vars['login_form'] = $path;
+	$view::render('landing', $vars);
 	exit;
    }            
 	

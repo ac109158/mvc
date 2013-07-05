@@ -6,6 +6,7 @@
 <!-- 		<META HTTP-EQUIV="refresh" CONTENT="30, url=http://www.andy.plusonedevelopment.com/mvc/?controller=dashboard"> -->
 		<title><?php echo $vars['title']; ?></title>
 		<link href="./css/style.css" rel="stylesheet" type="text/css" />
+		    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css' />
 		<script type="text/javascript" src="js/modernizr.custom.79639.js"></script> 
 		<noscript><link rel="stylesheet" type="text/css" href="css/noJS.css" /></noscript>
@@ -19,7 +20,7 @@ $date = date(“format”, $timestamp);
 	    	<div id="header">
 			<div id = "navbar">
 				<ul id="nav" class="drop">
-			 		<li><a href="#">Home</a></li>
+			 		<li><a href="?controller=dashboard&task=display">Home</a></li>
 			  		<li>Create Task
 			    			<ul>
 							<li><a href="#">Listen to Call</a></li>

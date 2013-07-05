@@ -1,5 +1,6 @@
-<!-- Form Code Start -->
-<div id='fg_membersite'>
+<div class='ajax_content'>
+<div class='ajax_pull'>
+<div class='form_wrapper'>
 <form id='register' action='?controller=register&task=validate' method='post' accept-charset='UTF-8'>
 <fieldset >
 <legend>Register</legend>
@@ -52,6 +53,9 @@
 
 </fieldset>
 </form>
+</div>
+</div>
+</div>
 <!-- client-side Form Validations:
 Uses the excellent form validation script from JavaScript-coder.com-->
 

@@ -1,13 +1,133 @@
 body {
-	background-color: silver;
+	background-color: white;
 }
 
 #container {
 	margin: 0px auto;
 	padding: 0px;
 	width: 1200px;
+	padding:10px;
 	min-height: 500px;
 }
+
+/*******************Landing Page CSS***********************/
+
+#flipbox {
+	display: block;
+	background:tan;
+	min-height: 650px;
+}
+
+#landing_header {
+	width:100%;
+	height:100px;
+	background: #4a98ab;
+}
+
+#logo {
+	width:70%;
+	height: 100%;
+	font-size: 24pt;
+	color:white;
+	text-align: center;
+	background: grey;
+	line-height: 250%;
+}
+
+#landing_nav {
+	width:30%;
+	margin: 0px;
+	padding: 0px;
+	min-height: 500px;
+	background: black;
+	float: left;
+}
+#landing_date {
+	position: relative;
+	top:-10px;
+	margin:0px;
+	padding: 0px;
+	display: block;
+	font-size: 20pt;
+	height: 50px;
+	background: white; 
+	margin-bottom: 10px;
+}
+
+#landing_date li {
+	margin:1%;
+	list-style: none;
+	display: inline-block;
+	float:left;
+}
+
+#landing_date li a {
+	list-style: none;
+	color:white;
+	text-decoration: none;
+}
+
+#flipboxx {
+	margin:0px;
+	list-style: none;	
+	display: block;
+	height: 450px;
+	background: pink;
+}
+
+#landing_nav_links {
+	list-style: none;
+	display: block;
+	height: 300px;
+	margin:0px;
+	padding: 0px;
+	background-color: purple;
+}
+#login_pull {
+	display: block;
+	margin:0px;
+	height: 100px;
+	text-decoration: none;
+	text-align: center;
+	background-color: white;
+	margin-bottom: 10px;
+	font-size: 30pt;
+	line-height: 100px;
+	
+.form_wrapper {
+	width:200px;
+	height:400px;
+	background-color: white;
+}
+
+
+}
+#landing_nav_links li a {
+	display: block;
+	margin:0px;
+	height: 75px;
+	text-decoration: none;
+	text-align: center;
+	background-color: white;
+	margin-bottom: 10px;
+	font-size: 30pt;
+	line-height: 100px;
+	}
+
+#landing_main_content {
+	float: left;
+	width:70%;
+	min-height: 500px;
+	background: red;
+}
+
+
+#landing_footer {
+	width:100%;
+	min-height: 100px;
+	background: yellow;
+}
+
 
 
 #header {
@@ -182,7 +302,7 @@ ul.drop li:hover > ul {
 
 
 
-#fg_membersite fieldset
+.form_wrapper fieldset
 {
    width: 230px;
    padding:20px;
@@ -193,7 +313,7 @@ ul.drop li:hover > ul {
 border-radius: 10px;   
 }
 
-#fg_membersite legend, #fg_membersite h2
+.form_wrapper legend, .form_wrapper h2
 {
    font-family : Arial, sans-serif;
    font-size: 1.3em;
@@ -201,15 +321,15 @@ border-radius: 10px;
    color:#333;
 }
 
-#fg_membersite label
+.form_wrapper label
 {
    font-family : Arial, sans-serif;
    font-size:0.8em;
    font-weight: bold;
 }
 
-#fg_membersite input[type="text"],#fg_membersite textarea,
-#fg_membersite input[type="password"]
+.form_wrapper input[type="text"],.form_wrapper textarea,
+.form_wrapper input[type="password"]
 {
   font-family : Arial, Verdana, sans-serif;
   font-size: 0.8em;
@@ -224,34 +344,34 @@ border-radius: 10px;
 
 }
 
-#fg_membersite input[type="text"],
-#fg_membersite input[type="password"]
+.form_wrapper input[type="text"],
+.form_wrapper input[type="password"]
 {
   height:18px;
   width:220px;
 }
 
- #fg_membersite #scaptcha
+ .form_wrapper #scaptcha
 {
   width:60px;
   height:18px;
 }
 
-#fg_membersite input[type="submit"]
+.form_wrapper input[type="submit"]
 {
    width:100px;
    height:30px;
    padding-left:0px;
 }
 
-#fg_membersite textarea
+.form_wrapper textarea
 {
   height:120px;
   width:310px;
 }
 
-#fg_membersite input[type="text"]:focus,
-#fg_membersite textarea:focus
+.form_wrapper input[type="text"]:focus,
+.form_wrapper textarea:focus
 {
   color : #009;
   border : 1px solid #990000;
@@ -259,13 +379,13 @@ border-radius: 10px;
   font-weight:bold;
 }
 
-#fg_membersite .container
+.form_wrapper .container
 {
    margin-top:8px;
    margin-bottom: 10px;
 }
 
-#fg_membersite .error
+.form_wrapper .error
 {
    font-family: Verdana, Arial, sans-serif; 
    font-size: 0.7em;
@@ -273,12 +393,12 @@ border-radius: 10px;
    background-color : #ffff00;
 }
 
-#fg_membersite #register_password_errorloc
+.form_wrapper #register_password_errorloc
 {
     clear:both;
 }
 
-#fg_membersite  fieldset#antispam
+.form_wrapper  fieldset#antispam
 {
    padding:2px;
    border-top:1px solid #EEE;
@@ -288,7 +408,7 @@ border-radius: 10px;
    width:350px;
 }
 
-#fg_membersite fieldset#antispam legend
+.form_wrapper fieldset#antispam legend
 {
    font-family : Arial, sans-serif;
    font-size: 0.8em;
@@ -296,7 +416,7 @@ border-radius: 10px;
    color:#333;   
 }
 
-#fg_membersite .short_explanation
+.form_wrapper .short_explanation
 {
    font-family : Arial, sans-serif;
    font-size: 0.6em;
@@ -304,13 +424,13 @@ border-radius: 10px;
 }
 
 /* spam_trap: This input is hidden. This is here to trick the spam bots*/
-#fg_membersite .spmhidip
+.form_wrapper .spmhidip
 {
    display:none;
    width:10px;
    height:3px;
 }
-#fg_membersite #fg_crdiv
+.form_wrapper #fg_crdiv
 {
    font-family : Arial, sans-serif;
    font-size: 0.3em;
@@ -318,25 +438,25 @@ border-radius: 10px;
    -moz-opacity: .2;
    filter: alpha(opacity=20);   
 }
-#fg_membersite  #fg_crdiv p
+.form_wrapper  #fg_crdiv p
 {
     display:none;
 }
 
-#fg_membersite_content li
+.form_wrapper_content li
 {
 font-family : Arial, sans-serif;
 padding-top:10px;
 padding-bottom:10px;
 }
-#fg_membersite_content
+.form_wrapper_content
 {
     font-family : Arial, sans-serif;
     font-size: 0.9em;
     line-height: 150%
 }
 
-#fg_membersite_content h2
+.form_wrapper_content h2
 {
    font-family : Arial, sans-serif;
    font-size: 1.5em;
