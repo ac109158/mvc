@@ -76,7 +76,7 @@ class App {
 		$array['title']= SITENAME;
 		$array['slogan'] = SLOGAN;
 		$array['time'] = getdate();	
-		$array['form']= VIEW.'login.php';
+		//$array['form']= VIEW.'login.php';
 		$array['errors'] = $errMsg;
 		$array['tab'] = "login";
 		$array['errors'] = "* REQUIRED";

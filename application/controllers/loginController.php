@@ -65,26 +65,30 @@ class ControllerLogin extends Controller {
 	
     function password_reset__success_message($link, $email)
 		{
-		$msg = '<center><h2>Your password has successfully reset!</h2><br />
+		$msg = '<center><h2 style="color:green;">Your password has successfully reset!</h2><br />
 		An email was sent to your email address that contains your new password..<br />'
 		.'Go to '. "$link ". "for " . "$email.". '<br />'
 		.'<a href="?controller=index">Home</a></center.';
 		$view = App::fetchView();
+		$vars = App::getDefaultVars('$vars');
 		$vars['title'] = 'Password Success';
 		$vars['msg'] = $msg;
-		$view::render('message',$vars);
+		$vars['form'] = VIEW.'message.php';
+		$view::render('landing',$vars);
 		exit;
 		}		
 		
 	function password_reset__failure_message()
 		{
-		$msg = '<center><h2>The attempt to reset your password was unsuccessful!</h2><br />
+		$msg = '<center><h2 style ="color:red;">The attempt to reset your password was unsuccessful!</h2><br />
 		<p>Please try again or contact your system administrator.</p><br /> 
 		<a href="?controller=index">Login</a></center.';
 		$view = App::fetchView();
+		$vars = App::getDefaultVars($vars);
 		$vars['title'] = 'Password Failure';
 		$vars['msg'] = $msg;
-		$view::render('message',$vars);
+		$vars['form']= VIEW.'message.php';
+		$view::render('landing',$vars);
 		exit;
 		}
 	
@@ -114,12 +118,9 @@ class ControllerLogin extends Controller {
 		$view = App::fetchView();
 		$vars['email'] = App::request('email');
 		$vars = App::cleanArray($vars);
-		$vars['site'] = 'SHIFT BUDDY';
-		$vars['slogan'] = ".......... making shit easier";
+		$vars = App::getDefaultVars($vars, $msg);
 		$vars['action'] = '?controller=login&task=password_reset_request';
 		$vars['title'] = "Password Reset";
-		$vars['errors'] = $msg;
-		$vars['time'] = getdate();
 		$vars['form'] =  VIEW.'password_req.php';
 		$view->render('landing', $vars);
 		exit;
@@ -134,15 +135,16 @@ class ControllerLogin extends Controller {
 		{
 		$email = App::request( $_REQUEST['email']);
 		$link = App::fetchModel('base', 'GetEmailHost',"$email");
-		$msg = '<center><h2>Reset password link sent!</h2><br />
+		$msg = '<center><h2 style="color:green;">Reset password link sent!</h2><br />
 		An email is sent to your email address that contains the link to reset the password..<br />'
 		.'Go to '. "$link ". "for " . "$email.". '<br />'
 		.'<a href="?controller=index">Home</a></center.';
 		$view = App::fetchView();
-		$vars['title'] = "Thank you";
-		$vars = App::cleanArray($vars);
+		$vars = App::getDefaultVars($vars);
+		$vars['form'] = VIEW.'message.php';
 		$vars['msg'] = $msg;
-		$view::render('message', $vars);
+		$vars['title'] = 'Reset Success';
+		$view::render('landing', $vars);
 		}	
 
 }

@@ -10,7 +10,7 @@
 <div class='short_explanation'>* required fields</div>
 
 <div class='container'>
-    <label for='username' >Your Email*:</label>
+    <label for='username' >Your Email: *</label>
     <input type='text' name='email' id='email' value="<?php echo $vars['email']?>" maxlength="50" /><br/>
     <span id='resetreq_email_errorloc' class='error'></span>
 </div>

@@ -156,7 +156,7 @@ body#contact a#connav {
 	height:600px;
 	margin:0px;
 	padding: 0px;
-	background: rgba(90,175,228,0.99);
+	/*background: rgba(90,175,228,0.99);*/
 }
 
 
@@ -353,7 +353,7 @@ font-size: 1.5em;
 	-webkit-border-radius: 10px;
 	-khtml-border-radius: 10px;
 	border-radius: 10px;  
-	background-color: ivory;
+	background-color: #3260b5;
 	color:#ff8a04;
 	margin: 0px auto;
 }
@@ -488,7 +488,7 @@ float: right;
 .form_wrapper .short_explanation
 {
    font-family : Arial, sans-serif;
-   font-size: 0.6em;
+   font-size: 1em;
    color:#333;   
 }
 

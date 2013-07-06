@@ -58,16 +58,18 @@ class ControllerRegister extends Controller {
 	
 	private function validated($link,$email) 
 	{
-		$msg = '<center><h2>Thanks for registering!</h2><br />
+		$msg = '<center><h2 style="color:green;">You have sucessfully registered!</h2><br />
 		Your confirmation email is on its way. Please click the link in the email to complete the registration.<br />'
 		.'Go to '. "$link ". "for " . "$email.". '<br />'
 		.'<a href="?controller=index">Home</a></center.';
 		$view = App::fetchView();
+		$vars = App::getDefaultVars($vars);
 		$vars['msg'] = $msg;
 		$vars['title'] = "Thank You";
 		$vars['tab'] = "register";
-		$view::render('message',$vars);
+		$vars['form'] = VIEW.'message.php';
 		$display = false;
+		$view::render('landing',$vars);		
 		exit;
 	}
 	

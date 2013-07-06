@@ -41,23 +41,27 @@ class ControllerConfirm extends Controller {
 						<p><a href="?controller=login">Click here to login</a></p>
 						</center.';
 		$view = App::fetchView();
+		$vars = App::getDefaultVars($vars);
 		$vars['title'] = 'Registration Complete';
 		$vars['msg'] = $msg;
+		$vars['form'] = VIEW . 'message.php';
 		$display = false;
-		$view::render('message',$vars,1);
+		$view::render('landing',$vars);
 		exit;
 	}
 	
 	private function failure() {
-		$msg = '<h2>Registration Unsuccesful</h2><br /> 
+		$msg = '<h2 style="color:red;">Registration Unsuccesful</h2><br /> 
 		This attempt to register was unsucessful.<br /> 
 		This user may be already been registered, if not
 		please use the link in your Confirmation Email.<br /> 
 		<p><a href="?controller=index">Home</a></p>';
 		$view = App::fetchView();
+		$vars = App::getDefaultVars($vars);
 		$vars['title'] = 'Registration Unsuccessful';
 		$vars['msg'] = $msg;
-		$view::render('message',$vars);
+		$vars['form'] = VIEW . 'message.php';
+		$view::render('landing',$vars);
 		$display = false;
 		exit;
 		}
