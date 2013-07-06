@@ -14,8 +14,8 @@
 			</div> <!-- end of logo -->
 			<div id="landing_nav">
 				<ul id = "landing_links_list">				
-				<li><a  href="index.php?controller=login&task=display">LOGIN</a></li>
-				<li><a  href="index.php?controller=register&task=display">REGISTER</a></li>
+				<li><a  id="loginnav" href="index.php?controller=login&task=display">LOGIN</a></li>
+				<li><a  id="registernav" href="index.php?controller=register&task=display">REGISTER</a></li>
 				<li><a href="#">ABOUT</a></li>
 				<li><a href="#">CONTACT</a></li>
 				</ul>						
@@ -27,9 +27,9 @@
 	
 	
 	<div id="landing_content">
-		<div class = "transparent" id='landing_main_content'>
+		<div class = "transparent" id='landing_form_content'>
 			<?php include $vars['form']; ?>
-		</div><!-- end of landing_main_content -->
+		</div><!-- end of landing_form_content -->
 	</div> <!-- end of landing_content -->
 	</div> <!-- end of flipbox -->
 </div> <!-- end of main container -->
@@ -37,6 +37,9 @@
 	<a  href="#" class="right" rel="lr" rev="aqua" content="Hello">Login</a>
 	<a  href="#" class="revert" rel="lr" rev="aqua" content="Hello">Revert</a>	
 </div>
+
+
+
 
 
 	

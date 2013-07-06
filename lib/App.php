@@ -77,7 +77,8 @@ class App {
 		$array['slogan'] = SLOGAN;
 		$array['time'] = getdate();	
 		$array['form']= VIEW.'login.php';
-		$array['errors'] = $errMsg;	
+		$array['errors'] = $errMsg;
+		$array['tab'] = "login";
 		return $array;	
 	}
 	

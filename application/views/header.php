@@ -22,4 +22,4 @@
     <script src="<?php echo PWDWIDGET; ?>" type="text/javascript"></script>
     
 </head>
-<body>
+<body id="<?php echo $vars['tab']; ?>">

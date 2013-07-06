@@ -33,19 +33,17 @@ class ControllerLogin extends Controller {
 			
 	public function display($msg = null)
 		{
-		$model = App::fetchModel('login');
+		//$model = App::fetchModel('login');
 		$view = App::fetchView();
 		if (isset($_POST['submitted']))
 			{
 			$vars['username'] = App::request('username');
 			$vars = App::cleanArray($vars);
 			}
+		$vars = App::getDefaultVars($vars, $msg);
 		$vars['title'] = 'LOGIN';
-		$vars['site'] = "SHIFT BUDDY";
-	    $vars['slogan'] = ".......... making shit easier";
-	    $vars['time'] = getdate();
-		$vars['errors'] = $msg;
 		$vars['form'] = VIEW.'login.php';
+		$vars['tab'] = "login";
 		$view::render('landing',$vars);
 		exit;
 		}

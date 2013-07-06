@@ -23,7 +23,7 @@ class ControllerRegister extends Controller {
 		$vars['title'] = 'Register';
 		//$vars['errors'] = $msg;
 		$vars['form'] = VIEW.'register.php';
-		
+		$vars['tab'] = 'register';
 		$view = App::fetchView();
 		$view::render('landing',$vars);
 		exit;
@@ -56,6 +56,7 @@ class ControllerRegister extends Controller {
 		$view = App::fetchView();
 		$vars['msg'] = $msg;
 		$vars['title'] = "Thank You";
+		$vars['tab'] = "register";
 		$view::render('message',$vars);
 		$display = false;
 		exit;
