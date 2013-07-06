@@ -24,6 +24,7 @@ class ControllerRegister extends Controller {
 		//$vars['errors'] = $msg;
 		$vars['form'] = VIEW.'register.php';
 		$vars['tab'] = 'register';
+		$vars['errors'] = $msg;
 		$view = App::fetchView();
 		$view::render('landing',$vars);
 		exit;
@@ -31,7 +32,14 @@ class ControllerRegister extends Controller {
     
     public function validate()
     {
-		if (isset($_POST['submitted']))
+    	$complete = App::isArrayFull($_POST);
+    	if ($complete !== true) {ControllerRegister::display($complete); exit;}
+    	if ( !App::isMatch($_POST['password'], $_POST['confirm_password'] ) ) {$complete = "Your passwords do not match.";}
+    	else 
+    		{
+    		if (!App::validatePhone($_POST['phone_number'])) {$complete = "Your Phone Number is invalid.";}
+    		}
+		if (isset($_POST['submitted']) && $complete === true)
 			{
 			$result = App::fetchModel('register', 'RegisterUser');
 			if($result === true)
@@ -45,6 +53,7 @@ class ControllerRegister extends Controller {
 					ControllerRegister::display($result); exit;
 					}			
 		}
+		ControllerRegister::display($complete); exit;
 	}
 	
 	private function validated($link,$email) 

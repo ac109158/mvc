@@ -1,31 +1,3 @@
-<div id="container"> <!-- main container -->
-	<div id="flipbox">	
-		<div id='landing_header'>
-			<div id = "logo">
-				<?php echo $vars['site'] . $vars['slogan'] ;?>
-				<div id='landing_date'>
-					<ul id = "landing_date_list">
-						<li><?php echo $vars['time']['weekday']; ?> &nbsp;</li>
-						<li><?php echo $vars['time']['month']; ?>&nbsp;</li>
-						<li><?php echo $vars['time']['mday']; ?>,&nbsp;</li>
-						<li><?php echo $vars['time']['year']; ?></li>
-					<ul>
-				</div> <!-- end of landing date -->	
-			</div> <!-- end of logo -->
-			<div id="landing_nav">
-				<ul id = "landing_links_list">				
-				<li><a  id="loginnav" href="index.php?controller=login&task=display">LOGIN</a></li>
-				<li><a  id="registernav" href="index.php?controller=register&task=display">REGISTER</a></li>
-				<li><a href="#">ABOUT</a></li>
-				<li><a href="#">CONTACT</a></li>
-				</ul>						
-			</div> <!-- end of landing_nav -->		
-		</div> <!-- end of landing_header -->
-			<div style="clear:both"></div>
-
-	
-	
-	
 	<div id="landing_content">
 		<div class = "transparent" id='landing_form_content'>
 			<?php include $vars['form']; ?>

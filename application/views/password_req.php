@@ -9,20 +9,20 @@
 
 <div class='short_explanation'>* required fields</div>
 
-<div><span class='error'><?php echo $vars['errors'];?></span></div>
 <div class='container'>
-    <label for='username' >Your Email*:</label><br/>
+    <label for='username' >Your Email*:</label>
     <input type='text' name='email' id='email' value="<?php echo $vars['email']?>" maxlength="50" /><br/>
     <span id='resetreq_email_errorloc' class='error'></span>
 </div>
 <div class='short_explanation'>A link to reset your password will be sent to the email address</div>
 <div class='container'>
-    <input type='submit' name='Submit' value='Submit' />
+    <input type='submit' name='Submit' value='Submit' /><br /><br /> 
 </div>
-
+<div><span class='errormsg'><?php echo $vars['errors'];?></span></div>
 </fieldset>
+
 </form>
-<div id="msg"><?php echo $vars['msg'] ?></div>
+
 
 <!-- client-side Form Validations:
 Uses the excellent form validation script from JavaScript-coder.com-->

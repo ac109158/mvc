@@ -44,7 +44,9 @@ class ControllerLogin extends Controller {
 		$vars['title'] = 'LOGIN';
 		$vars['form'] = VIEW.'login.php';
 		$vars['tab'] = "login";
+		$vars['errors'] = $msg;
 		$view::render('landing',$vars);
+		
 		exit;
 		}
 

@@ -1,4 +1,5 @@
 
+
 <?php
 
 class RegisterModel extends Model
@@ -38,7 +39,8 @@ class RegisterModel extends Model
 		$formvars['first_name'] = $this->Sanitize($_POST['first_name']);
 		$formvars['last_name'] = $this->Sanitize($_POST['last_name']);
 		$formvars['email'] = $this->Sanitize($_POST['email']);
-		$formvars['phone_number'] = $this->Sanitize($_POST['phone_number']);
+		$formvars['phone_number'] = App::numbersOnly($_POST['phone_number']);
+		$formvars['phone_number'] = $this->Sanitize($formvars['phone_number']);		
 		$formvars['username'] = $this->Sanitize($_POST['username']);
 		$formvars['password'] = $this->Sanitize($_POST['password']);
 	} 
@@ -53,24 +55,26 @@ class RegisterModel extends Model
 		}
 		require_once LIB.'formvalidator.php';
 		$validator = new FormValidator();
-		$validator->addValidation("first_name","req","Please fill in first name");
-		$validator->addValidation("last_name","req","Please fill in last name");
-		$validator->addValidation("email","email","The input for Email should be a valid email value");
+		$validator->addValidation("first_name","req","Please fill in First Name");
+		$validator->addValidation("last_name","req","Please fill in Last Name");
+		$validator->addValidation("email","email","The input for Email should be valid");
 		$validator->addValidation("email","req","Please fill in Email");
-		$validator->addValidation("phone_number","req","Please fill in phone number");
-		$validator->addValidation("phone_number","phone","The input for phone number should be valid");
+		$validator->addValidation("phone_number","req","Please fill in Phone Number");
+		$validator->addValidation("phone_number","phone","The input for Phone Number should be valid");
 		$validator->addValidation("username","req","Please fill in UserName");
 		$validator->addValidation("password","req","Please fill in Password");
-		$validator->addValidation("confirm_password","req","Please confirm your password");
+		$validator->addValidation("confirm_password","req","Please fill in Confirm with your Password");
 		if(!$validator->ValidateForm())
 			{
 			$error='';
 			$error_hash = $validator->GetErrors();
-			foreach($error_hash as $inpname => $inp_err)
+			/*
+foreach($error_hash as $inpname => $inp_err)
 				{
 				$error .= $inpname.':'.$inp_err."<br />";
 				}
-			return array(false, $error);
+*/
+			return array(false, array_shift($error_hash)); // just want the first error for cosmetic purposes
 			}
 		return true;
 		}       
@@ -122,7 +126,7 @@ class RegisterModel extends Model
 	{
 		if ( !$this->DBLogin() ) { return array(false,'Database login failed!'); }
 		if ( !$this->IsFieldUnique( $formvars,'email' ) ) { return array(false,"This email is already registered"); }
-		if ( !$this->IsFieldUnique( $formvars,'username') ) 	{ return array(false,'This UserName is already used. Please try another username'); }        
+		if ( !$this->IsFieldUnique( $formvars,'username') ) 	{ return array(false,'This UserName is already registered'); }        
 		if ( !$this->InsertIntoDB( $formvars ) ) { return array(false, 'Inserting to Database failed!'); }
 		return true;
 	}

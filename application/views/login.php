@@ -8,9 +8,6 @@
 
 <input type='hidden' name='submitted' id='submitted' value='1'/>
 
-<div class='short_explanation'>* required fields</div>
-
-<div><span class='error'><?php echo $vars['errors']; ?></span></div>
 <div class='container'>
     <label for='username' >UserName*:</label>
     <input type='text' name='username' id='username' value='<?php echo $vars['username'];?>' maxlength="50" /><br/>
@@ -23,8 +20,9 @@
 </div>
 
 <div class='container'>
-    <input  type='submit' name='Submit' value='Submit' />
+    <input  type='submit' name='Submit' value='Submit' /><br /><br />
 </div>
+<div><span class='errormsg'><?php echo $msg = isset($vars['errors']) ?$vars['errors'] : ' REQUIRED * '; ?></span></div><br /><br /> 
 <div class='short_explanation'><a href="?controller=login&task=password_reset_request">Forgot Password?</a></div>
 
 </fieldset>

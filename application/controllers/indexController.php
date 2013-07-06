@@ -21,7 +21,7 @@ class ControllerIndex extends Controller {
    {
    $view = App::fetchView();
 	$vars = App::getDefaultVars($vars);	
-	$vars['form'] = VIEW.'message.php';
+	$vars['form'] = VIEW.'login.php';
 	$view::render('landing', $vars);
 	exit;
    }            

@@ -32,7 +32,7 @@ class App {
  
 	public function request($param)
 	{
-		if (isset($param)) { $request = $param; return $request; }
+		if (isset($param)) { $request = $param; return trim($request); }
 		return null;
 	}
 		
@@ -79,6 +79,7 @@ class App {
 		$array['form']= VIEW.'login.php';
 		$array['errors'] = $errMsg;
 		$array['tab'] = "login";
+		$array['errors'] = "* REQUIRED";
 		return $array;	
 	}
 	
@@ -108,6 +109,45 @@ class App {
 		$url['key'] = App::request($_REQUEST['key']);
 		return $url;
 	}
+	public function isArrayFull($array)
+	{		
+		foreach ($array as $value => $contents)
+		{
+    		if (!$contents)
+    			{
+    			if (!$pos = strpos($value, '_'))
+    				{
+	    			return 'Please fill in ' . strtoupper($value);
+    				}
+    			$value = strtoupper($value);
+    			$value = str_replace('_', ' ', $value);
+	    		return 'Please fill in '.  $value;
+				}
+		}
+    	return true;
+    }
+    
+    
+    public function isMatch($var1, $var2)
+    {
+    	return $var1 === $var2;
+    }
+    
+   	public function validatePhone($string) {
+    $numbersOnly = preg_replace('/\D/', '', $string);
+    $numberOfDigits = strlen($numbersOnly);
+    if ($numberOfDigits == 10) {
+        return true;
+    } else {
+        return false;
+    }
+	}
+	
+	public function numbersOnly($string) 
+	{
+    return preg_replace('/\D/', '', $string);
+	}
+	
 	
 
 }
