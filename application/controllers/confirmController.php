@@ -4,13 +4,24 @@ class ControllerConfirm extends Controller {
     function __construct() {
         parent::__construct();
         $display = true;
-    }    
+    }
+    
+    private function getLocalVars($array) 
+    {
+	    $array['header'] = VIEW . 'landing_header.php';
+	    $array['tab'] = "register";
+	    $array['title'] = 'Confirm Registration';
+	    $array['form'] = VIEW . 'message.php';
+	    return $array;
+    }   
 
     private function render() 
     {
     	$view = App::fetchView();
-    	$vars['title'] = 'Confirm Registration';
     	$vars['key'] = App::request( $_REQUEST[ 'key' ] );
+    	$vars = App::cleanArray($vars);
+    	$vars = App::getDefaultVars($vars, $msg);
+    	$vars = ControllerConfirm::getLocalVars($vars);  	
     	$vars['action'] = '?controller=confirm&task=validate';
     	$view::render('confirm',$vars);
 	}		
@@ -42,9 +53,9 @@ class ControllerConfirm extends Controller {
 						</center.';
 		$view = App::fetchView();
 		$vars = App::getDefaultVars($vars);
-		$vars['title'] = 'Registration Complete';
+		$vars = ControllerConfirm::getLocalVars($vars);  	
+		$vars['title'] = 'Complete';
 		$vars['msg'] = $msg;
-		$vars['form'] = VIEW . 'message.php';
 		$display = false;
 		$view::render('landing',$vars);
 		exit;
@@ -58,9 +69,9 @@ class ControllerConfirm extends Controller {
 		<p><a href="?controller=index">Home</a></p>';
 		$view = App::fetchView();
 		$vars = App::getDefaultVars($vars);
+		$vars = ControllerConfirm::getLocalVars($vars);  	
 		$vars['title'] = 'Registration Unsuccessful';
 		$vars['msg'] = $msg;
-		$vars['form'] = VIEW . 'message.php';
 		$view::render('landing',$vars);
 		$display = false;
 		exit;

@@ -430,6 +430,7 @@ top:8px;
 
 .form_wrapper .short_explanation
 {
+	text-decoration: none;
    font-family : Arial, sans-serif;
    font-size: 1em;
    color:white;   

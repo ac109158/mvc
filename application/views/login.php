@@ -22,6 +22,7 @@
 <div class='container'>
     <input  type='submit' name='Submit' value='Submit' /><br /><br />
 </div>
+<br />	
 <div><span class='errormsg'><?php echo $msg = isset($vars['errors']) ?$vars['errors'] : ' REQUIRED * '; ?></span></div><br /><br /> 
 <div class='short_explanation'><a href="?controller=login&task=password_reset_request">Forgot Password?</a></div>
 

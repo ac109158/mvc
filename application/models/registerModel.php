@@ -11,7 +11,7 @@ class RegisterModel extends Model
 	 
 	 function ConfirmUser()
 	{
-		if(empty($_REQUEST['key'])||strlen($_REQUEST['key'])<=10)	{ $this->HandleError("Please provide the confirm key"); return false; }
+		if(empty($_REQUEST['key'])||strlen($_REQUEST['key'])<=10)	{ return array(false, 'Please provide the confirm key');}
 		$user_rec = array();
 		if(!$this->UpdateDBRecForConfirmation($user_rec)) { return false; }
 		$this->SendUserWelcomeEmail($user_rec);	
@@ -145,7 +145,7 @@ foreach($error_hash as $inpname => $inp_err)
 	{
 		if(!$this->DBLogin()) 
 		{
-			$this->HandleError("Database login failed!"); 
+			return array(false, '"Database login failed!'); 
 			return false;
 		}  
 		$confirmcode = $this->SanitizeForSQL($_REQUEST['key']);
@@ -153,8 +153,7 @@ foreach($error_hash as $inpname => $inp_err)
 		$result = mysql_query("$query",$this->connection);   
 		if( !$result || mysql_num_rows($result) <= 0 ) 
 		{
-			$this->HandleError("Wrong confirm key."); 
-			return false; 
+			return array(false, 'Wrong confirm key.'); 
 		}
 		$row = mysql_fetch_assoc($result);
 		$user_rec['name'] = $row['name']; $user_rec['email']= $row['email'];		
@@ -228,7 +227,7 @@ foreach($error_hash as $inpname => $inp_err)
 		"Webmaster\r\n".
 		$this->sitename;
 		
-		if ( !$mailer->Send() ) { $this->HandleError("Failed sending registration confirmation email."); 	return false; }
+		if ( !$mailer->Send() ) { return array(false, 'Failed sending registration confirmation email.');}
 		return true;
 	}
 	
