@@ -5,16 +5,6 @@
 	</div> <!-- end of landing_content -->
 	</div> <!-- end of flipbox -->
 </div> <!-- end of main container -->
-<div id="flipPad">
-	<a  href="#" class="right" rel="lr" rev="aqua" content="Hello">Login</a>
-	<a  href="#" class="revert" rel="lr" rev="aqua" content="Hello">Revert</a>	
-</div>
+<div id="my_div"></div>
 
-
-
-
-
-	
-	
-<script type="text/javascript" src="./js/test.js"> </script>
 <?php require_once(JS.'flip.js') ?>

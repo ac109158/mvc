@@ -57,19 +57,18 @@ body {
 	box-shadow: 0 8px 6px -6px black;
 		}
 	
-#landing_date_list {
-	height:50%;
-	width:80%;
-	margin:0px;
-	padding: 0px;
-	list-style: none;
-	margin-left:15%;
-	margin-top:4%;
-	}
+#landing_date {
+}
 
-#landing_date li {
-	float:left;
-
+.date {
+	height: 100%;
+	width:100%;
+	display: block;
+	line-height: 1.75em;
+	text-align: center;
+	color: orange;
+	font-weight: 200;
+	font-size:1.2em;
 }
 
 #landing_nav {
@@ -177,74 +176,7 @@ body#contact a#connav {
 	margin-bottom: .75%;
 }
 
-#navbar {
-	width:100%;
-	height: 50px;
-	background-color: black;
-}
 
-#navbar li {
-	width:217.6px;
-	text-align: center;
-	font-size: 1.5em;
-}
-
-ul#nav {
-	margin: 0px auto;
-}
-ul.drop a {
-	display:block; 
-	color: #fff; font-family: 
-	Verdana; 
-	font-size: 14px; 
-	text-decoration: none;
-}
-ul.drop, ul.drop li, ul.drop ul { 
-	list-style: none; 
-	margin: 0; 
-	padding: 0; 
-	border: 1px solid #fff;
-	 background: #555; 
-	 color: #fff;
-}
-ul.drop {
-	position: relative; 
-	z-index: 597; 
-	float: left; 
-}
-ul.drop li { 
-	float: left; 
-	line-height: 1.3em; 
-	vertical-align: middle; 
-	zoom: 1; 
-	padding: 5px 10px; 
-}
-ul.drop li.hover, ul.drop li:hover {
-	position: relative; 
-	z-index: 599; 
-	cursor: default; 
-	background: #1e7c9a; 
-}
-ul.drop ul {
-	visibility: hidden; 
-	position: absolute; 
-	top: 100%; 
-	left: 0; 
-	z-index: 598; 
-	width: 195px; 
-	background: #555; 
-	border: 1px solid #fff; 
-}
-ul.drop ul li {
-	float: none; 
-}
-ul.drop ul ul { 
-	top: -2px; 
-	left: 100%; 
-}
-ul.drop li:hover > ul { 
-	visibility: visible; 
-}
 	
 #content {
 	display: block;
@@ -359,6 +291,8 @@ font-size: 1.5em;
 }
 input {
 float: right;
+position: relative;
+top:8px;
 }
 
 .form_wrapper legend, .form_wrapper h2
@@ -380,7 +314,7 @@ float: right;
 .form_wrapper input[type="password"]
 {
   font-family : Arial, Verdana, sans-serif;
-	font-size: 0.8em;
+	font-size: 1.1em;
 	line-height:140%;
 	color : #000; 
 	padding : 3px; 
@@ -419,20 +353,29 @@ float: right;
 }
 
 .form_wrapper input[type="text"]:focus,
+.form_wrapper input[type="password"]:focus,
 .form_wrapper textarea:focus
 {
   color : #009;
-  border : 1px solid #990000;
-  background-color : #ffff99;
+  border : 1px solid white;
+  background-color : #71b6f7;
   font-weight:bold;
 }
 
 .form_wrapper .container
 {
-   margin-top:15px;
-   margin-bottom: 20px;
+   margin-top:5px;
+   margin-bottom: 5px;
 }
 
+
+.form_wrapper .required {
+	position: relative;
+	top:10px;
+	color:white;
+	font-size: 1.8em;
+	font-weight: 200;
+}
 
 .error_box {
 	width:400px;
@@ -489,7 +432,7 @@ float: right;
 {
    font-family : Arial, sans-serif;
    font-size: 1em;
-   color:#333;   
+   color:white;   
 }
 
 /* spam_trap: This input is hidden. This is here to trick the spam bots*/
@@ -537,4 +480,75 @@ padding-bottom:10px;
 	zoom: 1;
 	filter: alpha(opacity=100);
 	opacity: 1;
+}
+
+
+
+#navbar {
+	width:100%;
+	height: 50px;
+	background-color: black;
+}
+
+#navbar li {
+	width:217.6px;
+	text-align: center;
+	font-size: 1.5em;
+}
+
+ul#nav {
+	margin: 0px auto;
+}
+ul.drop a {
+	display:block; 
+	color: #fff; font-family: 
+	Verdana; 
+	font-size: 14px; 
+	text-decoration: none;
+}
+ul.drop, ul.drop li, ul.drop ul { 
+	list-style: none; 
+	margin: 0; 
+	padding: 0; 
+	border: 1px solid #fff;
+	 background: #555; 
+	 color: #fff;
+}
+ul.drop {
+	position: relative; 
+	z-index: 597; 
+	float: left; 
+}
+ul.drop li { 
+	float: left; 
+	line-height: 1.3em; 
+	vertical-align: middle; 
+	zoom: 1; 
+	padding: 5px 10px; 
+}
+ul.drop li.hover, ul.drop li:hover {
+	position: relative; 
+	z-index: 599; 
+	cursor: default; 
+	background: #1e7c9a; 
+}
+ul.drop ul {
+	visibility: hidden; 
+	position: absolute; 
+	top: 100%; 
+	left: 0; 
+	z-index: 598; 
+	width: 195px; 
+	background: #555; 
+	border: 1px solid #fff; 
+}
+ul.drop ul li {
+	float: none; 
+}
+ul.drop ul ul { 
+	top: -2px; 
+	left: 100%; 
+}
+ul.drop li:hover > ul { 
+	visibility: visible; 
 }

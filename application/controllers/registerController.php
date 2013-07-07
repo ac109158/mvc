@@ -4,7 +4,18 @@ class ControllerRegister extends Controller {
     function __construct() 
     {
         parent::__construct();
-    }   
+    }
+    
+    private function getLocalVars($array) 
+    {
+	    $array['header'] = VIEW . 'landing_header.php';
+	    $array['tab'] = "register";
+	    $array['form'] = VIEW.'register.php';
+	    $vars['spamInputTrapName'] = App::fetchModel('base','GetSpamTrapInputName');
+	    return $array;
+    }
+    
+    
     
     public function display($msg = null) 
     {
@@ -18,13 +29,10 @@ class ControllerRegister extends Controller {
 			$vars['password'] = App::request('password');
 			$vars = App::cleanArray($vars);
 			}
-		$vars = App::getDefaultVars($vars,$msg);
-		$vars['spamInputTrapName'] = App::fetchModel('base','GetSpamTrapInputName');
+		$vars = App::getDefaultVars($vars,$msg);	
+		$vars = ControllerRegister::getLocalVars($vars);
 		$vars['title'] = 'Register';
-		//$vars['errors'] = $msg;
-		$vars['form'] = VIEW.'register.php';
-		$vars['tab'] = 'register';
-		$vars['errors'] = $msg;
+		$vars['msg'] = $msg;
 		$view = App::fetchView();
 		$view::render('landing',$vars);
 		exit;
@@ -64,9 +72,9 @@ class ControllerRegister extends Controller {
 		.'<a href="?controller=index">Home</a></center.';
 		$view = App::fetchView();
 		$vars = App::getDefaultVars($vars);
+		$vars = ControllerRegister::getLocalVars($vars);
 		$vars['msg'] = $msg;
 		$vars['title'] = "Thank You";
-		$vars['tab'] = "register";
 		$vars['form'] = VIEW.'message.php';
 		$display = false;
 		$view::render('landing',$vars);		

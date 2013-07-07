@@ -5,6 +5,15 @@ class ControllerLogin extends Controller {
         parent::__construct();
     }
     
+    
+    
+    private function getLocalVars($array) 
+    {
+	    $array['header'] = VIEW . 'landing_header.php';
+	    $array['tab'] = "login";
+	    return $array;
+    }
+    
     public function checkLogin() {
 	    return $model = App::fetchModel('user','detectLogin');
     }
@@ -41,10 +50,9 @@ class ControllerLogin extends Controller {
 			$vars = App::cleanArray($vars);
 			}
 		$vars = App::getDefaultVars($vars, $msg);
-		$vars['title'] = 'LOGIN';
-		$vars['form'] = VIEW.'login.php';
-		$vars['tab'] = "login";
-		$vars['errors'] = $msg;
+		$vars = ControllerLogin::getLocalVars($vars);
+		$vars['title'] = 'LOGIN';		
+		$vars['form'] = VIEW.'login.php';		
 		$view::render('landing',$vars);
 		
 		exit;
@@ -71,6 +79,7 @@ class ControllerLogin extends Controller {
 		.'<a href="?controller=index">Home</a></center.';
 		$view = App::fetchView();
 		$vars = App::getDefaultVars('$vars');
+		$vars = ControllerLogin::getLocalVars($vars);
 		$vars['title'] = 'Password Success';
 		$vars['msg'] = $msg;
 		$vars['form'] = VIEW.'message.php';
@@ -85,6 +94,7 @@ class ControllerLogin extends Controller {
 		<a href="?controller=index">Login</a></center.';
 		$view = App::fetchView();
 		$vars = App::getDefaultVars($vars);
+		$vars = ControllerLogin::getLocalVars($vars);
 		$vars['title'] = 'Password Failure';
 		$vars['msg'] = $msg;
 		$vars['form']= VIEW.'message.php';
@@ -119,6 +129,7 @@ class ControllerLogin extends Controller {
 		$vars['email'] = App::request('email');
 		$vars = App::cleanArray($vars);
 		$vars = App::getDefaultVars($vars, $msg);
+		$vars = ControllerLogin::getLocalVars($vars);
 		$vars['action'] = '?controller=login&task=password_reset_request';
 		$vars['title'] = "Password Reset";
 		$vars['form'] =  VIEW.'password_req.php';
@@ -141,6 +152,7 @@ class ControllerLogin extends Controller {
 		.'<a href="?controller=index">Home</a></center.';
 		$view = App::fetchView();
 		$vars = App::getDefaultVars($vars);
+		$vars = ControllerLogin::getLocalVars($vars);
 		$vars['form'] = VIEW.'message.php';
 		$vars['msg'] = $msg;
 		$vars['title'] = 'Reset Success';

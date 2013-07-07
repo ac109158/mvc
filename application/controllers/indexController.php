@@ -7,6 +7,14 @@ class ControllerIndex extends Controller {
 		//$error_messages = array();
     }
     
+    private function getLocalVars($array) 
+    {
+	    $array['header'] = VIEW . 'landing_header.php';
+	    $array['tab'] = "login";
+	    $array['form'] = VIEW.'login.php';
+	    return $array;
+    }
+    
     function display($view, $vars) {
     	require_once  VIEW.'View.php';
     	$vw= new View();
@@ -20,8 +28,8 @@ class ControllerIndex extends Controller {
    function index()
    {
    $view = App::fetchView();
-	$vars = App::getDefaultVars($vars);	
-	$vars['form'] = VIEW.'login.php';
+	$vars = App::getDefaultVars($vars);
+	$vars = ControllerIndex::getLocalVars($vars);
 	$view::render('landing', $vars);
 	exit;
    }            

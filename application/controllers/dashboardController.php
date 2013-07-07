@@ -12,17 +12,25 @@ class ControllerDashboard extends Controller
 			exit;
 			}
 	   }
+	   
+	private function getLocalVars($array) 
+    {
+    	$vars['title'] = 'Dashboard';
+    	$vars['user_name'] = App::fetchModel('user', 'UserFullName');
+    	$vars['profile'] = ControllerDashboard::userProfileArray($_SESSION['user_id']);
+		$array['header'] = VIEW . 'dash_header.php';
+	    $array['tab'] = 'register';
+	    $array['form'] = VIEW.'register.php';
+	    return $array;
+    }
   
 	public function display($msg=null) 
 	{
-		$model = App::fetchModel('user');
 		$view = App::fetchView();
-		$vars['title'] = 'Dashboard';
-		$vars['user_name'] = $model->UserFullName();
-		$vars['errors'] = $msg;
+		$vars = App::getDefaultVars($vars, $msg);
+		$vars = ControllerDashboard::getLocalVars($vars);
 		$vars['msg'] = $msg;
-		$vars['profile'] = ControllerDashboard::userProfileArray($_SESSION['user_id']);
-        $view::render('dashboard',$vars,1);
+        $view::render('dashboard',$vars);
         exit;
 	}
 		
@@ -44,9 +52,9 @@ class ControllerDashboard extends Controller
 		$view = App::fetchView();
 		$vars['oldpwd'] = App::request($_REQUEST['oldpwd']);
 		$vars = App::cleanArray($vars);
+		$vars = ControllerDashboard::getLocalVars($vars);
 		$vars['title'] = "Change Password";
 		$vars['action'] = "?controller=dashboard&task=user_password_chg";
-		$vars['errors'] = App::fetchModel('error','GetErrorMessage');
 		$view::render('password_chg',$vars);
 		exit;
 		}

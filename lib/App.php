@@ -6,6 +6,7 @@ class App {
 		require './config.php';  // Global vars and database
 		require CONTROLLER."Controller.php"; // Base Controller Class
 		$error_messages = array();
+		date_default_timezone_set('America/Denver');
 		
 /*
 		$errors = array();
@@ -67,6 +68,7 @@ class App {
 			}
 		return $sticky;	
 	}
+
 	
 	
 	public function getDefaultVars($array,$errMsg=null)
@@ -75,12 +77,19 @@ class App {
 		$array['site'] =  SITENAME;
 		$array['title']= SITENAME;
 		$array['slogan'] = SLOGAN;
-		$array['time'] = getdate();	
+		$date = getdate();
+		$array['date'] =  $date['weekday'] . ' ' . $date['month'] . ' '.  $date['mday'] . ', ' . $date['year'];
 		//$array['form']= VIEW.'login.php';
 		$array['errors'] = $errMsg;
 		$array['tab'] = "login";
-		$array['errors'] = "* REQUIRED";
+		$array['errors'] =  (isset($errMsg)) ? $errMsg : "* REQUIRED";
 		return $array;	
+	}
+	
+	
+	public function getTime()
+	{
+		echo date('g:i a');
 	}
 	
 	public function fetchController($controller, $task)

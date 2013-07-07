@@ -10,7 +10,7 @@
 
 <div><span class='error'><?php echo $vars['errors']; ?></span></div>
 <div class='container'>
-    <label for='oldpwd' >Old Password*:</label><br/>
+    <label for='oldpwd' >Old Password: <span class="required">*</span></label><br/>
     <div class='pwdwidgetdiv' id='oldpwddiv' ></div><br/>
     <!-- <noscript> -->
     <input type='password' name='oldpwd' id='oldpwd' value = '<?php  echo $vars['oldpwd']; ?>'maxlength="50" />
@@ -19,7 +19,7 @@
 </div>
 
 <div class='container'>
-    <label for='newpwd' >New Password*:</label><br/>
+    <label for='newpwd' >New Password: <span class="required">*</span></label><br/>
     <div class='pwdwidgetdiv' id='newpwddiv' ></div>
     <!-- <noscript> -->
     <input type='password' name='newpwd' id='newpwd' maxlength="50" /><br/>
@@ -29,7 +29,7 @@
 
 <br/><br/><br/>
 <div class='container'>
-    <input type='submit' name='Submit' value='Submit' />
+    <input type='submit' name='Submit' value='Submit' /><br /> 
 </div>
 
 </fieldset>

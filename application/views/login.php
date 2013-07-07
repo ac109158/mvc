@@ -9,12 +9,12 @@
 <input type='hidden' name='submitted' id='submitted' value='1'/>
 
 <div class='container'>
-    <label for='username' >UserName*:</label>
+    <label for='username' >UserName: <span class="required">*</span></label>
     <input type='text' name='username' id='username' value='<?php echo $vars['username'];?>' maxlength="50" /><br/>
     <span id='login_username_errorloc' class='error'></span>
 </div>
 <div class='container'>
-    <label for='password' >Password*:</label>
+    <label for='password' >Password: <span class="required">*</span></label>
     <input type='password' name='password' id='password' maxlength="50" /><br/>
     <span id='login_password_errorloc' class='error'></span>
 </div>

@@ -9,45 +9,45 @@
 
 <input type='text'  class='spmhidip' name='<?php echo $vars['spamTrapInputName'] ?>' />
 <div class='container'>
-    <label for='name' >First Name: *  </label>
+    <label for='name' >First Name: <span class="required">*</span>  </label>
     <input type='text' name='first_name' id='first_name' value='<?php echo $vars['first_name'] ?>' maxlength="50" /><br/>
     <span id='register_name_errorloc' class='error'></span>
 </div>
 <div class='container'>
-    <label for='name' >Last Name: *  </label>
+    <label for='name' >Last Name: <span class="required">*</span>  </label>
     <input type='text' name='last_name' id='last_name' value='<?php echo $vars['last_name'] ?>' maxlength="50" /><br/>
     <span id='register_name_errorloc' class='error'></span>
 </div>
 <div class='container'>
-    <label for='email' >Email: * </label>
+    <label for='email' >Email: <span class="required">*</span> </label>
     <input type='text' name='email' id='email' value='<?php echo $vars['email'] ?>' maxlength="50" /><br/>
     <span id='register_email_errorloc' class='error'></span>
 </div>
 <div class='container'>
-    <label for='phone' >Phone Number: * </label>
+    <label for='phone' >Phone Number: <span class="required">*</span> </label>
     <input type='text' name='phone_number' id='phone_number' value='<?php echo $vars['phone_number'] ?>' maxlength="50" /><br/>
     <span id='phone_errorloc' class='error'></span>
 </div>
 <div class='container'>
-    <label for='username' >UserName: * </label>
+    <label for='username' >UserName: <span class="required">*</span> </label>
     <input type='text' name='username' id='username' value='<?php echo $vars['username'] ?>' maxlength="50" /><br/>
     <span id='register_username_errorloc' class='error'></span>
 </div>
 <div class='container'>
-    <label for='password' >Password: * </label>
+    <label for='password' >Password: <span class="required">*</span> </label>
     <input type='password' name='password' id='password' value="<?php echo $vars['password']?>" maxlength="50" /> <br /> 
 	<span id='register_password_errorloc' class='error'></span>
 </div>
 <div class='container' style='height:20px;'>
-    <label for='password' >Confirm Password: * </label>
+    <label for='password' >Confirm Password: <span class="required">*</span> </label>
     <input type='password' name='confirm_password' id='confirm_password' maxlength="50" />
     <span id='register_confirm_password_errorloc' class='error' style='clear:both'></span>
 </div>
 
 <div class='container'>
-    <input type='submit' name='Submit' value='Submit' /><br /> 
+    <br /><input type='submit' name='Submit' value='Submit' /><br /> 
 </div>
-<div><span class='errormsg'><?php echo $msg = isset($vars['errors']) ?$vars['errors'] : ' REQUIRED * '; ?></span></div>
+<div ><span class='errormsg'><?php echo $msg = isset($vars['errors']) ?$vars['errors'] : ' REQUIRED * '; ?></span></div>
 
 </fieldset>
 </form>
