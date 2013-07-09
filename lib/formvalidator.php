@@ -21,6 +21,8 @@
 /**
 * Carries information about each of the form validations
 */
+
+
 class ValidatorObj
 {
 	var $variable_name;
@@ -187,7 +189,7 @@ class FormValidator
 		{
 			$bret=false;
 			$default_error_message = sprintf(E_VAL_REQUIRED_VALUE,$variable_name);
-		}	
+		}
 	  return $bret;	
 	}
 

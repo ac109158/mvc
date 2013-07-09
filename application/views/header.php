@@ -4,7 +4,9 @@
 <head>
     <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
      <title><?php echo $title= (isset($vars['title'])) ? $vars['title'] : 'MVC'; ?></title>
-    <link rel="STYLESHEET" type="text/css" href="<?php echo STYLE ?>" />
+    <link rel="stylesheet" type="text/css" href="<?php echo STYLE ?>" />    
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS. 'validationEngine.jquery.css' ?>" /> 
+    
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 	<!--
@@ -12,7 +14,12 @@
 	<script src="<?php echo JS.'jquery.flip.js' ?>"></script>	
 -->
 	<script src="<?php echo JS.'ajax.js' ?>"></script>
-	<script src="<?php echo JS.'jquery.js' ?>"></script>
+<!-- 	<script src="<?php echo JS.'jquery.js' ?>"></script> -->
+	<script type="text/javascript" src="js/jquery.animate-colors-min.js"></script>
+	<script src="<?php echo JS.'jquery.validationEngine-en.js' ?>" type="text/javascript" charset="utf-8"></script>
+	<script src="<?php echo JS.'jquery.validationEngine.js' ?>" type="text/javascript" charset="utf-8"></script>
+	
+<!-- 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js" type="text/javascript"></script> -->
 
 
      

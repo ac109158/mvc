@@ -82,7 +82,7 @@ class App {
 		//$array['form']= VIEW.'login.php';
 		$array['errors'] = $errMsg;
 		$array['tab'] = "login";
-		$array['errors'] =  (isset($errMsg)) ? $errMsg : "* REQUIRED";
+		$array['errors'] =  (isset($errMsg)) ? $errMsg : " REQUIRED * ";
 		return $array;	
 	}
 	

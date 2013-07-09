@@ -27,6 +27,7 @@ class ControllerRegister extends Controller {
 			$vars['phone_number'] = App::request('phone_number');
 			$vars['username'] = App::request('username');
 			$vars['password'] = App::request('password');
+			$vars['confirm_password'] = App::request('confirm_password');
 			$vars = App::cleanArray($vars);
 			}
 		$vars = App::getDefaultVars($vars,$msg);	

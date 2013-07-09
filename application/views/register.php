@@ -10,88 +10,115 @@
 <input type='text'  class='spmhidip' name='<?php echo $vars['spamTrapInputName'] ?>' />
 <div class='container'>
     <label for='name' >First Name: <span class="required">*</span>  </label>
-    <input type='text' name='first_name' id='first_name' value='<?php echo $vars['first_name'] ?>' maxlength="50" /><br/>
+    <input type='text' name='first_name' id='first_name' value='<?php echo $vars['first_name'] ?>' maxlength="50"
+    data-validation-engine="validate[required,custom[onlyLetterSp]]"
+    data-errormessage-value-missing="First Name is required!" 
+    data-errormessage-custom-error="Letters Only: ABC" 
+    data-errormessage="This is the fall-back error message."/><br />
     <span id='register_name_errorloc' class='error'></span>
 </div>
+
 <div class='container'>
     <label for='name' >Last Name: <span class="required">*</span>  </label>
-    <input type='text' name='last_name' id='last_name' value='<?php echo $vars['last_name'] ?>' maxlength="50" /><br/>
+    <input type='text' name='last_name' id='last_name' value='<?php echo $vars['last_name'] ?>' maxlength="50"
+        data-validation-engine="validate[required,custom[onlyLetterSp]]"
+    data-errormessage-value-missing="Last Name is required" 
+    data-errormessage-custom-error="Letters Only: ABC" 
+    data-errormessage="This is the fall-back error message."/><br />
     <span id='register_name_errorloc' class='error'></span>
 </div>
+
 <div class='container'>
     <label for='email' >Email: <span class="required">*</span> </label>
-    <input type='text' name='email' id='email' value='<?php echo $vars['email'] ?>' maxlength="50" /><br/>
+    <input 
+    type='text' 
+    name='email' 
+    id='email' 
+    data-validation-engine="validate[required,custom[email]]"
+    data-errormessage-value-missing="Email is required!" 
+    data-errormessage-custom-error="Let me give you a hint: someone@nowhere.com" 
+    data-errormessage="This is the fall-back error message."
+    value='<?php echo $vars['email'] ?>'
+     maxlength="50" />
+    <br/>
+    <span id='register_email_errorloc' class='error'></span>
+</div>
+
+<div class='container'>
+    <label for='phone' >Phone Number: <span class="required">*</span> </label>
+    <input 
+    type='text' 
+    name='phone_number' 
+    id='phone_number' 
+    data-validation-engine="validate[required,custom[phone]]"
+    data-errormessage-value-missing="Phone Number is required!" 
+    data-errormessage-custom-error="Let me give you a hint: ###-###-####" 
+    data-errormessage="This is the fall-back error message."
+    value='<?php echo $vars['phone_number'] ?>'
+     maxlength="20" />
+    <br/>
+    <span id='register_email_errorloc' class='error'></span>
+</div>
+
+<div class='container'>
+    <label for='username' >UserName: <span class="required">*</span> </label>
+    <input 
+    type='text' 
+    name='username' 
+    id='username' 
+    data-validation-engine="validate[required,custom[onlyLetterNumber],maxSize[20],ajax[ajaxUserCallPhp]]"
+    data-errormessage-value-missing="UserName is required!" 
+    data-errormessage-custom-error="Let me give you a hint: user" 
+    data-errormessage="This is the fall-back error message."
+    value='<?php echo $vars['username'] ?>'
+     maxlength="50" />
+    <br/>
     <span id='register_email_errorloc' class='error'></span>
 </div>
 <div class='container'>
-    <label for='phone' >Phone Number: <span class="required">*</span> </label>
-    <input type='text' name='phone_number' id='phone_number' value='<?php echo $vars['phone_number'] ?>' maxlength="50" /><br/>
-    <span id='phone_errorloc' class='error'></span>
-</div>
-<div class='container'>
-    <label for='username' >UserName: <span class="required">*</span> </label>
-    <input type='text' name='username' id='username' value='<?php echo $vars['username'] ?>' maxlength="50" /><br/>
-    <span id='register_username_errorloc' class='error'></span>
-</div>
-<div class='container'>
     <label for='password' >Password: <span class="required">*</span> </label>
-    <input type='password' name='password' id='password' value="<?php echo $vars['password']?>" maxlength="50" /> <br /> 
+    <input type='password' name='password' id='password' value="<?php echo $vars['password']?>" maxlength="50"
+    data-validation-engine="validate[required]"
+    data-errormessage-value-missing="Password is required!" 
+    data-errormessage="This is the fall-back error message."/><br/>
+     
 	<span id='register_password_errorloc' class='error'></span>
 </div>
 <div class='container' style='height:20px;'>
     <label for='password' >Confirm Password: <span class="required">*</span> </label>
-    <input type='password' name='confirm_password' id='confirm_password' maxlength="50" />
+    <input type='password' name='confirm_password' id='confirm_password' value="<?php echo $vars['confirm_password']?>" maxlength="50"
+     data-validation-engine="validate[required,equals[password]]"
+    data-errormessage-value-missing="Confirm Password is required!" 
+    data-errormessage="The Confirm Password does not match. "/><br/>
     <span id='register_confirm_password_errorloc' class='error' style='clear:both'></span>
 </div>
+
 
 <div class='container'>
     <br /><input type='submit' name='Submit' value='Submit' /><br /> 
 </div>
 <div ><span class='errormsg'><?php echo $msg = isset($vars['errors']) ?$vars['errors'] : ' REQUIRED * '; ?></span></div>
 
+
 </fieldset>
 </form>
 </div>
 </div>
 </div>
-<!-- client-side Form Validations:
-Uses the excellent form validation script from JavaScript-coder.com-->
 
-<script type='text/javascript'>
-// <![CDATA[
-    /*
-var pwdwidget = new PasswordWidget('thepwddiv','password');
-    pwdwidget.MakePWDWidget();
-*/
-    
-    var frmvalidator  = new Validator("register");
-    frmvalidator.EnableOnPageErrorDisplay();
-    frmvalidator.EnableMsgsTogether();
-    frmvalidator.addValidation("first_name","req","Please provide your first name");
-    
-    frmvalidator.addValidation("last_name","req","Please provide your first name");
+<script>
+		jQuery(document).ready(function(){
+			// binds form submission and fields to the validation engine
+			jQuery("#register").validationEngine('attach', {promptPosition : 'topRight'});
+		});
 
-    frmvalidator.addValidation("email","req","Please provide your email address");
-
-    frmvalidator.addValidation("email","email","Please provide a valid email address");
-    
-    frmvalidator.addValidation("phone_number","reg","Please provide your phone number");
-    
-    frmvalidator.addValidation("phone_number","phone","Please provide a valid phone number");
-
-    frmvalidator.addValidation("username","req","Please provide a username");
-    
-    frmvalidator.addValidation("password","req","Please provide a password");
-    
-    frmvalidator.addValidation("confirm_password","req","Please confirm your password");
-
-
-// ]]>
+		/**
+		*
+		* @param {jqObject} the field where the validation applies
+		* @param {Array[String]} validation rules for this field
+		* @param {int} rule index
+		* @param {Map} form options
+		* @return an error string if validation failed
+		*/
+		 
 </script>
-
-
-
-
-<!--
-Form Code End (see html-form-guide.com for more info.)
--->
