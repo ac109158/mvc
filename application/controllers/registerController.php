@@ -10,7 +10,8 @@ class ControllerRegister extends Controller {
     {
 	    $array['header'] = VIEW . 'landing_header.php';
 	    $array['tab'] = "register";
-	    $array['form'] = VIEW.'register.php';
+	    $array['form'] = VIEW.'ajaxRegister.php';
+	    $array['main'] = VIEW.'message.php';
 	    $vars['spamInputTrapName'] = App::fetchModel('base','GetSpamTrapInputName');
 	    return $array;
     }

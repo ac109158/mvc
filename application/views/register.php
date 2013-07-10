@@ -1,6 +1,14 @@
 <div class='ajax_content'>
 <div class='ajax_pull'>
 <div class='form_wrapper'>
+
+	<script>
+		jQuery(document).ready(function(){
+			$("#register").validationEngine();
+			$("#register").bind("jqv.field.result", function(event, field, errorFound, prompText){ console.log(errorFound) })
+		});
+	</script>
+
 <form id='register' action='?controller=register&task=validate' method='post' accept-charset='UTF-8'>
 <fieldset >
 <legend>Register</legend>
@@ -10,11 +18,7 @@
 <input type='text'  class='spmhidip' name='<?php echo $vars['spamTrapInputName'] ?>' />
 <div class='container'>
     <label for='name' >First Name: <span class="required">*</span>  </label>
-    <input type='text' name='first_name' id='first_name' value='<?php echo $vars['first_name'] ?>' maxlength="50"
-    data-validation-engine="validate[required,custom[onlyLetterSp]]"
-    data-errormessage-value-missing="First Name is required!" 
-    data-errormessage-custom-error="Letters Only: ABC" 
-    data-errormessage="This is the fall-back error message."/><br />
+    <input type="text"  class="validate[required,custom[onlyLetterNumber]]"  value='<?php echo $vars['first_name'] ?>' name="first_name" id="first_name" maxlength="20" /><br />
     <span id='register_name_errorloc' class='error'></span>
 </div>
 
@@ -55,7 +59,7 @@
     data-errormessage-custom-error="Let me give you a hint: ###-###-####" 
     data-errormessage="This is the fall-back error message."
     value='<?php echo $vars['phone_number'] ?>'
-     maxlength="20" />
+     maxlength="50" />
     <br/>
     <span id='register_email_errorloc' class='error'></span>
 </div>
@@ -66,7 +70,7 @@
     type='text' 
     name='username' 
     id='username' 
-    data-validation-engine="validate[required,custom[onlyLetterNumber],maxSize[20],ajax[ajaxUserCallPhp]]"
+    data-validation-engine="validate[required,custom[onlyLetterNumber]]"
     data-errormessage-value-missing="UserName is required!" 
     data-errormessage-custom-error="Let me give you a hint: user" 
     data-errormessage="This is the fall-back error message."
@@ -102,23 +106,7 @@
 
 </fieldset>
 </form>
-</div>
-</div>
-</div>
 
-<script>
-		jQuery(document).ready(function(){
-			// binds form submission and fields to the validation engine
-			jQuery("#register").validationEngine('attach', {promptPosition : 'topRight'});
-		});
-
-		/**
-		*
-		* @param {jqObject} the field where the validation applies
-		* @param {Array[String]} validation rules for this field
-		* @param {int} rule index
-		* @param {Map} form options
-		* @return an error string if validation failed
-		*/
-		 
-</script>
+</div>
+</div>
+</div>

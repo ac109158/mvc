@@ -15,12 +15,14 @@ document.querySelector(".date").addEventListener("mouseover", function(){
     });
 });
 </script>
+<!--
 <script type="text/javascript">
 $("#flipbox").flip({
 	direction:'tb',
 	content:'this is my new content'
 })
 </script>
+-->
 
 </body>
 </html>
