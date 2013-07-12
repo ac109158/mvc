@@ -483,6 +483,7 @@
 												msg = txt;
 										}
 										if (options.showPrompts) methods._showPrompt(errorField, msg, "pass", false, options, true);
+										x = false;
 									}
 								} else {
 									// the field is invalid, show the red error prompt

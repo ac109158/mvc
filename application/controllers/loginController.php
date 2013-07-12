@@ -10,6 +10,7 @@ class ControllerLogin extends Controller {
     private function getLocalVars($array) 
     {
 	    $array['header'] = VIEW . 'landing_header.php';
+	    $array['main'] = VIEW.'message.php';
 	    $array['tab'] = "login";
 	    return $array;
     }

@@ -10,6 +10,7 @@
     <script src="<?php echo JS.'jquery-1.8.2.min.js' ?>" type="text/javascript" charset="utf-8"></script>
     <script src="<?php echo JS.'jquery.validationEngine-en.js' ?>" type="text/javascript" charset="utf-8"></script>
 	<script src="<?php echo JS.'jquery.validationEngine.js' ?>" type="text/javascript" charset="utf-8"></script>
+	<script src="<?php echo JS.'jquery.maskedinput.min.js' ?>" type="text/javascript" charset="utf-8"></script>
     
 	<!--
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>

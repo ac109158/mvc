@@ -133,10 +133,15 @@
                 },
                 // --- CUSTOM RULES -- Those are specific to the demos, they can be removed or changed to your likings
                 "ajaxUserCall": {
-                    "url": "ajaxValidateFieldUser",
+                    "url": "?controller=ajax&task=validate",
                     // you may want to pass extra data on the ajax call
-                    "extraData": "name=eric",
                     "alertText": "* This user is already taken",
+                    "alertTextLoad": "* Validating, please wait"
+                },
+                "ajaxEmailCall": {
+                    "url": "?controller=ajax&task=validate",
+                    // you may want to pass extra data on the ajax call
+                    "alertText": "* This email is already taken",
                     "alertTextLoad": "* Validating, please wait"
                 },
 				"ajaxUserCallPhp": {
@@ -144,13 +149,13 @@
                     // you may want to pass extra data on the ajax call
                     "extraData": "name=eric",
                     // if you provide an "alertTextOk", it will show as a green prompt when the field validates
-                    "alertTextOk": "* This username is available",
-                    "alertText": "* This user is already taken",
+                    "alertTextOk": "* This value is available",
+                    "alertText": "* This value is already taken",
                     "alertTextLoad": "* Validating, please wait"
                 },
                 "ajaxNameCall": {
                     // remote json service location
-                    "url": "ajaxValidateFieldName",
+                    "url": "?controller=ajax&task=validate",
                     // error
                     "alertText": "* This name is already taken",
                     // if you provide an "alertTextOk", it will show as a green prompt when the field validates

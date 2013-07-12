@@ -1,48 +1,56 @@
 <?php
+class AjaxModel {
 
-class AjaxModel extends RegisterModel
-{
-    public function __construct()
+    function __construct() 
     {
-	    parent::__construct();
-	 }
-	 
-	 
-	 function IsUserValueUnique($userValue)
+    }
+    
+    private function getLocalVars($array) 
+    {
+	    return $array;
+    }
+    
+    public function validate($vars)
 	{
-		$field_val = $this->SanitizeForSQL($userValue);
-		$qry = "select username from $this->tablename where username ='".$field_val."'";
-		$result = mysql_query($qry,$this->connection);
-		
-		if($result && mysql_num_rows($result) > 0) { return array(false, 'This username is already in use.'); }
-		return array(true, "This username is available";
-	}
-	 
-}
-				
-/*
-<!--
-				// Internal URL for AJax call
-				var url  = "/index.php?option=com_callcenter&controller=submissions&task=agencySubmissionFunction&format=raw&classFunction=efoodsOrderLookup";
-				//var url  = "/index.php?option=com_callcenter&controller=submissions&task=agencySubmissionFunction&format=raw&classFunction=legacyOrders";
-				
-				// Var that will contain the post variables
-				var dataString = "orderID=" + document.getElementById('orderID').value+"&lookupID=" + document.getElementById("additional_2_text_1").value + "&shippingPhone=" + document.getElementById("additional_2_text_2").value + "&lastName=" + document.getElementById("additional_2_text_3").value + "&zipCode=" + document.getElementById("additional_2_text_4").value;
-				
-				jQuery.ajax({
-					url: url,
-					cache: false,
-					type: "POST",	
-					data: dataString,
-					success: function(txt){
-						eval( txt );
+	    
+	    $validateId=$vars[0];
+	    $validateValue=$vars[1];		
+		$validateError= "This $validateId is already taken";
+		$validateSuccess= "This $validateId is available";
+		/* RETURN VALUE */
+		$arrayToJs = array();
 
-				});
+		$arrayToJs[0] = $validateId;
+		//$field_val = $this->SanitizeForSQL($value);	
+		$qry = "select $validateId from fgusers3 where $validateId='".$validateValue."'";
+		$con = mysqli_connect("mysql.andy.plusonedevelopment.com","andy2013","PlusOne", "andy_database");
+		if (mysqli_connect_errno($con))
+			{
+			echo "Failed to connect to MySQL: " . mysqli_connect_error();
+			mysqli_close($con);
+			exit;
+			}
 
-				
-				document.getElementById("lookupOrderLabel").innerHTML = "";
+
+		$result = mysqli_query($con, $qry);
+		if($result && mysqli_num_rows($result) <= 0)
+		{		// validate??
+			$arrayToJs[1] = true;			// RETURN TRUE
+			$arrayToJs[2] = $validateSuccess;			
+			echo json_encode($arrayToJs);			// RETURN ARRAY WITH success
+		}else
+			{
+				for($x=0;$x<1000000;$x++)
+				{
+					if($x == 990000)
+						{
+						$arrayToJs[1] = false;
+						$arrayToJs[2] = $validateError;
+						echo json_encode($arrayToJs);		// RETURN ARRAY WITH ERROR
+						}
+				}
 			}
 		}
-	}
-	*/
--->
+		}
+	
+?>

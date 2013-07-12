@@ -18,7 +18,7 @@
 				});
 				
 
-				setTimeout(changeMailTo,500);
+				/* setTimeout(changeMailTo,500); */
 				
 			});
 </script>

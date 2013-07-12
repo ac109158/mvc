@@ -40,7 +40,7 @@ class ControllerRegister extends Controller {
 		exit;
 	}
     
-    public function validate()
+    public function validatesadad()
     {
     	$complete = App::isArrayFull($_POST);
     	if ($complete !== true) {ControllerRegister::display($complete); exit;}

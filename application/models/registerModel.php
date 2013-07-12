@@ -1,5 +1,3 @@
-
-
 <?php
 
 class RegisterModel extends Model
@@ -140,6 +138,8 @@ foreach($error_hash as $inpname => $inp_err)
 		if($result && mysql_num_rows($result) > 0) { return false; }
 		return true;
 	}
+	
+	
 	
 	function UpdateDBRecForConfirmation(&$user_rec)
 	{

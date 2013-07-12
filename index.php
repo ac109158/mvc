@@ -27,13 +27,21 @@ function main()
 	$app = new App();
 	$url = $app::init();
 	//print_r($url);
+	if ($url['controller'] === 'ajax')
+	{
+		$vars[0] = $url['fieldId'];
+		$vars[1] = $url['fieldValue'];
+		$app::fetchModel('ajax','validate',$vars);
+		exit;		
+	}
 	if(!$app::execute($url['controller'], $url['task'], $url['action'], $url['key']))
 	{
-	if($app->checkLogin())
+	if(true)
 		{
 		$app::execute('dashboard', 'display');
 		exit;
 		}
+
 	$app::execute('index', 'index');
 	exit;
 	}
