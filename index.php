@@ -23,18 +23,20 @@ $controller->execute( $task );
 
 function main()
 	{
+	//print_r($_REQUEST);
 	require './lib/App.php';
 	$app = new App();
 	$url = $app::init();
 	//print_r($url);
-	if ($url['controller'] === 'ajax')
+	if ($url['controller'] === 'ajax' )
 	{
-		$vars[0] = $url['fieldId'];
-		$vars[1] = $url['fieldValue'];
-		$app::fetchModel('ajax','validate',$vars);
-		exit;		
+		$vars[0] = $url['fieldId'];	
+		$vars[1] = $url['fieldValue'];	
+	} else {
+		$vars = $url['key'];
 	}
-	if(!$app::execute($url['controller'], $url['task'], $url['action'], $url['key']))
+		
+	if(!$app::execute($url['controller'], $url['task'], $vars))
 	{
 	if(true)
 		{

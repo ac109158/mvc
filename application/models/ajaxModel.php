@@ -1,8 +1,9 @@
 <?php
-class AjaxModel {
+class AjaxModel extends Model {
 
-    function __construct() 
+    function __construct()
     {
+    	parent::__construct();
     }
     
     private function getLocalVars($array) 
@@ -38,6 +39,7 @@ class AjaxModel {
 			$arrayToJs[1] = true;			// RETURN TRUE
 			$arrayToJs[2] = $validateSuccess;			
 			echo json_encode($arrayToJs);			// RETURN ARRAY WITH success
+			exit;
 		}else
 			{
 				for($x=0;$x<1000000;$x++)
@@ -47,6 +49,7 @@ class AjaxModel {
 						$arrayToJs[1] = false;
 						$arrayToJs[2] = $validateError;
 						echo json_encode($arrayToJs);		// RETURN ARRAY WITH ERROR
+						exit;
 						}
 				}
 			}

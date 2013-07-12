@@ -16,13 +16,6 @@
 	});
 	});
 </script>
-<script>
-jQuery(function($){
-$("#phone_number").mask("(999) 999-9999");
-});
-</script>
-
-
 <script> //date/Clock Widgit
 document.querySelector(".date").addEventListener("mouseover", function(){
     var txt = document.querySelector(".date").innerHTML;

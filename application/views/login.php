@@ -15,7 +15,7 @@ data-errormessage-value-missing="Username is required"
 </div><br />
 
 <div class='field_container'>
-<input value='<?php echo $vars['password'] ?>' class="validate[required,minSize[8,]maxSize[20] text-input" type="password" name="password" id="password" 
+<input value='<?php echo $vars['password'] ?>' class="validate[required] text-input" type="password" name="password" id="password" 
 data-errormessage-value-missing="Password is required!"
 />
 <label>Password:<span class='required'> *</span></label>

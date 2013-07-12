@@ -12,7 +12,8 @@ class ControllerRegister extends Controller {
 	    $array['tab'] = "register";
 	    $array['form'] = VIEW.'ajaxRegister.php';
 	    $array['main'] = VIEW.'message.php';
-	    $vars['spamInputTrapName'] = App::fetchModel('base','GetSpamTrapInputName');
+	    $array['spamInputTrapName'] = App::fetchModel('base','GetSpamTrapInputName');
+	    $array['action'] = '?controller=register&task=validate';
 	    return $array;
     }
     
@@ -40,7 +41,7 @@ class ControllerRegister extends Controller {
 		exit;
 	}
     
-    public function validatesadad()
+    public function validate()
     {
     	$complete = App::isArrayFull($_POST);
     	if ($complete !== true) {ControllerRegister::display($complete); exit;}

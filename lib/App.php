@@ -147,7 +147,7 @@ class App {
    	public function validatePhone($string) {
     $numbersOnly = preg_replace('/\D/', '', $string);
     $numberOfDigits = strlen($numbersOnly);
-    if ($numberOfDigits == 10) {
+    if ($numberOfDigits >=10 && $numberOfDigits <= 12) {
         return true;
     } else {
         return false;

@@ -1,10 +1,9 @@
 <div class='ajax_content'>
 <div class='ajax_pull'>
 <div id='ajaxForm' class="">
-
 	<fieldset>
 	<legend>Register</legend>
-	<form id="formID" method="post" action='?controller=register&task=validate'   >
+	<form id="formID" method="post" action='<?php echo $vars['action'] ?>'   >
 		<div class='field_container'>
 		
 		<input type='hidden' name='submitted' id='submitted' value='1'/>
@@ -29,7 +28,7 @@
 		</div><br />	 
 			
 		<div class='field_container'>
-		<input value='<?php echo $vars['email'] ?>' class="validate[required,custom[email],minSize[8]maxSize[30],ajax[ajaxNameCall]] text-input ignore" type="text" name="email" id="email" 
+		<input value='<?php echo $vars['email'] ?>' class="validate[required,custom[email],minSize[8]maxSize[40],ajax[ajaxNameCall]] text-input ignore" type="text" name="email" id="email" 
 		data-errormessage-value-missing="Email is required!" 
 		data-errormessage-custom-error="Let me give you a hint: someone@nowhere.com" 
 		/>
@@ -45,9 +44,9 @@
 		</div><br />			
 			
 		<div class='field_container'>
-		<input value='<?php echo $vars['username'] ?>' class="validate[required,custom[onlyLetterNumber],minSize[4],maxSize[20],ajax[ajaxUserCall]] text-input ignore" type="text" name="username" id="username" 
+		<input value='<?php echo $vars['username'] ?>' class="validate[required,custom[onlyLetterNumber],minSize[6],maxSize[12],ajax[ajaxUserCall]] text-input ignore" type="text" name="username" id="username" 
 		data-errormessage-value-missing="UserName is required!" 
-		data-errormessage-custom-error="Username must be 8 - 20 characters" 
+		data-errormessage-custom-error="Username must be 6 - 20 characters" 
 		data-errormessage="Letters and numbers only."
 		/>
 		<label>UserName:<span class='required'> *</span></label>
@@ -78,6 +77,50 @@
 </div>
 </div>
 </div>
+
+<script>
+jQuery(function($){
+$("#phone_number").mask("(999) 999-9999",{completed:function(){$("input[id=phone_number]").removeClass('error').addClass('validated');}});
+$("#username").mask("******?******", ({placeholder:""}));
+//$("#email").mask("********@**************.info",{completed:function(){$("input[id=email]").removeClass('error').addClass('validated');}});
+});
+</script>
+
+<script>
+	$('#formID').find('#email').blur(function () {
+	if (($(this).val().contains("@") != -1) && ($(this).val().contains(".") != -1) && $(this).val().length >= 8 && $(this).val().length <= 40 )
+		{
+		  email = 1;
+		}
+	
+	if (email != 1) {
+    $(this).removeClass('validated').addClass('error');
+	} 
+	else {
+	if (email == 1) {
+    $(this).removeClass('error').addClass('validated');
+	}}});
+	
+	$('#formID').find('#username').blur(function () {
+	x = $.trim($(this).val()).length;
+	alert(x);
+	if (x >= 6)
+		{
+		  username = 1;
+		}
+	if (x < 6){username = -1}
+	if (username != 1) {
+    $(this).removeClass('validated').addClass('error');
+	} 
+	if (username == 1) {
+    $(this).removeClass('error').addClass('validated');
+	}});	
+</script>
+
+
+
+
+
 <!--
 <script>
 	function errorcheck () {
