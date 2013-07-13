@@ -44,9 +44,9 @@
 		</div><br />			
 			
 		<div class='field_container'>
-		<input value='<?php echo $vars['username'] ?>' class="validate[required,custom[onlyLetterNumber],minSize[6],maxSize[12],ajax[ajaxUserCall]] text-input ignore" type="text" name="username" id="username" 
+		<input value='<?php echo $vars['username'] ?>' class="validate[required,custom[onlyLetterNumber],minSize[4],maxSize[12],ajax[ajaxUserCall]] text-input ignore" type="text" name="username" id="username" 
 		data-errormessage-value-missing="UserName is required!" 
-		data-errormessage-custom-error="Username must be 6 - 20 characters" 
+		data-errormessage-custom-error="Username must be 4 - 20 characters" 
 		data-errormessage="Letters and numbers only."
 		/>
 		<label>UserName:<span class='required'> *</span></label>
@@ -61,7 +61,7 @@
 		
 		<div class='field_container'>
 		<input value='<?php echo $vars['confirm_password'] ?>' 
-		class="validate[required,equals[password]],minSize[8],maxSize[20] text-input ready"
+		class="validate[required,equals[password]],minSize[5],maxSize[20] text-input ready"
 		type="password" 
 		name="confirm_password" 
 		id="confirm_password" 
@@ -81,12 +81,13 @@
 <script>
 jQuery(function($){
 $("#phone_number").mask("(999) 999-9999",{completed:function(){$("input[id=phone_number]").removeClass('error').addClass('validated');}});
-$("#username").mask("******?******", ({placeholder:""}));
+$("#username").mask("****?***************", ({placeholder:""}));
 //$("#email").mask("********@**************.info",{completed:function(){$("input[id=email]").removeClass('error').addClass('validated');}});
 });
 </script>
 
 <script>
+	var email = -1;
 	$('#formID').find('#email').blur(function () {
 	if (($(this).val().contains("@") != -1) && ($(this).val().contains(".") != -1) && $(this).val().length >= 8 && $(this).val().length <= 40 )
 		{
@@ -102,13 +103,14 @@ $("#username").mask("******?******", ({placeholder:""}));
 	}}});
 	
 	$('#formID').find('#username').blur(function () {
+	var x = 0;
+	var username = -1;
 	x = $.trim($(this).val()).length;
-	alert(x);
-	if (x >= 6)
+	if (x >= 4)
 		{
 		  username = 1;
 		}
-	if (x < 6){username = -1}
+	if (x < 4){username = -1}
 	if (username != 1) {
     $(this).removeClass('validated').addClass('error');
 	} 
