@@ -4,14 +4,28 @@ html {
 }
 body {
 	background-color: white;
+	min-height: 100%;
 }
 #container {
 	margin: 0px auto;
 	padding: 0px;
-	width: 1200px;
-	min-height: 800px;
+	width: 100%;
+	min-width: 1200px;
+	min-height: 100%;
 	background: #b3ccfb;
 	//border:1px solid  orange;
+}
+
+#footer {
+	display:block;
+	width:100%;
+	line-height: 50px;
+	height:50px;
+	font-size: 1.3em;
+	border-radius:90px;
+	background-color: #50a2ff;
+	color:white;
+	opacity: 1;
 }
 
 /*******************Landing Page CSS***********************/
@@ -40,7 +54,7 @@ body {
 	width:100%;
 	height: 50%;
 	font-size: 24pt;
-	background: white
+	background: white;
 }
 
 #logo a {
@@ -89,6 +103,7 @@ body {
 	padding:0px;
 	margin:0px; 
 	list-style: none;
+	max-width: 520px;
 	width:38%;
 	height: 100%;
 	background: #ff8a04;
@@ -160,6 +175,7 @@ min-height:700px;
 #landing_form_content {
 	float: left;
 	width:37%;
+	max-width: 520px;
 	height:700px;
 	padding: 0px .5%;
 	margin-right: .5%;
@@ -180,6 +196,80 @@ min-height:700px;
 	padding: 0px;
 	margin: 0px;
 }
+/**********************************dash heder *******************************/
+
+#icon_tray {
+	position: relative;
+	top:-38%;
+	left:-.75%;
+	margin: 0px;
+	padding: 0px;
+	width:60%;
+	height:30%;
+/* 	background:pink; */
+	float: right;
+}
+
+#icon_tray_list {
+	list-style: none;
+	width:60%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+/* 	background: white; */
+	float: left;
+}
+
+#icon_tray_list li{
+	margin:0px;
+	color:white;
+	padding: 0px; 
+	height:100%;
+	width:10%;
+	background: #1462f4;
+	float: left;
+	margin: 0px 5px;
+	line-height: 200%;
+	text-align: center;
+	border-radius: 10px;
+	-webkit-box-shadow: 0 8px 6px -6px black;
+	-moz-box-shadow: 0 8px 6px -6px black;
+	box-shadow: 0 8px 6px -6px black;
+}
+
+#system_tray_list {
+	list-style: none;
+	width:40%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+/* 	background: grey; */
+	float:right;
+}
+
+#system_tray_list li{
+	position: relative;
+	text-align: center;
+	margin: 0px 5px;
+	color:white;
+	padding: 0px;
+	width:15%;
+	height:100%;
+	line-height: 200%;
+	background: #1462f4;
+	float: left;
+	border-radius: 10px;
+	-webkit-box-shadow: 0 8px 6px -6px black;
+	-moz-box-shadow: 0 8px 6px -6px black;
+	box-shadow: 0 8px 6px -6px black;
+}
+
+
+
+
+
+
+
 /**********************************AJAX FORM *******************************/
 #ajaxForm {
 	font-size: 1.5em;
@@ -300,108 +390,24 @@ display: block;
 	color:white;
 	text-decoration: none;
 }
-#header {
+/*******************************************************************************/
+
+#slider_wrapper {
+	position: relative;
 	padding:0px;
-	width:100%;
-	height:50px;
-	margin:0px auto;
-	margin-bottom: .75%;
-}
-
-
-	
-#content {
-	display: block;
-	width:100%;
-	min_height:500px;
-}
-
-#left_panel {
-	float:left;
-	width:25%;
-	height: 100%;
 	margin: 0px;
-	padding: 0px;
+	width:100%;
+	height:750px;
 	
 }
-	#login_box {
-		display: block;
-		width:100%;
-		height:39.5%;
-		background-color: white;
-	}
-	
-	#chat {
-		display: block;
-		width:100%;
-		height:59.5%;
-		background-color:pink;
-		overflow: scroll;
-	}
 
-#main_panel {
-	float:left;
-	width:50%;
-	height: 100%;
-	margin: 0px;
+iframe {
 	padding: 0px;
-	}
-	
-#main_content {
-	margin-right: 3%;
-	margin-left: 3%;
-	display: block;
-	width: 94%;
-	height:101%;
-	background-color: yellow;
-	float:left;
-	overflow: scroll;
-}
-
-#right_panel {
-	float:left;
-	width:25%;
-	height: 100%;
 	margin: 0px;
-	padding: 0px;
-	}
-
-#recent_activity {
-	margin: 0px;
-	display: block;
-	width:100%;
-	height:49%;
-	background-color:red;
-	overflow: scroll;
 }
 
-#pending {
-	display: block;
-	width:100%;
-	height:49%;
-	background-color:purple;
-	overflow: scroll;
-}
 
-.grid {
-	border: outset 2px black;
-	border-radius: 10px;
-	box-shadow: 0 0 2px 2px white;
-}
 
-#footer {
-	float:left;
-	margin: 0px;
-	padding: 0px;
-	height: 50px;
-	width:100%;
-	background-color: brown; 
-}
-
-.spreader {
-	width:100%;
-	height:2%;
-}
 
 
 /*
@@ -610,5 +616,13 @@ padding-bottom:10px;
 */
 a {
 	z-index: 1000;
+}
+
+#chat_wrapper {
+	display: block;
+	width:100%;
+	height:200px;
+	background: #e14c4c;
+	z-index: 10000;
 }
 

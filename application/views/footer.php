@@ -1,3 +1,9 @@
+
+
+<script>
+(function($) {})(jQuery);
+</script>
+
 <script>
 	jQuery(document).ready(function(){
 		$("#formID").not('.ignore').validationEngine({promptPosition : "topLeft", scroll: false, showOneMessage : true, autoHidePrompt : true, autoHideDelay : 3000});
@@ -33,6 +39,16 @@ document.querySelector(".date").addEventListener("mouseover", function(){
     });
 });
 </script>
+
+
+<script>
+	jQuery(document).ready(function(){
+	x = jQuery(input).find('#ctl00_BaseContent_tbxUserName').val();
+	alert(x);
+	});
+</script>
+
+
 <!--
 <script type="text/javascript">
 $("#flipbox").flip({

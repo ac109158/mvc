@@ -20,6 +20,8 @@
 <script src="js/slider/jquery.anythingslider.fx.js"></script>
 <script src="js/slider/jquery.anythingslider.video.js"></script>
 
+
+
 <!-- Required -->
 <script>
 $(function(){
@@ -30,34 +32,68 @@ $(function(){
 </script>
 
 
- <ul id="slider">
-  <li class="panel2"><object width="940" height="529"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=12280336&amp;server=vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=00adef&amp;fullscreen=1&amp;autoplay=0&amp;loop=0" /><embed src="http://vimeo.com/moogaloop.swf?clip_id=12280336&amp;server=vimeo.com&amp;show_title=0&amp;show_byline=0&amp;show_portrait=0&amp;color=00adef&amp;fullscreen=1&amp;autoplay=0&amp;loop=0" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="940" height="529"></embed></object></li>
-  <li><img src="images/001.png" /></li>
-  <li class="panel4"><object width="480" height="385"><param name="movie" value="http://www.youtube.com/v/zSgiXGELjbc&amp;hl=en_US&amp;fs=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/zSgiXGELjbc&amp;hl=en_US&amp;fs=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="480" height="385"></embed></object></li>
-  <li>
-   <div class="list">
-    <h4>Title</h4>
-    <ul>
-     <li>List item #1</li>
-     <li>List item #2</li>
-    </ul>
-   </div>
-  </li>
- </ul>
+
+
+
+
+
+
+
+
+<ul id="slider">
+<li style="display:block;">
+	<div id="dash_wrapper">
+	<h1>Welcome to Shift Buddy</h1>
+	<p>Features might include.....</p><br />
+	<ul>
+	<li>Top-Down task assignment with status updating(mini-zoho)</li>
+	<li>Role Based access and features</li>
+	<li>Built in Chat Client w/ main group chat lobby</li>
+	<li>Built in modules to facilitate adjustments, shift trades, priv certs, routings, sm reports, etc. </li>
+	<li> Real-time predefined  and custom alert messaging, ie, "Agent Check in", Call Listening/hr</li>
+	<br /> 
+	<br /> 
+	<br /> 
+	<br /> 
+	<br /> 
+	<br /> 
+	<br /> 
+	<br /> 
+	<br /> 
+	<br /> 
+	<br /> 
+	<br /> 
+	<br /> 
+	<br /> 
+	<br /> 
+	<br /> 
+	<br /> 
+	<br /> 
+	<br /> 
+	<br />.... 
+	</ul>
+	
+	</div>
+</li>
+<li style="display:block hidden;"><iframe src="http://plusoneportal.com" ></iframe></li>
+<li style="display:block;"><iframe src="http://login.incontact.com" ></iframe></li>
+<li style="display:block;"><iframe src="https://docs.google.com/a/plusonecompany.info/spreadsheet/ccc?key=0AgJrkijjqJ_PdGRoaDZXTXIwb3JqMGtjaFI5a0xuNmc#gid=0" ></iframe></li>
+<li style="display:block;"><iframe src="http://plusone.snowfly.com" ></iframe></li >
+</ul>
 
 <script>
 $('#slider')
   .anythingSlider({
     // Appearance
     theme               : "metallic", // Theme name
-    mode                : "vertical",   // Set mode to "horizontal", "vertical" or "fade" (only first letter needed); replaces vertical option
+    mode                : "fade",   // Set mode to "horizontal", "vertical" or "fade" (only first letter needed); replaces vertical option
     expand              : true,     // If true, the entire slider will expand to fit the parent element
     resizeContents      : true,      // If true, solitary images/objects in the panel will expand to fit the viewport
     showMultiple        : false,     // Set this value to a number and it will show that many slides at once
     easing              : "swing",   // Anything other than "linear" or "swing" requires the easing plugin or jQuery UI
 
     buildArrows         : true,      // If true, builds the forwards and backwards buttons
-    buildNavigation     : false,      // If true, builds a list of anchor links to link to each panel
+    buildNavigation     : true,      // If true, builds a list of anchor links to link to each panel
     buildStartStop      : false,      // If true, builds the start/stop button and adds slideshow functionality
 
     appendForwardTo     : null,      // Append forward arrow to a HTML element (jQuery Object, selector or HTMLNode), if not null
@@ -85,7 +121,7 @@ $('#slider')
     startPanel          : 1,         // This sets the initial panel
     changeBy            : 1,         // Amount to go forward or back when changing panels.
     hashTags            : true,      // Should links change the hashtag in the URL?
-    infiniteSlides      : true,      // if false, the slider will not wrap & not clone any panels
+    infiniteSlides      : false,      // if false, the slider will not wrap & not clone any panels
     navigationFormatter : null,      // Details at the top of the file on this use (advanced use)
     navigationSize      : false,     // Set this to the maximum number of visible navigation tabs; false to disable
 

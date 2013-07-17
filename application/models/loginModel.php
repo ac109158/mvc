@@ -25,12 +25,16 @@ class LoginModel extends Model
 			{
 		    return array(false,'The Username or Password does not match!');
 			}
-		$_SESSION[$this->GetLoginSessionVar()] = $username;		
+		$_SESSION[$this->GetLoginSessionVar()] = $username;
+		//$this->setChatActive();
+		
 		return true;
 	   }
 	   
 	   
-	   
+	   private function setChatActive() {
+		   echo json_encode(array('success' => true));
+	   }
 	   public function CheckLoginInDB($username,$password)
 		{
 			$result = $this->DBLogin();
@@ -49,9 +53,56 @@ class LoginModel extends Model
 			$row = mysql_fetch_assoc($result);	
 			$_SESSION['name_of_user']  = $row['name'];
 			$_SESSION['email_of_user'] = $row['email'];				
-			$_SESSION['user_id'] = $row['user_id'];				
+			$_SESSION['user_id'] = $row['user_id'];
+			if(!$this->setActive($username, $_SESSION['email_of_user'])){return false;}
 			return true;
 		}
+		
+		
+	function setActive($username, $email)
+	{
+		$insert_query = "Update $this->tablename  SET status = '1' WHERE username = '$username' AND email='$email'";
+		//echo $insert_query;  
+		if(!mysql_query( $insert_query ,$this->connection) ) { return false;}        
+		return true;
+	}
+	
+	function setInactive()
+			{
+				$user_id = $_SESSION['user_id'];
+				$con = mysqli_connect("$this->db_host","$this->username","$this->pwd", "$this->database");
+				if (mysqli_connect_errno($con))
+					{
+					echo "Failed to connect to MySQL: " . mysqli_connect_error();
+					mysqli_close($con);
+					exit;
+					}
+				$qry = "Update $this->tablename SET status = '0' WHERE user_id = '$user_id'";
+				//echo $qry;
+				$result = mysqli_query($con, $qry);
+				if($result && mysqli_affected_rows($con) <= 0)
+				{	
+				return false;
+				}
+				return true;
+			}
+			
+	function checkActive($id) 
+	{
+			$con = mysqli_connect("$this->db_host","$this->username","$this->pwd", "$this->database");
+			if (mysqli_connect_errno($con))
+				{
+				echo "Failed to connect to MySQL: " . mysqli_connect_error();
+				mysqli_close($con);
+				exit;
+				}
+			$qry = "SELECT status FROM $this->tablename WHERE user_id = '$id' LIMIT 1";
+			$result = mysqli_query($con, $qry);
+			$row = mysqli_fetch_row($result);
+			if( $row[0] != '1') {return false;} 
+			return true;			
+		}
+		
 	function DBLogin()
     	{
         $this->connection = mysql_connect($this->db_host,$this->username,$this->pwd);

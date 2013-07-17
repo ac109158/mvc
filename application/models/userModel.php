@@ -22,16 +22,21 @@ class UserModel extends Model
 		{
 		return UserModel::CheckLogin();
 		}
+		
+	public function detectActive($id) 
+		{
+		return App::fetchModel('login', 'checkActive',$id);
+		}
 	
 	private function CheckLogin()
     	{
-         if(!isset($_SESSION)){ session_start(); }
-         $sessionvar = Model::GetLoginSessionVar();   
-         if(empty($_SESSION[$sessionvar]))
-	         {
-	            return false;
-	         }
-         return true;
+			if(!isset($_SESSION)){ session_start(); }
+			$sessionvar = Model::GetLoginSessionVar();   
+			if(empty($_SESSION[$sessionvar]))
+				{
+				return false;
+				}
+			return true;
 		 }
 		
 	function ChangePassword()
@@ -84,8 +89,11 @@ class UserModel extends Model
 			$sessionvar = $this->GetLoginSessionVar();			
 			$_SESSION[$sessionvar]=NULL;			
 			unset($_SESSION[$sessionvar]);
+			App::fetchModel('login', 'setInactive');
 			}
 			
+
+					
 		function listBuddies() {
 			$users = array(); 
 			$qry = "Select CONCAT(first_name,' ', last_name) as name from $this->tablename";
@@ -98,6 +106,7 @@ class UserModel extends Model
 		}
 		
 		
+/*
 	function getUserProfile($user_id)
 		{
 		$result = App::fetchModel( 'login', 'DBLogin' );
@@ -119,6 +128,7 @@ class UserModel extends Model
 		}			
 		return $uservars;
 		}
+*/
 	
 		
 		

@@ -11,6 +11,11 @@ class ControllerDashboard extends Controller
 			$model::RedirectToURL('?controller=login&task=display');
 			exit;
 			}
+		if(!App::fetchModel('user', 'detectActive', $_SESSION['user_id']))
+			{
+			$model::RedirectToURL('?controller=login&task=display');
+			exit;
+			}
 	   }
 	   
 	private function getLocalVars($array) 
