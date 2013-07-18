@@ -53,7 +53,7 @@ class ControllerLogin extends Controller {
 		$vars = App::getDefaultVars($vars, $msg);
 		$vars = ControllerLogin::getLocalVars($vars);
 		$vars['title'] = 'LOGIN';		
-		$vars['form'] = VIEW.'login.php';		
+		$vars['form'] = VIEW.'login.php';
 		$view::render('landing',$vars);
 		
 		exit;

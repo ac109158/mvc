@@ -12,6 +12,12 @@ define('CSS', './css/');
 define('JS', './js/');
 
 
+define('APP_KEY', '71d3c4ea25f712272ad3');
+define('APP_SECRET', 'c42cc7e374a646effacb');
+define('APP_ID', '49579');
+
+
+
 define('DB_TYPE', 'mysql');
 define('DB_HOST', 'mysql.andy.plusonedevelopment.com');
 define('DB_NAME', 'andy_database');

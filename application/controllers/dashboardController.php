@@ -115,6 +115,12 @@ class ControllerDashboard extends Controller
 		$this->display($msg);
 		exit;
 	}
+	
+	public function notify_endpoint() {
+		$msg = App::request($_REQUEST['message']);
+		App::fetchModel('user', 'notify_endpoint', $msg);
+		exit;
+	}
 
 
 

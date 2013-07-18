@@ -105,6 +105,15 @@ class UserModel extends Model
 			
 		}
 		
+		public function notify_endpoint($msg) {
+			require_once ('notifications/lib/Pusher.php');
+			$pusher = new Pusher(APP_KEY, APP_SECRET, APP_ID);
+			$message = Model::Sanitize($msg);
+			$data = array('message' => $message);			
+			$pusher->trigger('my_notifications', 'notification', $data);
+			exit;
+		}
+				
 		
 /*
 	function getUserProfile($user_id)

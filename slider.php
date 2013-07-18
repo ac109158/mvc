@@ -1,5 +1,4 @@
 <!-- jQuery (required) -->
-<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
 
 <!-- Optional plugins -->
 <script src="js/slider/jquery.easing.1.2.js"></script>
@@ -23,6 +22,7 @@
 
 
 <!-- Required -->
+<!--
 <script>
 $(function(){
  $('#slider')
@@ -30,54 +30,12 @@ $(function(){
    .anythingSliderVideo(); // only add this if your slider includes supported videos (new v1.9)
 });
 </script>
-
-
-
-
-
-
-
-
-
-
+-->
 <ul id="slider">
-<li style="display:block;">
-	<div id="dash_wrapper">
-	<h1>Welcome to Shift Buddy</h1>
-	<p>Features might include.....</p><br />
-	<ul>
-	<li>Top-Down task assignment with status updating(mini-zoho)</li>
-	<li>Role Based access and features</li>
-	<li>Built in Chat Client w/ main group chat lobby</li>
-	<li>Built in modules to facilitate adjustments, shift trades, priv certs, routings, sm reports, etc. </li>
-	<li> Real-time predefined  and custom alert messaging, ie, "Agent Check in", Call Listening/hr</li>
-	<br /> 
-	<br /> 
-	<br /> 
-	<br /> 
-	<br /> 
-	<br /> 
-	<br /> 
-	<br /> 
-	<br /> 
-	<br /> 
-	<br /> 
-	<br /> 
-	<br /> 
-	<br /> 
-	<br /> 
-	<br /> 
-	<br /> 
-	<br /> 
-	<br /> 
-	<br />.... 
-	</ul>
-	
-	</div>
-</li>
-<li style="display:block hidden;"><iframe src="http://plusoneportal.com" ></iframe></li>
-<li style="display:block;"><iframe src="http://login.incontact.com" ></iframe></li>
-<li style="display:block;"><iframe src="https://docs.google.com/a/plusonecompany.info/spreadsheet/ccc?key=0AgJrkijjqJ_PdGRoaDZXTXIwb3JqMGtjaFI5a0xuNmc#gid=0" ></iframe></li>
+<li><iframe src="notify.php"> </iframe></li>
+<li><iframe src="http://plusoneportal.com" ></iframe></li>
+<li><iframe src="http://login.incontact.com" ></iframe></li>
+<!-- <li style="display:block;"><iframe src="https://docs.google.com/a/plusonecompany.info/spreadsheet/ccc?key=0AgJrkijjqJ_PdGRoaDZXTXIwb3JqMGtjaFI5a0xuNmc#gid=0" ></iframe></li> -->
 <li style="display:block;"><iframe src="http://plusone.snowfly.com" ></iframe></li >
 </ul>
 
@@ -183,3 +141,5 @@ $('#slider')
     }
   });
   </script>
+  
+

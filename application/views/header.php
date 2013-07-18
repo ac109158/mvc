@@ -7,20 +7,15 @@
     <link rel="stylesheet" type="text/css" href="<?php echo STYLE ?>" />    
     <link rel="stylesheet" type="text/css" href="<?php echo CSS. 'validationEngine.jquery.css' ?>" /> 
 <!--     <link rel="stylesheet" type="text/css" href="<?php echo CSS. 'template.css' ?>" /> -->
-    <script src="<?php echo JS.'jquery-1.8.2.min.js' ?>" type="text/javascript" charset="utf-8"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="<?php echo JS.'jquery.validationEngine-en.js' ?>" type="text/javascript" charset="utf-8"></script>
 	<script src="<?php echo JS.'jquery.validationEngine.js' ?>" type="text/javascript" charset="utf-8"></script>
 	<script src="<?php echo JS.'jquery.maskedinput.min.js' ?>" type="text/javascript" charset="utf-8"></script>
-    
-	<!--
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
--->
 	<!--
 <script src="<?php echo JS.'jquery.flip.min.js' ?>"></script>
 	<script src="<?php echo JS.'jquery.flip.js' ?>"></script>	
 -->
-	<script src="<?php echo JS.'ajax.js' ?>"></script>
+<script src="<?php echo JS.'ajax.js' ?>"></script>
 <!-- 	<script type="text/javascript" src="js/jquery.animate-colors-min.js"></script> -->
 	
 	

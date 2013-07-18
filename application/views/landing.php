@@ -1,3 +1,6 @@
+
+
+
 	<div id="landing_content">
 		<div class = "transparent" id='landing_form_content'>
 			<?php include $vars['form']; ?>
@@ -10,6 +13,8 @@
 		</div>
 	</div> <!-- end of landing_content -->
 	</div> <!-- end of flipbox -->
+	
+
 </div> <!-- end of main container -->
 
 <script type="text/javascript">
@@ -19,4 +24,4 @@ setTimeout("jQuery('#landing_form_content').find('span.required').css('color', '
 
 </script>
 
-<?php require_once(JS.'flip.js') ?>
+<!-- <?php require_once(JS.'flip.js') ?> -->

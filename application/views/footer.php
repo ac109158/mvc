@@ -1,27 +1,4 @@
 
-
-<script>
-(function($) {})(jQuery);
-</script>
-
-<script>
-	jQuery(document).ready(function(){
-		$("#formID").not('.ignore').validationEngine({promptPosition : "topLeft", scroll: false, showOneMessage : true, autoHidePrompt : true, autoHideDelay : 3000});
-		//$("#formID").bind("jqv.field.result", function(event, field, errorFound, prompText){ console.log(errorFound) });
-		$('#formID input').not('.ignore').not('.submit').blur(function(){
-			x = $(this).focusout().validationEngine('validate');
-			if (x == true || x[1] == true) {
-			$(this).removeClass('error');
-			$(this).addClass('error');				
-			} 
-			else 
-			{
-				$(this).removeClass('error');
-				 $(this).addClass('validated');
-			}
-	});
-	});
-</script>
 <script> //date/Clock Widgit
 document.querySelector(".date").addEventListener("mouseover", function(){
     var txt = document.querySelector(".date").innerHTML;
@@ -41,12 +18,14 @@ document.querySelector(".date").addEventListener("mouseover", function(){
 </script>
 
 
+<!--
 <script>
 	jQuery(document).ready(function(){
 	x = jQuery(input).find('#ctl00_BaseContent_tbxUserName').val();
 	alert(x);
 	});
 </script>
+-->
 
 
 <!--
