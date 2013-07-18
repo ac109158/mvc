@@ -7,7 +7,7 @@ function PusherNotifier(channel, options) {
     titleEventProperty: null, // if set the 'title' will not be used and the title will be taken from the event
     image: 'images/notify.png',
     eventTextProperty: 'message',
-    gritterOptions: {}
+    gritterOptions: {sticky:true}
   };
   
   $.extend(this.settings, options);
