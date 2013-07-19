@@ -10,9 +10,9 @@
 	<div id="dashboard_side_panel">
 	<div id="side_panel_content">
 		<div id="side_panel_notify_panel">
-			<?php require_once 'notify.php';  ?>
-			
+			<?php require_once 'notify.php';  ?>			
 		</div>
+		<?php require_once 'activity_stream.php';  ?>	
 	</div>
 	<div id="side_panel_chat_wrapper">
 			<?php require VIEW. 'pusher.php';  ?>
