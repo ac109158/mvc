@@ -28,6 +28,7 @@
 	margin: 0 auto;
 	/* 23px right & left padding for the navigation arrows */
 	padding: 0 23px;
+	border-width:none;
 }
 /* slider window - top & bottom borders, default state */
 .anythingSlider-metallic .anythingWindow {

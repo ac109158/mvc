@@ -31,5 +31,4 @@
 </head>
 <body id="<?php echo $vars['tab']; ?>">
 <div id="container"> <!-- main container -->
-	<div id="flipbox">	
 		<?php require $vars['header']; ?>

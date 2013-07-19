@@ -2,7 +2,7 @@
 			<div id = "logo">
 				<a href="<?php echo URL ?>"><?php echo $vars['site'] . $vars['slogan'] ;?></a>
 				<div id='landing_date'>
-				<span class='date' style = "font-size:1em;"><?php echo $vars['date'];?></span>
+				<span class='date' style = "font-size:.8em;"><?php echo $vars['date'];?></span>
 				</div> <!-- end of landing date -->	
 			</div> <!-- end of logo -->
 			<div id="landing_nav">

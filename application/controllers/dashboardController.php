@@ -35,7 +35,7 @@ class ControllerDashboard extends Controller
 		$vars = App::getDefaultVars($vars, $msg);
 		$vars = ControllerDashboard::getLocalVars($vars);
 		$vars['msg'] = $msg;
-        $view::render('dashboard',$vars);
+        $view::render('dashboard2',$vars);
         exit;
 	}
 		

@@ -26,4 +26,10 @@ echo $slider;
 var pusher = new Pusher('71d3c4ea25f712272ad3');
 var channel = pusher.subscribe('my_notifications');
 var notifier = new PusherNotifier(channel);
+
 </script>
+<script>
+	$("#dashboard_options_panel").draggable();
+</script>
+
+

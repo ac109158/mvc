@@ -16,7 +16,7 @@
 		data-errormessage="This is the fall-back error message."
 		/>
 		<label>First Name:<span class='required'> *</span></label>
-		</div><br />	
+		</div>
 			
 		<div class='field_container'>
 		<input value='<?php echo $vars['last_name'] ?>' class="validate[required,custom[onlyLetterNumber],minSize[2],maxSize[25] text-input ready" type="text" name="last_name" id="last_name" 
@@ -25,7 +25,7 @@
 		data-errormessage="This is the fall-back error message."
 		/>
 		<label>Last Name:<span class='required'> *</span></label>
-		</div><br />	 
+		</div> 
 			
 		<div class='field_container'>
 		<input value='<?php echo $vars['email'] ?>' class="validate[required,custom[email],minSize[8]maxSize[40],ajax[ajaxNameCall]] text-input ignore" type="text" name="email" id="email" 
@@ -33,7 +33,7 @@
 		data-errormessage-custom-error="Let me give you a hint: someone@nowhere.com" 
 		/>
 		<label>Email:<span class='required'> *</span></label>		
-		</div><br />	
+		</div>
 			
 		<div class='field_container'>
 		<input value='<?php echo $vars['phone_number'] ?>' class="validate[required,custom[phone],minSize[14],maxSize[14] text-input ready" type="text" name="phone_number" id="phone_number" 
@@ -41,7 +41,7 @@
 		data-errormessage-custom-error="Let me give you a hint: (###) ###-####" 
 		/>
 		<label>Phone:<span class='required'> *</span></label>
-		</div><br />			
+		</div>	
 			
 		<div class='field_container'>
 		<input value='<?php echo $vars['username'] ?>' class="validate[required,custom[onlyLetterNumber],minSize[4],maxSize[20],ajax[ajaxUserCall]] text-input ignore" type="text" name="username" id="username" 
@@ -50,15 +50,15 @@
 		data-errormessage="Letters and numbers only."
 		/>
 		<label>UserName:<span class='required'> *</span></label>
-		</div><br />
+		</div>
 		
 		<div class='field_container'>
 		<input value='<?php echo $vars['password'] ?>' class="validate[required,minSize[5,]maxSize[20] text-input ready" type="password" name="password" id="password" 
 		data-errormessage-value-missing="Password is required!"
 		/>
 		<label>Password:<span class='required'> *</span></label>
-		</div><br />
-		
+		</div>
+				
 		<div class='field_container'>
 		<input value='<?php echo $vars['confirm_password'] ?>' 
 		class="validate[required,equals[password]],minSize[5],maxSize[20] text-input ready"
@@ -67,7 +67,7 @@
 		id="confirm_password" 
 		data-errormessage-value-missing="Confirm Password is required!" 
 		/>
-		<label style="font-size:.8em;">Confirm Password<span class='required'> *</span></label>
+		<label style="font-size:.5em;">Confirm Password<span class='required'> *</span></label>
 		</div>
 	<input class="submit" type="submit" value="Submit"/><br />
 	<hr/>

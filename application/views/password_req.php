@@ -12,10 +12,9 @@
 	data-errormessage-value-missing="Email is required!"
 	/>
 	<label>Email:<span class='required'> *</span></label>		
-	</div><br />	
+	</div>	
 <div class='short_explanation'>A link to reset your password will be sent to the email address.</div><br /> 
-   <input type='submit' name='Submit' value='Submit' /><br /><br /> 
-<br /> 
+   <input type='submit' name='Submit' value='Submit' />
 <hr/>
 <div class='form_message' ><span class='errormsg'><?php echo $msg = isset($vars['errors']) ?$vars['errors'] : ' REQUIRED * '; ?></span></div>
 </fieldset>
