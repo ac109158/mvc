@@ -85,7 +85,7 @@ PusherActivityStreamer.prototype.sendActivity = function(activityType, activityD
     data.email = this._email;
   }
   $.ajax({
-    url: 'php/trigger_activity.php',
+    url: 'stream/lib/trigger_activity.php',
     data: data
   })
 };

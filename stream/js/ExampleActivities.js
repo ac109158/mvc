@@ -38,6 +38,7 @@ function ExampleActivities(activityMonitor, pusher) {
     }
   });
   
+/*
   $(window).scroll(function() {
     var win = $(this);
     var scrollTop = win.scrollTop();
@@ -48,6 +49,7 @@ function ExampleActivities(activityMonitor, pusher) {
       activityMonitor.sendActivity('scroll', {position: 'bottom'})
     }
   });
+*/
   
   $(".activity-actions a").live('click', function() {
     var el = $(this);

@@ -1,6 +1,7 @@
 <?php
-require_once('stream/lib/Pusher.php');
-require_once('stream/lib/Activity.php');
+require_once('../../config.php');
+require_once('./Pusher.php');
+require_once('./Activity.php');
 
 $activity_type = $_GET['activity_type'];
 $activity_data = null;
@@ -23,7 +24,7 @@ $pusher->trigger('site-activity', $activity_type, $activity->getMessage());
 /****************************************************************************************/
 
 function getActionText($activity_type, $activity_data) {
-  $action_text = 'just did something unrecognisable.';
+  $action_text = 'just did something unrecognizable.';
   switch($activity_type) {
     case 'page-load':
       $action_text = 'just navigated to the Activity Streams example page.';
