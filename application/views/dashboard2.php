@@ -12,7 +12,7 @@
 		<div id="side_panel_notify_panel">
 			<?php require_once 'notify.php';  ?>			
 		</div>
-		<div id="side_panel_notify_panel">
+		<div id="side_panel_stream_panel">
 			<?php require_once 'activity_stream.php';  ?>			
 		</div>
 		
@@ -45,19 +45,6 @@ var notifier = new PusherNotifier(channel);
 </script>
 	
 </div> <?php // end of dashboard_wrapper ?>
-
-
-
-<script>
-$(".notify").click(function() {
-agents = []
-$(".widgetContent").find('.slick_cell').each
-var agents=[];
-$('.widgetContent').find('.slick_cell').each(function(){
-    agents.push(this.val());
-});
-alert(agents);
-});
 
 
 </script>

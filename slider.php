@@ -31,8 +31,8 @@ $(function(){
 });
 </script>
 -->
-<ul id="slider" style="border-width:0px;">
-<li style="border-width:0px;"><iframe src="http://plusoneportal.com" ></iframe></li>
+<ul id="slider">
+<li><iframe src="http://plusoneportal.com" ></iframe></li>
 <li><iframe src="http://login.incontact.com" ></iframe></li>
 <!-- <li style="display:block;"><iframe src="https://docs.google.com/a/plusonecompany.info/spreadsheet/ccc?key=0AgJrkijjqJ_PdGRoaDZXTXIwb3JqMGtjaFI5a0xuNmc#gid=0" ></iframe></li> -->
 <li style="display:block;"><iframe src="http://plusone.snowfly.com" ></iframe></li >
