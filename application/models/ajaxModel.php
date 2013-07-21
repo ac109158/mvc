@@ -11,7 +11,7 @@ class AjaxModel extends Model {
 	    return $array;
     }
     
-    public function validate($vars)
+    public function validate_field($vars)
 	{
 	    
 	    $validateId=$vars[0];

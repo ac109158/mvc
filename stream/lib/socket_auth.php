@@ -1,6 +1,6 @@
 <?php
 
-	require_once('stream/lib/Pusher.php');
+	require_once('lib/Pusher.php');
 	
 	class PusherPushTest extends PHPUnit_Framework_TestCase
 	{

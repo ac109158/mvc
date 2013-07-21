@@ -4,7 +4,7 @@
 	define('PUSHERAPP_SECRET' , getenv('PUSHERAPP_SECRET'));
 	define('PUSHERAPP_APPID'  , getenv('PUSHERAPP_APPID'));
 
-	require_once('stream/lib/Pusher.php');
+	require_once('lib/Pusher.php');
 
 	class PusherPushTest extends PHPUnit_Framework_TestCase
 	{

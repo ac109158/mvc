@@ -107,8 +107,6 @@
             } else $('#user_'+id).hide();
             if (name=="undefined") name="";
             if (!id) $('#pusherChat').remove();
-            if (name)
-                $('.connexion').html('You are connected as '+name.replace('%20',' '));
             /*
              * this part is only for demo you don't need this
              */
@@ -117,10 +115,11 @@
         <script>
             $.fn.pusherChat({
                 'pusherKey':'71d3c4ea25f712272ad3',
-                //'authPath':'?controller=pusher$task=auth&user_id='+id+'&name='+name,
+                'authPath':'index.php?controller=ajax&$task=pusher_auth&user_id='+id+'&name='+name,
                 'authPath':'pusher/server/pusher_auth.php?user_id='+id+'&name='+name,
                 'friendsList' : 'pusher/ajax/friends-list.json',
-                'serverPath' : 'pusher/server/server.php',
+                'serverPath' : 'index.php?controller=ajax&task=pusher_server',
+                //'serverPath' : 'pusher/server/server.php',
                 'profilePage':true,
                 'onFriendConnect': function(member){
                     if (member.id) $('#user_'+member.id).hide();  

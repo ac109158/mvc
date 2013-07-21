@@ -116,8 +116,6 @@ class App {
 		$url['model'] = App::request($_REQUEST['model']);
 		$url['action'] = App::request($_REQUEST['action']);
 		$url['key'] = App::request($_REQUEST['key']);
-		$url['fieldId'] = App::request($_REQUEST['fieldId']);
-		$url['fieldValue'] = App::request($_REQUEST['fieldValue']);
 		return $url;
 	}
 	public function isArrayFull($array)

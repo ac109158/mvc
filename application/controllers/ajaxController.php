@@ -9,13 +9,17 @@ class ControllerAjax extends Controller{
     private function getLocalVars($array) 
     {
 	    return $array;
+	    exit;
     }
     
-    public function validate($vars)
+    public function validate_field()
 	{
-	if(!App::fetchModel("ajax","validate",$vars))
+	$vars[0] = App::request($_REQUEST['fieldId']);	
+	$vars[1] = App::request($_REQUEST['fieldValue']);	
+	if(!App::fetchModel("ajax","validate_field",$vars))
 	{
 		return false;
+		exit;
 	}
 	}
 	
@@ -31,7 +35,20 @@ class ControllerAjax extends Controller{
 		$vars[1] = App::request($_REQUEST['channel']);		
 		App::fetchModel('pusher', 'notify_endpoint', $vars);
 		exit;
+	}
+	
+	public function pusher_auth() 
+	{	
+		App::fetchModel('pusher', 'pusher_auth');
+		exit;
+	}
+	
+		public function pusher_server() 
+	{	
+		App::fetchModel('pusher', 'pusher_server');
+		exit;
 	}	
+
 
 	
 }

@@ -9,6 +9,9 @@
 	
 	<div id="dashboard_side_panel">
 	<div id="side_panel_content">
+		<div id="side_panel_info_panel">
+			<?php echo $_SESSION['name_of_user'] ?>			
+		</div>		
 		<div id="side_panel_notify_panel">
 			<?php require_once 'inc/notify.php';  ?>			
 		</div>

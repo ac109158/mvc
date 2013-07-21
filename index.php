@@ -30,13 +30,6 @@ function main()
 	$app = new App();
 	$url = $app::init();
 	//print_r($url);
-	if ($url['controller'] === 'ajax' )
-	{
-		$vars[0] = $url['fieldId'];	
-		$vars[1] = $url['fieldValue'];	
-	} else {
-		$vars = $url['key'];
-	}
 	if(!$app::execute($url['controller'], $url['task'], $vars))
 	{
 	if(true)

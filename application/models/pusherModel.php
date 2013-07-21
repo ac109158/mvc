@@ -53,9 +53,35 @@ class PusherModel extends Model
 		$pusher->trigger($channel, 'notification', $data);
 		exit;
 	}
+	
+	public function pusher_auth() {		
+		require_once('inc/Pusher.php');		
+		$name = $_SESSION['name_of_user']; // chose the way to get this get,post session ...etc
+		$user_id = $_SESSION['user_id']; // chose the way to get this get,post session ...etc
+		$channel_name = $_POST['channel_name']; // never change 
+		$socket_id = $_POST['socket_id']; // never change		
+		$pusher = new Pusher(APP_KEY, APP_SECRET, APP_ID);
+		$presence_data = array('name' => $name);
+		echo $pusher->presence_auth($channel_name, $socket_id, $user_id, $presence_data);
+		exit;
+		}
 		
-
-
+	public function pusher_server() 
+	{
+		require('inc/Pusher.php');
+		$pusher = new Pusher(APP_KEY, APP_SECRET, APP_ID);
+		if ($_REQUEST['typing'] == "false")
+		{
+			$pusher->trigger('presence-mychanel', 'send-event', array('message' => htmlspecialchars ( $_REQUEST['msg']), 'from' => $_REQUEST['from'], 'to' => str_replace('#', '', $_REQUEST['to'])));
+		}
+		else if ($_REQUEST['typing'] == "true")
+			$pusher->trigger('presence-mychanel', 'typing-event', array('message' => $_REQUEST['typing'], 'from' => $_REQUEST['from'], 'to' => str_replace('#', '', $_REQUEST['to'])));
+		else
+		{
+			$pusher->trigger('presence-mychanel', 'typing-event', array('message' => 'null', 'from' => $_REQUEST['from'], 'to' => str_replace('#', '', $_REQUEST['to'])));
+		}
+		exit;
+	}
 	
 }
 	
