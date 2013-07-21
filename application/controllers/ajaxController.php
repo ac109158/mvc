@@ -23,9 +23,9 @@ class ControllerAjax extends Controller{
 	}
 	}
 	
-	public function activity_trigger() 
+	public function trigger_activity() 
 	{
-		App::fetchModel('pusher', 'activity_trigger');
+		App::fetchModel('pusher', 'trigger_activity');
 		exit;
 	}
 	

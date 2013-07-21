@@ -6,7 +6,7 @@ class PusherModel extends Model
 		parent::__construct();					
 		}
 
-	public function activity_trigger() 
+	public function trigger_activity() 
 	{
 		require_once('./inc/Pusher.php');
 		require_once('./inc/Activity.php');	
@@ -15,12 +15,14 @@ class PusherModel extends Model
 		$email = null;
 		$activity_data = App::request($_GET['activity_data']);
 		$email = App::request($_GET['email']);		
-		$action_text = getActionText($activity_type, $activity_data);		
+		$action_text = $this->getActionText($activity_type, $activity_data);		
 		$activity = new Activity($activity_type, $action_text, $email);		
 		$pusher = new Pusher(APP_KEY, APP_SECRET, APP_ID);
 		$pusher->trigger('site-activity', $activity_type, $activity->getMessage());
-				
-		function getActionText($activity_type, $activity_data) 
+	exit;
+	}
+	
+	function getActionText($activity_type, $activity_data) 
 		{
 		  $action_text = 'just did something unrecognizable.';
 		  switch($activity_type) 
@@ -40,8 +42,7 @@ class PusherModel extends Model
 		  }
 		  return $action_text;
 		}
-	exit;
-	}
+	
 	
 	public function notify_endpoint($vars) // $vars[0] message, $vars[1] channel
 	{
