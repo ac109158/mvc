@@ -8,12 +8,12 @@ class ControllerDashboard extends Controller
 		$model = App::fetchModel('user');
 		if(!$model::detectLogin())
 			{
-			$model::RedirectToURL('?controller=login&task=display');
+			$model::RedirectToURL('index.php?controller=login&task=display');
 			exit;
 			}
 		if(!App::fetchModel('user', 'detectActive', $_SESSION['user_id']))
 			{
-			$model::RedirectToURL('?controller=login&task=display');
+			$model::RedirectToURL('index.php?controller=login&task=display');
 			exit;
 			}
 	   }
@@ -114,16 +114,6 @@ class ControllerDashboard extends Controller
 		}
 		$this->display($msg);
 		exit;
-	}
-	
-	public function notify_endpoint() {
-		$msg = App::request($_REQUEST['message']);
-		App::fetchModel('user', 'notify_endpoint', $msg);
-		exit;
-	}
-
-
-
-		
+	}	
 		
 } //end of Class

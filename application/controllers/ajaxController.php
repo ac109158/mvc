@@ -18,6 +18,20 @@ class ControllerAjax extends Controller{
 		return false;
 	}
 	}
+	
+	public function activity_trigger() 
+	{
+		App::fetchModel('pusher', 'activity_trigger');
+		exit;
+	}
+	
+	public function notify_endpoint() 
+	{
+		$vars[0]= App::request($_REQUEST['message']);
+		$vars[1] = App::request($_REQUEST['channel']);		
+		App::fetchModel('pusher', 'notify_endpoint', $vars);
+		exit;
+	}	
 
 	
 }

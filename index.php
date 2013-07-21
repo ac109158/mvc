@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php 
 	/**
 	 *Written by Andy 6/10/13
@@ -23,6 +24,7 @@ $controller->execute( $task );
 
 function main()
 	{
+	
 	//print_r($_REQUEST);
 	require './lib/App.php';
 	$app = new App();
@@ -35,7 +37,6 @@ function main()
 	} else {
 		$vars = $url['key'];
 	}
-		
 	if(!$app::execute($url['controller'], $url['task'], $vars))
 	{
 	if(true)
@@ -43,6 +44,7 @@ function main()
 		$app::execute('dashboard', 'display');
 		exit;
 		}
+	die;
 
 	$app::execute('index', 'index');
 	exit;
