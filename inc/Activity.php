@@ -1,7 +1,6 @@
 <?php
 class Activity {
   
-  private $display_name = '<em>Anon</em>';
   private $image = 'http://www.gravatar.com/avatar/00000000000000000000000000000000?d=monsterid&s=48';
   private $action_text = null;
   private $date = null;
@@ -9,35 +8,39 @@ class Activity {
   private $type;
   
   public function __construct($activity_type, $action_text, $email = null) {
-    date_default_timezone_set('UTC');
+    //date_default_timezone_set('UTC');
     $this->type = $activity_type;
     $this->id = uniqid();
     $this->date = date('r');
+    $this->display_name = $_SESSION['name_of_user'];
+    
     
     $this->action_text = $action_text;
     
-    if( is_null($email) == false ) {
+    /*
+if( is_null($email) == false ) {
       $this->image = $this->get_gravatar($email);
       $profile = $this->get_gravatar_profile($email);
       if( isset($profile['displayName']) ) {
         $this->display_name = $profile['displayName'];
       }
     }
+*/
   }
   
   public function getMessage() {
     $activity = array(
-      'id' => $this->id,
-      'body' => $this->action_text,
-      'published' => $this->date,
-      'type' => $this->type,
-      'actor' => array(
-        'displayName' => $this->display_name,
-        'objectType' => 'person',
-        'image' => array(
-          'url' => $this->image,
-          'width' => 48,
-          'height' => 48
+		'id' => $this->id,
+		'body' => $this->action_text,
+		'published' => $this->date,
+		'type' => $this->type,
+		'actor' => array(
+		'displayName' => $this->display_name,
+		'objectType' => 'person',
+		'image' => array(
+		'url' => $this->image,
+		'width' => 48,
+		'height' => 48
         )
       )
     );

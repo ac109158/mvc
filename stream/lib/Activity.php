@@ -1,7 +1,7 @@
 <?php
 class Activity {
   
-  private $display_name = '<em>Anon</em>';
+  private $display_name = "<em$_SESSION['name_of_user']</em>";
   private $image = 'http://www.gravatar.com/avatar/00000000000000000000000000000000?d=monsterid&s=48';
   private $action_text = null;
   private $date = null;
@@ -9,20 +9,25 @@ class Activity {
   private $type;
   
   public function __construct($activity_type, $action_text, $email = null) {
-    date_default_timezone_set('UTC');
+    //date_default_timezone_set('UTC');
     $this->type = $activity_type;
     $this->id = uniqid();
     $this->date = date('r');
     
     $this->action_text = $action_text;
+    $this->email= $email;
+   $this->display_name = "$_SESSION['name_of_user']";
     
-    if( is_null($email) == false ) {
+    
+    /*
+if( is_null($email) == false ) {
       $this->image = $this->get_gravatar($email);
       $profile = $this->get_gravatar_profile($email);
       if( isset($profile['displayName']) ) {
         $this->display_name = $profile['displayName'];
       }
     }
+*/
   }
   
   public function getMessage() {

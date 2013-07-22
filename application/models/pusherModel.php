@@ -14,7 +14,7 @@ class PusherModel extends Model
 		$activity_data = null;
 		$email = null;
 		$activity_data = App::request($_GET['activity_data']);
-		$email = App::request($_GET['email']);		
+		$email = App::request($_SESSION['email_of_user']);		
 		$action_text = $this->getActionText($activity_type, $activity_data);		
 		$activity = new Activity($activity_type, $action_text, $email);		
 		$pusher = new Pusher(APP_KEY, APP_SECRET, APP_ID);
@@ -28,7 +28,7 @@ class PusherModel extends Model
 		  switch($activity_type) 
 		  {
 		    case 'page-load':
-		      $action_text = 'just navigated to the Activity Streams example page.';
+		      $action_text = 'just logged in.';
 		      break;
 		    case 'test-event':
 		      $action_text = 'just clicked the <em>Send Test</em> button.';
