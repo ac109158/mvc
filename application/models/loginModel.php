@@ -51,7 +51,7 @@ class LoginModel extends Model
 				return array(false, "Error logging in. The username or password does not match");
 				}		
 			$row = mysql_fetch_assoc($result);	
-			$_SESSION['name_of_user']  = $row['name'];
+			$name = $_SESSION['name_of_user']  = $row['name'];
 			$_SESSION['email_of_user'] = $row['email'];				
 			$_SESSION['user_id'] = $row['user_id'];
 			if(!$this->setActive($username, $_SESSION['email_of_user'])){return false;}
@@ -63,7 +63,10 @@ class LoginModel extends Model
 	{
 		$insert_query = "Update $this->tablename  SET status = '1' WHERE username = '$username' AND email='$email'";
 		//echo $insert_query;  
-		if(!mysql_query( $insert_query ,$this->connection) ) { return false;}        
+		if(!mysql_query( $insert_query ,$this->connection) ) { return false;}
+		App::fetchModel('pusher');
+		$msg = $_SESSION['name_of_user'] .  " has logged in";
+		PusherModel::trigger_activity('all', $msg, 'SYSTEM', 'page-load' );       
 		return true;
 	}
 	

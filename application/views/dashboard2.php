@@ -16,9 +16,9 @@
 			<?php require_once 'inc/notify.php';  ?>			
 		</div>
 		<div id="side_panel_stream_panel">
-			<?php require_once 'inc/activity_stream.php';  ?>			
+			<?php require_once 'inc/activity_stream.php';  ?>		
 		</div>
-		
+	</div>
 	</div>
 	<div id="side_panel_chat_wrapper">
 			<?php require VIEW. 'pusher.php';  ?>

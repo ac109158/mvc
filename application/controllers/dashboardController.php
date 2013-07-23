@@ -100,9 +100,12 @@ class ControllerDashboard extends Controller
 	
 	public function logout()
 	{
-		App::fetchModel('user', 'LogOut');
+		App::fetchModel('pusher');
+		$msg = $_SESSION['name_of_user'] .  " has logged out";
+		PusherModel::trigger_activity('all', $msg, 'SYSTEM', 'page-load' );
+		App::fetchModel('user', 'LogOut');		
 		session_destroy();
-		App::fetchModel('base', 'RedirectToURL', URL);		
+		App::fetchModel('base', 'RedirectToURL', URL);
 		exit;
 	}	
 	

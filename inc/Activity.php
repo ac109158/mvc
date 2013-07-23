@@ -7,12 +7,12 @@ class Activity {
   private $id;
   private $type;
   
-  public function __construct($activity_type, $action_text, $email = null) {
+  public function __construct($activity_type, $action_text, $display_name,$email = null) {
     //date_default_timezone_set('UTC');
     $this->type = $activity_type;
     $this->id = uniqid();
     $this->date = date('r');
-    $this->display_name = $_SESSION['name_of_user'];
+    $this->display_name = $display_name;
     
     
     $this->action_text = $action_text;

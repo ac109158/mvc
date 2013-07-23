@@ -4,6 +4,10 @@ function ExampleActivities(activityMonitor, pusher) {
     activityMonitor.sendActivity('page-load');
   });
   
+    pusher.connection.bind('connected', function() {
+    activityMonitor.sendActivity('update');
+  });
+  
   $("#gravatar").slideDown();
   $('ul.activity-stream').removeClass('no-actions');
   

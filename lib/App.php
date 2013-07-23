@@ -33,7 +33,15 @@ class App {
  
 	public function request($param)
 	{
-		if (isset($param)) { $request = $param; return trim($request); }
+		if (isset($param)) 
+		{ 
+			$request = $param; 
+			if ( is_string($request))
+				{
+				$request = trim( htmlentities($request));
+				}
+			return $request;
+		}
 		return null;
 	}
 		

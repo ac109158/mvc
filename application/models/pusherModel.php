@@ -3,32 +3,47 @@ class PusherModel extends Model
 {
     public function __construct()
 	    {
-		parent::__construct();					
+		parent::__construct();
+		$model = App::fetchModel('user');
+		if(!$model::detectLogin())
+			{
+			$model::RedirectToURL('index.php?controller=login&task=display');
+			exit;
+			}
+		if(!App::fetchModel('user', 'detectActive', $_SESSION['user_id']))
+			{
+			$model::RedirectToURL('index.php?controller=login&task=display');
+			exit;
+			}				
 		}
-
-	public function trigger_activity() 
-	{
-		require_once('./inc/Pusher.php');
-		require_once('./inc/Activity.php');	
-		$activity_type = App::request($_GET['activity_type']);
-		$activity_data = null;
-		$email = null;
-		$activity_data = App::request($_GET['activity_data']);
-		$email = App::request($_SESSION['email_of_user']);		
-		$action_text = $this->getActionText($activity_type, $activity_data);		
-		$activity = new Activity($activity_type, $action_text, $email);		
-		$pusher = new Pusher(APP_KEY, APP_SECRET, APP_ID);
-		$pusher->trigger('site-activity', $activity_type, $activity->getMessage());
+		
+	public function trigger_init() {
+	echo here;
+	$channel = $_REQUEST['activity_channel'];
+	$text = $_REQUEST['action_text'];
+	$name = $_SESSION['name_of_user'];
+	$type = $_REQUEST['activity_type'];
+	$this->trigger_activity($channel, $text, $name, $type);
 	exit;
+	}
+
+	public function trigger_activity($channel, $text, $name, $type) 
+	{
+		require_once('inc/Pusher.php');
+		require_once('inc/Activity.php');	
+		$activity = new Activity($type, $text, $name);
+		$pusher = new Pusher(APP_KEY, APP_SECRET, APP_ID);
+		$pusher->trigger($channel, $type, $activity->getMessage());
+		return true;
 	}
 	
 	function getActionText($activity_type, $activity_data) 
-		{
+	{
 		  $action_text = 'just did something unrecognizable.';
 		  switch($activity_type) 
 		  {
 		    case 'page-load':
-		      $action_text = 'just logged in.';
+		      $action_text = 'just navigated to the Activity Streams example page.';
 		      break;
 		    case 'test-event':
 		      $action_text = 'just clicked the <em>Send Test</em> button.';
@@ -40,8 +55,8 @@ class PusherModel extends Model
 		      $action_text = 'just liked: "'. $activity_data['text'] . '"';
 		      break;
 		  }
-		  return $action_text;
-		}
+	return $action_text;
+	}
 	
 	
 	public function notify_endpoint($vars) // $vars[0] message, $vars[1] channel
@@ -52,7 +67,7 @@ class PusherModel extends Model
 		$data = array('message' => $message);
 		$channel = $vars[1];		
 		$pusher->trigger($channel, 'notification', $data);
-		exit;
+		return true;
 	}
 	
 	public function pusher_auth() {		
