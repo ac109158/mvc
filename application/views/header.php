@@ -6,7 +6,8 @@
      <title><?php echo $title= (isset($vars['title'])) ? $vars['title'] : 'MVC'; ?></title>
     <link rel="stylesheet" type="text/css" href="<?php echo STYLE ?>" />    
     <link rel="stylesheet" type="text/css" href="<?php echo CSS. 'validationEngine.jquery.css' ?>" /> 
-<!--     <link rel="stylesheet" type="text/css" href="<?php echo CSS. 'template.css' ?>" /> -->
+    <link rel="stylesheet" type="text/css" href="lib/gritter/css/jquery.gritter.css" />
+
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="<?php echo JS.'jquery.validationEngine-en.js' ?>" type="text/javascript" charset="utf-8"></script>
 	<script src="<?php echo JS.'jquery.validationEngine.js' ?>" type="text/javascript" charset="utf-8"></script>
@@ -15,19 +16,7 @@
 <script src="<?php echo JS.'jquery.flip.min.js' ?>"></script>
 	<script src="<?php echo JS.'jquery.flip.js' ?>"></script>	
 -->
-<script src="<?php echo JS.'ajax.js' ?>"></script>
-<!-- 	<script type="text/javascript" src="js/jquery.animate-colors-min.js"></script> -->
-	
-	
-	
-<!-- 	<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js' type="text/javascript"></script> -->
-
-
-     
-<!--     <script type='text/javascript' src='<?php echo VALIDATOR; ?>'></script> -->
-<!--     <link rel="STYLESHEET" type="text/css" href="<?php echo PWDSTYLE; ?>" /> -->
-<!--     <script src="<?php echo PWDWIDGET; ?>" type="text/javascript"></script> -->
-    
+<script src="<?php echo JS.'ajax.js' ?>"></script>    
 </head>
 <body id="<?php echo $vars['tab']; ?>">
 <div id="container"> <!-- main container -->

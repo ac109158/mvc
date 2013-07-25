@@ -54,7 +54,8 @@ class LoginModel extends Model
 			$name = $_SESSION['name_of_user']  = $row['name'];
 			$_SESSION['email_of_user'] = $row['email'];				
 			$_SESSION['user_id'] = $row['user_id'];
-			if(!$this->setActive($username, $_SESSION['email_of_user'])){return false;}
+			require_once('pusher_config.php');
+			if(!$this->setActive($username, $_SESSION['email_of_user'])){return false;}			
 			return true;
 		}
 		

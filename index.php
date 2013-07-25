@@ -30,14 +30,13 @@ function main()
 	$app = new App();
 	$url = $app::init();
 	//print_r($url);
-	if(!$app::execute($url['controller'], $url['task'], $vars))
+	if(!$app::execute($url['controller'], $url['task']))
 	{
 	if(true)
 		{
 		$app::execute('dashboard', 'display');
 		exit;
 		}
-	die;
 
 	$app::execute('index', 'index');
 	exit;

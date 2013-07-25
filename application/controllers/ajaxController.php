@@ -33,6 +33,8 @@ class ControllerAjax extends Controller{
 	{
 		$vars[0]= App::request($_REQUEST['message']);
 		$vars[1] = App::request($_REQUEST['channel']);		
+		$vars[2] = App::request($_REQUEST['method']);	
+		$vars[3] = App::request($_REQUEST['name']);	
 		App::fetchModel('pusher', 'notify_endpoint', $vars);
 		exit;
 	}
@@ -47,7 +49,14 @@ class ControllerAjax extends Controller{
 	{	
 		App::fetchModel('pusher', 'pusher_server');
 		exit;
-	}	
+	}
+	
+	public function pusher_chat() 
+		{	
+			App::fetchModel('pusher', 'pusher_chat');
+			exit;
+		}	
+
 
 
 	

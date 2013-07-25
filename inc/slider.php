@@ -77,7 +77,7 @@ $('#slider')
     // Navigation
     startPanel          : 1,         // This sets the initial panel
     changeBy            : 1,         // Amount to go forward or back when changing panels.
-    hashTags            : true,      // Should links change the hashtag in the URL?
+    hashTags            : false,      // Should links change the hashtag in the URL?
     infiniteSlides      : false,      // if false, the slider will not wrap & not clone any panels
     navigationFormatter : null,      // Details at the top of the file on this use (advanced use)
     navigationSize      : false,     // Set this to the maximum number of visible navigation tabs; false to disable

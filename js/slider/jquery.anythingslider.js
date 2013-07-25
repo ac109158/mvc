@@ -732,6 +732,7 @@
 			}
 		};
 
+/*
 		// This method tries to find a hash that matches an ID and panel-X
 		// If either found, it tries to find a matching item
 		// If that is found as well, then it returns the page number
@@ -759,6 +760,7 @@
 				win.location.hash = (h.indexOf(s) > 0) ? h.replace(base.regex, s + n) : h + "&" + s + n;
 			}
 		};
+*/
 
 		// Slide controls (nav and play/stop button up or down)
 		base.slideControls = function(toggle){
