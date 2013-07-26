@@ -1,35 +1,33 @@
 <div id="dashboard_wrapper">
-<div id="dashboard_top">
-	<div id="dashboard_group_chat_panel">
-	<?php
-		require_once('chat-widget/chat.php');
-	 ?>		
-	</div>	
+	<div id="dashboard_top">
 	
-	<div id="dashboard_main_panel_wrapper">	
-		<?php require 'inc/slider.php';  ?>	
-	</div> <?php // end of dashboard_main_panel_wrapper ?>
-	
-		
-	<div id="dashboard_options_panel">		
-	</div> <?php // end of dashboard_side_panel ?>
-	<div id="dashboard_side_panel">
-		<div id="side_panel_content">
-			<div id="side_panel_info_panel">
-				<?php echo $_SESSION['name_of_user'] ?>			
-			</div>		
-			<div id="side_panel_notify_panel">
-				<?php require_once 'inc/notify.php';  ?>			
-			</div>
-			<div id="side_panel_stream_panel">
-				<?php require_once 'inc/activity_stream.php';  ?>		
-			</div>
-		</div> <?php //end of side_panel_content ?>
-	</div> <?php //end of dashboard_side _panel; ?>
-		<div id="side_panel_chat_wrapper">
-				<?php require VIEW. 'pusher.php';  ?>
+		<div id="dashboard_group_chat_panel">
+		<?php require_once('chat-widget/chat.php');?>	
 		</div>	
-</div> <?php // end of dashboard_top ?>
+		
+		<div id="dashboard_main_panel_wrapper">	
+			<?php require 'inc/slider.php';  ?>
+		</div> <?php // end of dashboard_main_panel_wrapper ?>		
+			
+		<div id="dashboard_options_panel"> </div> <?php // end of dashboard_side_panel ?>
+		
+		<div id="dashboard_side_panel">
+			<div id="side_panel_content">
+				<div id="side_panel_info_panel">
+					<?php echo $_SESSION['name_of_user'] ?>			
+				</div>		
+				<div id="side_panel_notify_panel">
+					<?php require_once 'inc/notify.php';  ?>			
+				</div>
+				<div id="side_panel_stream_panel">
+					<?php require_once 'inc/activity_stream.php';  ?>		
+				</div>
+			</div> <?php //end of side_panel_content ?>
+		</div> <?php //end of dashboard_side _panel; ?>
+		
+		<div id="side_panel_chat_wrapper"><?php require VIEW. 'pusher.php';  ?>
+	</div>	<?php // end of dashboard_top ?>
+</div> <?php //end of dashbaord_wrapper ?>
 
 
 <div id="dashboard_bottom">
@@ -138,5 +136,5 @@ var notifier3 = new PusherNotifier(channel3);
     }
   };
 </script>
-
+   
 

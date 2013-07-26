@@ -15,7 +15,7 @@ function PusherChatWidget(pusher, options) {
   options = options || {};
   this.settings = $.extend({
     maxItems: 50, // max items to show in the UI. Items beyond this limit will be removed as new ones come in.
-    chatEndPoint: 'chat-widget/lib/chat.php', // the end point where chat messages should be sanitized and then triggered
+    chatEndPoint: 'index.php?controller=ajax&task=pusher_chat', // the end point where chat messages should be sanitized and then triggered
     channelName: document.location.href, // the name of the channel the chat will take place on
     appendTo: document.body, // A jQuery selector or object. Defines where the element should be appended to
     debug: true
@@ -157,7 +157,7 @@ PusherChatWidget.prototype._startTimeMonitor = function() {
   var self = this;
   
   setInterval(function() {
-    self._messagesEl.children('.activity').each(function(i, el) {
+    self._messagesEl.children('.chat-activity').each(function(i, el) {
       var timeEl = $(el).find('a.timestamp span[data-activity-published]');
       var time = timeEl.attr('data-activity-published');
       var newDesc = PusherChatWidget.timeToDescription(time);
@@ -170,29 +170,28 @@ PusherChatWidget.prototype._startTimeMonitor = function() {
 PusherChatWidget._createHTML = function(appendTo) {
   var html = '' +
   '<div class="pusher-chat-widget">' +
-  '<h1>PlusOne Group Chat</h1>' +
+  '<div id="chat-title">PlusOne Group Chat</div>' +
 /*
-    '<div class="pusher-chat-widget-header">' +
-      '<label for="nickname">Name</label>' +
-      '<input type="text" name="nickname" />' +
-      '<label for="email" title="So we can look up your Gravatar">Email (optional)</label>' +
-      '<input type="email" name="email" />' +
-    '</div>' +
+'<div class="pusher-chat-widget-header">' +
+'<label for="nickname">Name</label>' +
+'<input type="text" name="nickname" />' +
+'<label for="email" title="So we can look up your Gravatar">Email (optional)</label>' +
+'<input type="email" name="email" />' +
+'</div>' +
 */
-    '<div class="pusher-chat-widget-messages">' +
+    '<div id="pusher-chat-widget-messages"class="pusher-chat-widget-messages">' +
       '<ul class="chat-activity-stream">' +
         '<li class="waiting">No chat messages available</li>' +
       '</ul>' +
     '</div>' +
     '<div class="pusher-chat-widget-input">' +
-      '<label for="message">Message</label>' +
-      '<textarea name="message" id="message_box" style="width:92%; resize:none"></textarea>' +
+      '<textarea name="message" id="chat-widget-message-box"></textarea>' +
       '<button class="pusher-chat-widget-send-btn" hidden="hidden" id="pusher-chat-widget-send-btn">Send</button>' +
     '</div>' +
 /*
-    '<div class="pusher-chat-widget-footer">' +
-      '<a href="http://pusher.com">Pusher</a> powered realtime chat' +
-    '</div>' +
+'<div class="pusher-chat-widget-footer">' +
+'<a href="http://pusher.com">Pusher</a> powered realtime chat' +
+'</div>' +
 */
   '</div>';
   var widget = $(html);
@@ -206,46 +205,42 @@ PusherChatWidget._createHTML = function(appendTo) {
 PusherChatWidget._buildListItem = function(activity) {
   var li = $('<li class="chat-activity"></li>');
   li.attr('data-activity-id', activity.id);
-  var item = $('<div class="stream-item-content"></div>');
+  var item = $('<div class="chat-stream-item-content"></div>');
   li.append(item);
   
   var imageInfo = activity.actor.image;
-  var image = $('<div class="image">' +
+  var image = $('<div class="test"><div class="image">' +
                   '<img src="' + imageInfo.url + '" width="' + imageInfo.width + '" height="' + imageInfo.height + '" />' +
                 '</div>');
   item.append(image);
   
-  var content = $('<div class="content"></div>');
+  var content = $('<div class="chat-content"></div>');
   item.append(content);
   
   var user = $('<div class="chat-activity-row">' +
                 '<span class="user-name">' +
-                  '<a class="screen-name" title="' + activity.actor.displayName + '">' + activity.actor.displayName + '</a>' +
+                  '<a class="chat-screen-name" title="' + activity.actor.displayName + '">' + activity.actor.displayName + '</a>' +
                   //'<span class="full-name">' + activity.actor.displayName + '</span>' +
                 '</span>' +
+                 '<a ' + (activity.link?'href="' + activity.link + '" ':'') + ' class="timestamp">' +
+                  '<span title="' + activity.published + '" data-activity-published="' + activity.published + '">' + PusherChatWidget.timeToDescription(activity.published) + '</span>' +
+                '</a>' +
               '</div>');
   content.append(user);
   
-  var message = $('<div class="activity-row">' +
-                    '<div class="text">' + activity.body.replace(/\\('|&quot;)/g, '$1') + '</div>' +
+  var message = $('<div class="chat-activity-row">' +
+                    '<div class="chat-text">' + activity.body.replace(/\\('|&quot;)/g, '$1') + '</div>' +
                   '</div>');
   content.append(message);
   
-  var time = $('<div class="activity-row">' + 
-                '<a ' + (activity.link?'href="' + activity.link + '" ':'') + ' class="timestamp">' +
-                  '<span title="' + activity.published + '" data-activity-published="' + activity.published + '">' + PusherChatWidget.timeToDescription(activity.published) + '</span>' +
-                '</a>' +
-                '<span class="chat-activity-actions">' +
-                  /*'<span class="tweet-action action-favorite">' +
-                    '<a href="#" class="like-action" data-activity="like" title="Like"><span><i></i><b>Like</b></span></a>' +
-                  '</span>' +*/
-                '</span>' +
-              '</div>');
-  content.append(time);
+
                 
-  
+var objDiv =document.getElementsByClassName("pusher-chat-widget-messages");
+objDiv.scrollTop = objDiv.scrollHeight;
+
   return li;
 };
+
 
 /**
  * converts a string into something which can be used as a valid channel name in Pusher.
@@ -279,10 +274,10 @@ PusherChatWidget.timeToDescription = function(time) {
     desc = seconds + " second" + (seconds !== 1?"s":"") + " ago";
   }
   else if(minutes < 60) {
-    desc = "about " + minutes + " minute" + (minutes !== 1?"s":"") + " ago";
+    desc =  minutes + " minute" + (minutes !== 1?"s":"") + " ago";
   }
   else if(hours < 24) {
-    desc = "about " + hours + " hour"  + (hours !== 1?"s":"") + " ago";
+    desc = hours + " hour"  + (hours !== 1?"s":"") + " ago";
   }
   else {
     desc = time.getDay() + " " + ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"][time.getMonth()]

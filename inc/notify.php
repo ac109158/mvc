@@ -1,14 +1,17 @@
 <div>
-<span style="font-size:.6em;">Send via : </span><select id="name" name="name">
+<center>
+<textarea id="notifyMessage" style=" font-size:.6em; width:94%;resize:none;border-radius:0px;">HTML5 Realtime Push Notification</textarea><br />
+</center>
+
+<span style="font-size:.6em;">Send via : </span><br><select id="name" name="name" style="width:37%;">
   <option value="<?php echo $_SESSION['name_of_user']?>"><?php echo $_SESSION['name_of_user']?></option>
    <option value="Shift Manager">Shift Manager</option>
   <option value="Adjustments">Adjustments</option>
   <option value="Support">Support</option>
-</select><br />
+</select>
 
-<textarea id="notifyMessage" style="width:96%; margin:0px auto; resize:none;border-radius:5px;">HTML5 Realtime Push Notification</textarea><br />
 
-<select id="channel" name="channel">
+<select id="channel" name="channel" style="width:27%" >
   <option value="">Channel...</option>
   <option value="shared">Shared Agents</option>
   <option value="rosetta">Rosetta Agents</option>
@@ -23,12 +26,12 @@
   <option value="all">All</option>
 </select>
 
-<select id="method" name="method">
+<select id="method" name="method" style="width:27%;">
   <option value="">Method...</option>
   <option value="0">Notification</option>
   <option value="1">Stream</option>
   <option value="2">Both</option>
-</select>
+</select><br /> 
 
 <button class="notify">Notify</button>
 </div>

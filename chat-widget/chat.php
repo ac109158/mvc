@@ -1,9 +1,9 @@
  
 <!--     <link rel="stylesheet/less" type="text/css" href="chat-widget/css/twitter-bootstrap/lib/bootstrap.less"> -->
-    <script src="chat-widget/css/less/less-1.1.5.min.js"></script>
+<!--     <script src="chat-widget/css/less/less-1.1.5.min.js"></script> -->
     
-    <link href="chat-widget/css/styles.css" rel="stylesheet" />
-    <link href="chat-widget/css/pusher-chat-widget.css" rel="stylesheet" />
+<!--     <link href="chat-widget/css/styles.css" rel="stylesheet" /> -->
+<!--     <link href="chat-widget/css/pusher-chat-widget.css" rel="stylesheet" /> -->
     
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -15,29 +15,15 @@
     <script>
     
       $(function() {
-/*       	  var user = "<?php echo $_SESSION['name_of_user']?>"; */
-		var user = "andy";	
 		  var pusher = new Pusher('71d3c4ea25f712272ad3');    
          var chatWidget = new PusherChatWidget(pusher, {
-          appendTo: '#pusher_chat_widget'
+          appendTo: '#dashboard_group_chat_panel',
         });
            
       });
+  </script>
 	
-    </script>
 
-          <div class="span5" id='pusher_chat_widget'>
-          </div>
-          
-        </div>
-        
-      </section>
-
-      <footer>
-        <p></p>
-      </footer>
-
-    </div> <!-- /container -->
     
     <script>
 $(document).keypress(function(event){
