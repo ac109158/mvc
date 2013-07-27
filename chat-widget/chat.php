@@ -10,7 +10,7 @@
     <![endif]-->
     
     <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-    <script src="http://js.pusher.com/2.1/pusher.min.js"></script>
+    
     <script src="chat-widget/js/PusherChatWidget.js"></script>    
     <script>
     

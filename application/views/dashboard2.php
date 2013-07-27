@@ -1,12 +1,10 @@
 <div id="dashboard_wrapper">
-	<div id="dashboard_top">
-	
+	<div id="dashboard_top">	
 		<div id="dashboard_group_chat_panel">
 		<?php require_once('chat-widget/chat.php');?>	
 		</div>	
 		
 		<div id="dashboard_main_panel_wrapper">	
-			<?php require 'inc/slider.php';  ?>
 		</div> <?php // end of dashboard_main_panel_wrapper ?>		
 			
 		<div id="dashboard_options_panel"> </div> <?php // end of dashboard_side_panel ?>
@@ -34,12 +32,10 @@
 	
 </div><?php //end of dashboard _bottom ?>
 
-
     
 <!--[if lt IE 9]>
 <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
-<script src="lib/gritter/js/jquery.gritter.min.js"></script>
 <script src="http://js.pusher.com/2.1/pusher.min.js"></script>
 <link href="css/chat-style.css" rel="stylesheet">
 <script src="scripts/PusherNotifier.js"></script>

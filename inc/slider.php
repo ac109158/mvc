@@ -1,43 +1,16 @@
-<!-- jQuery (required) -->
-
-<!-- Optional plugins -->
-<script src="js/slider/jquery.easing.1.2.js"></script>
-<script src="js/slider/swfobject.js"></script>
-
-<!-- Anything Slider -->
-<!-- <link rel="stylesheet" href="css/slider/anythingslider.css"> -->
-<script src="js/slider/jquery.anythingslider.js"></script>
-
-<!-- Add the stylesheet(s) you are going to use here. All stylesheets are included below, remove the ones you don't use. -->
-<link rel="stylesheet" href="css/slider/theme-metallic.css">
-<link rel="stylesheet" href="css/slider/theme-minimalist-round.css">
-<link rel="stylesheet" href="css/slider/theme-minimalist-square.css">
-<link rel="stylesheet" href="css/slider/theme-construction.css">
-<link rel="stylesheet" href="css/slider/theme-cs-portfolio.css">
-
-<!-- AnythingSlider optional extensions -->
-<script src="js/slider/jquery.anythingslider.fx.js"></script>
-<script src="js/slider/jquery.anythingslider.video.js"></script>
-
-
-
-<!-- Required -->
-<!--
-<script>
-$(function(){
- $('#slider')
-   .anythingSlider() // add any non-default options here
-   .anythingSliderVideo(); // only add this if your slider includes supported videos (new v1.9)
-});
-</script>
--->
+<?php require_once VIEW. "header-dash.php" ?>
 <ul id="slider">
+<li>
+	<?php $module = file_get_contents('application/views/dashboard2.php'); echo $module; ?>
+</li>
 <li><iframe src="http://plusoneportal.com" ></iframe></li>
 <li><iframe src="http://login.incontact.com" ></iframe></li>
 <!-- <li style="display:block;"><iframe src="https://docs.google.com/a/plusonecompany.info/spreadsheet/ccc?key=0AgJrkijjqJ_PdGRoaDZXTXIwb3JqMGtjaFI5a0xuNmc#gid=0" ></iframe></li> -->
-<li style="display:block;"><iframe src="http://plusone.snowfly.com" ></iframe></li >
+<li><iframe src="http://plusone.snowfly.com" ></iframe></li >
 </ul>
-
+</div>
+</body>
+</html>
 <script>
 $('#slider')
   .anythingSlider({
@@ -139,6 +112,9 @@ $('#slider')
       wmode: 'opaque' // this is set by the wmode option above, so no need to include it here
     }
   });
-  </script>
+</script>
+
+
+
   
 
