@@ -47,8 +47,7 @@ function PusherChatWidget(pusher, options) {
   this._emailEl = this._widget.find('input[name=email]');  
 */
   this._messageInputEl = this._widget.find('textarea');
-  this._messagesEl = this._widget.find('ul');
-  
+  this._messagesEl = this._widget.find('.chat-activity-stream');  
   this._widget.find('button').click(function() {
     self._sendChatButtonClicked();
   })
@@ -79,19 +78,17 @@ PusherChatWidget.prototype._chatMessageReceived = function(data) {
     if(self._autoScroll) {
       var messageEl = self._messagesEl.get(0);
       var scrollableHeight = (messageEl.scrollHeight - self._messagesEl.height());
-      self._messagesEl.scrollTop(messageEl.scrollHeight);
+      $(self._messagesEl).animate({ scrollTop: $(self._messagesEl)[0].scrollHeight}, 400);
+      //self._messagesEl.scrollTop(messageEl.scrollHeight);
     }
   });
   
   ++this._itemCount;
   
   if(this._itemCount > this.settings.maxItems) {
-    this._messagesEl.children(':last').slideUp(function() {
-      $(this).remove();
-    });
+  	this._messagesEl.children(':first').remove();
   }
 };
-
 /* @private */
 PusherChatWidget.prototype._sendChatButtonClicked = function() {
 /*
@@ -114,7 +111,6 @@ PusherChatWidget.prototype._sendChatButtonClicked = function() {
   }
 
   var chatInfo = {
-    nickname: 'andy',
     /* email: email, */
     text: message
   };
@@ -232,12 +228,6 @@ PusherChatWidget._buildListItem = function(activity) {
                     '<div class="chat-text">' + activity.body.replace(/\\('|&quot;)/g, '$1') + '</div>' +
                   '</div>');
   content.append(message);
-  
-
-                
-var objDiv =document.getElementsByClassName("pusher-chat-widget-messages");
-objDiv.scrollTop = objDiv.scrollHeight;
-
   return li;
 };
 

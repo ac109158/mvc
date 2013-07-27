@@ -95,6 +95,7 @@ var notifier3 = new PusherNotifier(channel3);
             });            
         }
     });
+    var objDiv =document.getElementsByClassName("pusher-chat-widget-messages");
 </script>    
 <script>
   var NOTIFY_ENDPOINT = "index.php?controller=ajax&task=notify_endpoint";    
@@ -136,5 +137,5 @@ var notifier3 = new PusherNotifier(channel3);
     }
   };
 </script>
-   
+
 

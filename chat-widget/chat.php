@@ -18,6 +18,7 @@
 		  var pusher = new Pusher('71d3c4ea25f712272ad3');    
          var chatWidget = new PusherChatWidget(pusher, {
           appendTo: '#dashboard_group_chat_panel',
+          maxItems: 50
         });
            
       });
@@ -30,8 +31,13 @@ $(document).keypress(function(event){
 
     var keycode = (event.keyCode ? event.keyCode : event.which);
     if(keycode == '13'){
-        $('#pusher-chat-widget-send-btn').click();   
+        $('#pusher-chat-widget-send-btn').click();  
+        $(".chat-activity-stream").animate({ scrollTop: "5000px"}, 0);
     }
+    
+/* 	$('#pusher-chat-widget-messages').scrollTop( '100%' ); */
+	
+	
 
 });
    </script>
