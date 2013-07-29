@@ -69,9 +69,6 @@
 .chatBoxslide{float: right;position: relative;}
 .overFlow{top: 9000px !important}
 #pusherChat .chatBoxWrap #slideLeft,#pusherChat .chatBoxWrap #slideRight{display: none;position: absolute;font-size: 18px; top:-24px;cursor: pointer;color :#00B4FF }
-#slideLeft {
-	margin-left: 15px;
-}
 #pusherChat .chatBoxWrap #slideLeft img,#pusherChat .chatBoxWrap #slideRight img{display: none}
 #pusherChat .chatBoxWrap #slideLeft.on img,#pusherChat .chatBoxWrap #slideRight.on img{display: block}
 #pusherChat .chatBoxWrap #slideLeft {left: 10px;}
