@@ -5,8 +5,7 @@
     <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
      <title><?php echo $title= (isset($vars['title'])) ? $vars['title'] : 'MVC'; ?></title>
     <link rel="stylesheet" type="text/css" href="<?php echo STYLE ?>" />    
-<!-- Include Gritter Css for real time notifications -->
-    <link rel="stylesheet" type="text/css" href="lib/gritter/css/jquery.gritter.css" />
+    
 <!-- include Jquery because it is awesome --> 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <!-- Include all of the nessary css files for the Anything Slider -->

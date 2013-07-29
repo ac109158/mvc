@@ -10,18 +10,18 @@
 </style>
 
 <!--***************************************************** pusher chat html *******************************************************-->
-<div id="pusherChat">
-    <div id="membersContent">                
+<div id="pusherChat"><!-- 1 -->
+    <div id="membersContent"> <!-- 2 -->             
         <span id="expand"><span class="close">&#x25BC;</span><span class="open">&#x25B2;</span></span>
         <h2><span id="count">0</span> online</h2>
-        <div class="scroll">
+        <div class="scroll"><!-- 3 -->
             <div id="members-list"></div>
-        </div>
-    </div>
+        </div><!-- 3 -->
+    </div> <!-- 2-->
 
     <!-- chat box template -->
-    <div id="templateChatBox">
-        <div class="pusherChatBox">
+    <div id="templateChatBox"><!-- 4 -->
+        <div class="pusherChatBox"><!-- 5 -->
             <span class="state">
                 <span class="pencil">
                     <img src="images/assets/pencil.gif" />
@@ -33,28 +33,29 @@
             <span class="expand"><span class="close">&#x25BC;</span><span class="open">&#x25B2;</span></span>
             <span class="closeBox">x</span>
             <h2><a href="#" title="go to profile"><img src="" class="imgFriend" /></a> <span class="userName"></span></h2>
-            <div class="slider">
-                <div class="logMsg">
-                    <div class="msgTxt">
-                    </div>
-                </div>
+            <div class="slider"><!-- 6 -->
+                <div class="logMsg"><!-- 7 -->
+                    <div class="msgTxt"><!-- 8 -->
+                    </div><!-- 8 -->
+                </div><!-- 7 -->
                 <form method="post" name="#123">
                     <textarea  name="msg" rows="3" ></textarea>
                     <input type="hidden" name="from" class="from" />
                     <input type="hidden" name="to"  class="to"/>
                     <input type="hidden" name="typing"  class="typing" value="false"/>
                 </form>
-            </div>
-        </div>
-    </div>
+            </div><!-- 6 -->
+        </div><!-- 5 -->
+    </div><!-- 4 -->
     <!-- chat box template end -->
 
-    <div class="chatBoxWrap">
-        <div class="chatBoxslide"></div>
+    <div class="chatBoxWrap"><!-- 9 -->
+        <div class="chatBoxslide"></div><!-- 10 -->
         <span id="slideLeft"> <img src="images/assets/quote.gif" />&#x25C0;</span> 
         <span id="slideRight">&#x25B6; <img src="images/assets/quote.gif" /></span>
-    </div>
-</div>
+    </div><!-- 10 -->
+</div><!-- 9 -->
+</div><!-- 1 -->
 <!--***************************************************** end pusher chat html *******************************************************-->
         
         

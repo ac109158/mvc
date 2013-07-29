@@ -1,7 +1,6 @@
-<?php require_once VIEW. "header-dash.php" ?>
 <ul id="slider">
 <li>
-	<?php $module = file_get_contents('application/views/dashboard2.php'); echo $module; ?>
+	<div><?php include_once VIEW .'dashboard2.php'?></div>
 </li>
 <li><iframe src="http://plusoneportal.com" ></iframe></li>
 <li><iframe src="http://login.incontact.com" ></iframe></li>

@@ -1,10 +1,10 @@
 /**
- * Creates an instance of a PusherChatWidget, binds to a chat channel on the pusher instance and
- * and creates the UI for the chat widget.
- *
- * @param {Pusher} pusher The Pusher object used for the chat widget.
- * @param {Map} options A hash of key value options for the widget.
- */
+* Creates an instance of a PusherChatWidget, binds to a chat channel on the pusher instance and
+* and creates the UI for the chat widget.
+*
+* @param {Pusher} pusher The Pusher object used for the chat widget.
+* @param {Map} options A hash of key value options for the widget.
+*/
 function PusherChatWidget(pusher, options) {
   PusherChatWidget.instances.push(this);
   var self = this;
@@ -43,11 +43,11 @@ function PusherChatWidget(pusher, options) {
   
   this._widget = PusherChatWidget._createHTML(this.settings.appendTo);
 /*
-  this._nicknameEl = this._widget.find('input[name=nickname]');
-  this._emailEl = this._widget.find('input[name=email]');  
+this._nicknameEl = this._widget.find('input[name=nickname]');
+this._emailEl = this._widget.find('input[name=email]');
 */
   this._messageInputEl = this._widget.find('textarea');
-  this._messagesEl = this._widget.find('.chat-activity-stream');  
+  this._messagesEl = this._widget.find('.chat-activity-stream');
   this._widget.find('button').click(function() {
     self._sendChatButtonClicked();
   })
@@ -86,28 +86,28 @@ PusherChatWidget.prototype._chatMessageReceived = function(data) {
   ++this._itemCount;
   
   if(this._itemCount > this.settings.maxItems) {
-  	this._messagesEl.children(':first').remove();
+   this._messagesEl.children(':first').remove();
   }
 };
 /* @private */
 PusherChatWidget.prototype._sendChatButtonClicked = function() {
 /*
-  var nickname = $.trim(this._nicknameEl.val()); // optional
-  var email = $.trim(this._emailEl.val()); // optional
-  if(!nickname) {
-    alert('please supply a nickname');
-    return;
-  }
-  */
+var nickname = $.trim(this._nicknameEl.val()); // optional
+var email = $.trim(this._emailEl.val()); // optional
+if(!nickname) {
+alert('please supply a nickname');
+return;
+}
+*/
   var message = $.trim(this._messageInputEl.val());
   if(!message) {
     this._messageInputEl.css('border','2px solid red');
     return;
   }
-  else 
+  else
   {
-	  this._messageInputEl.css('border','1px solid grey');
-	  this._messageInputEl.val(' ');
+this._messageInputEl.css('border','1px solid grey');
+this._messageInputEl.val(' ');
   }
 
   var chatInfo = {
@@ -233,20 +233,20 @@ PusherChatWidget._buildListItem = function(activity) {
 
 
 /**
- * converts a string into something which can be used as a valid channel name in Pusher.
- * @param {String} from The string to be converted.
- *
- * @see http://pusher.com/docs/client_api_guide/client_channels#naming-channels
- */
+* converts a string into something which can be used as a valid channel name in Pusher.
+* @param {String} from The string to be converted.
+*
+* @see http://pusher.com/docs/client_api_guide/client_channels#naming-channels
+*/
 PusherChatWidget.getValidChannelName = function(from) {
   var pattern = /(\W)+/g;
   return from.replace(pattern, '-');
 }
 
 /**
- * converts a string or date parameter into a 'social media style'
- * time description.
- */
+* converts a string or date parameter into a 'social media style'
+* time description.
+*/
 PusherChatWidget.timeToDescription = function(time) {
   if(time instanceof Date === false) {
     time = new Date(Date.parse(time));
@@ -264,13 +264,14 @@ PusherChatWidget.timeToDescription = function(time) {
     desc = seconds + " second" + (seconds !== 1?"s":"") + " ago";
   }
   else if(minutes < 60) {
-    desc =  minutes + " minute" + (minutes !== 1?"s":"") + " ago";
+    desc = minutes + " minute" + (minutes !== 1?"s":"") + " ago";
   }
   else if(hours < 24) {
-    desc = hours + " hour"  + (hours !== 1?"s":"") + " ago";
+    desc = hours + " hour" + (hours !== 1?"s":"") + " ago";
   }
   else {
     desc = time.getDay() + " " + ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"][time.getMonth()]
   }
   return desc;
 };
+

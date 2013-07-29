@@ -21,8 +21,9 @@
 }
 
 #slider_wrapper {
+margin: 0px auto;
 width:100%;
-height: 100%;
+height: 99%;
 }
 
 #footer {
@@ -408,9 +409,10 @@ font-size: 1.2em;
 #dashboard_wrapper {
 	position:relative;
 	margin: 0px auto;
-	width:99%;
-	min-height: 575px;
-	height: 85%;
+	width:100%;
+	height: 100%;
+	top:-4.5%;
+	background: #f7f7f7;
 
 }
 
@@ -433,7 +435,7 @@ font-size: 1.2em;
 	width:300px;
 	height:99%;
 	float: left;
-	clear: both;
+	margin-left: 1%;
 	font-size: .7em;
 }
 
@@ -442,14 +444,14 @@ div.pusher-chat-widget {
 	position: relative;
 	margin: none;
 	width:300px;;
-	height:100%;
+	height:85%;
 }
 
 div#chat-title {
 	color:white;
 	font-size: 2em;
 	text-align: center;
-	height: 6%;
+	height: 10%;
 	-webkit-box-shadow: 0 8px 6px -6px black;
 	-moz-box-shadow: 0 8px 6px -6px black;
 	box-shadow: 0 8px 6px -6px black;
@@ -502,12 +504,10 @@ position: relative;
 	left:-32px;
 	padding: none;
 	width: 288px;
-	min-height: 50px;
 }
 
 div.chat-stream-item-content {
 	width:265px;
-	height: 75px;
 	border:1px solid white;
 }
 
@@ -515,7 +515,6 @@ div.test {
 	position: relative;
 	width: 150px;
 	left:-2px;
-	min-height: 50px;
 	padding: 10px 5px 5px 5px;
 }
 
@@ -575,18 +574,20 @@ a.timestamp {
 
 #dashboard_main_panel_wrapper {
 	position: relative;
-	width:65%;
-	height:100%;
-	float:left;
+	float: left;
+	width:52%;
+	height:85%;
+	background: rgba(231,222,222,0.5);
 /* 	background-color: #60f358; */
 }
 
 
 #dashboard_side_panel {
 	position: relative;
-	width:17%;
-	height:100%;
-	float: left;
+	width:22%;
+	height:85%;
+	float:right;
+	background: yellow;
 }
 
 #side_panel_content {
@@ -596,6 +597,7 @@ a.timestamp {
 	vertical-align: bottom;
 	overflow: auto;
 	overflow-x: hidden;
+	background: pink;
 }
 #side_panel_info_panel {
 	position: relative;
@@ -679,7 +681,8 @@ a.timestamp {
 
 #side_panel_chat_wrapper {
 	background: white;
-	width:100%;
+	width:200px;
+	height: 30px;
 	vertical-align: bottom;
 }
 
