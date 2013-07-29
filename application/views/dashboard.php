@@ -1,6 +1,9 @@
 <?php require_once VIEW. "header-dash.php" ?>
 
-<div id="slider_wrapper"> <?php require_once('inc/slider.php')?></div>
+<div id="slider_wrapper"> <?php require_once('inc/slider.php')?>
+<div id="side_panel_chat_wrapper"><?php require_once  VIEW .'pusher.php'?></div>
+</div>
+
 
     
 <!--[if lt IE 9]>

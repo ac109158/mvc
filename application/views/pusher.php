@@ -21,7 +21,7 @@
 
     <!-- chat box template -->
     <div id="templateChatBox"><!-- 4 -->
-        <div class="pusherChatBox"><!-- 5 -->
+        <div class="pusherChatBox close"><!-- 5 -->
             <span class="state">
                 <span class="pencil">
                     <img src="images/assets/pencil.gif" />

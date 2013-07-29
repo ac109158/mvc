@@ -680,10 +680,12 @@ a.timestamp {
 }
 
 #side_panel_chat_wrapper {
-	background: white;
+	float: right;
+	margin-right: 4%;
 	width:200px;
 	height: 30px;
 	vertical-align: bottom;
+	z-index: 10000;
 }
 
 #dashboard_options_panel {

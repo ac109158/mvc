@@ -8,8 +8,7 @@
 <li><iframe src="http://plusone.snowfly.com" ></iframe></li >
 </ul>
 </div>
-</body>
-</html>
+
 <script>
 $('#slider')
   .anythingSlider({
