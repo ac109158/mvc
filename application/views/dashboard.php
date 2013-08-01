@@ -16,7 +16,18 @@
 <script src="lib/gritter/js/jquery.gritter.min.js"></script>
 <script src="scripts/PusherNotifier.js"></script>
 <script src="scripts/jquery.pusherchat.js" type="text/javascript"></script>
-<script src="chat-widget/js/PusherChatWidget.js"></script>    
+<script>
+var message_history = <?php echo json_encode($vars['message_history']); ?>;
+/*
+var message_data = message_history.pop();
+var author = {displayName : message_data[1], objectType :  'person',  image : null};
+var data = { id : message_data[0], body : message_data[2], published : message_data[3], type : 'chat-message', actor : author};
+ $.each(data, function(key, element) {
+    alert('key: ' + key + '\n' + 'value: ' + element);
+});
+*/
+</script>
+<script src="chat-widget/js/PusherChatWidget.js"></script>
 <script>
 var pusher = new Pusher('71d3c4ea25f712272ad3');
 var channel = pusher.subscribe('all');
@@ -29,6 +40,10 @@ var notifier3 = new PusherNotifier(channel3);
   appendTo: '#dashboard_group_chat_panel',
   maxItems: 50,
 });
+$("#pusher-chat-widget-messages").slideToggle();
+ $("#chat-widget-message-box").slideToggle();
+$(".pusher-chat-widget").toggle();
+ 
 
   </script>
 	
@@ -126,5 +141,19 @@ $(document).keypress(function(event){
     }
 });
    </script>
+   
+    <script>
+  $("#chat-title").click(function(){
+	  $("#pusher-chat-widget-messages").slideToggle();
+	  $("#chat-widget-message-box").slideToggle();
+    });
+
+</script>
+ <script>
+  $("#group").click(function(){
+	  $(".pusher-chat-widget").toggle();
+    });
+
+</script>
 
 

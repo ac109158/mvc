@@ -141,29 +141,3 @@ $("#username").mask("****?***************", ({placeholder:""}));
 	}});	
 </script>
 
-
-
-
-
-<!--
-<script>
-	function errorcheck () {
-	$('input').focusout(function () {
-	$.each(result, function(index, val) {
-    console.log(val.category);
-});
-	
-	if	(result == null) 
-	 	{
-		 	jQuery(this).css({'borderColor' : 'red', borderWidth : '2px'});
-	 	} else {
-		 	jQuery(this).css({'borderColor' : 'green', borderWidth : '2px'});
-	 	}
-		
-	});
-	};
-	errorcheck();
-	 
-</script>
--->
-

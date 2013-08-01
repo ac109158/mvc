@@ -18,7 +18,7 @@
 					<ul id="icon_tray_list">
 						<li>+1</li>
 						<li>NG</li>
-						<li>GM</li>
+						<li id="group">GM</li>
 					</ul>	
 					<ul id="system_tray_list">
 						<li>SS</li>

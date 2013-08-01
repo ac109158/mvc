@@ -34,6 +34,7 @@ class ControllerDashboard extends Controller
 		$view = App::fetchView();
 		$vars = App::getDefaultVars($vars, $msg);
 		$vars = ControllerDashboard::getLocalVars($vars);
+		$vars['message_history'] = App::fetchModel('pusher', 'messageHistory', 'group_chat');
 		$vars['msg'] = $msg;
         $view::render('dashboard',$vars,1);
         exit;

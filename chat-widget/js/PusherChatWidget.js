@@ -24,7 +24,7 @@ function PusherChatWidget(pusher, options) {
   if(this.settings.debug && !Pusher.log) {
     Pusher.log = function(msg) {
       if(console && console.log) {
-        console.log(msg);
+/*         console.log(msg); */
       }
     }
   }
@@ -39,7 +39,7 @@ function PusherChatWidget(pusher, options) {
     self._chatMessageReceived(data);
   })
     
-  this._itemCount = 0;
+  this._itemCount = message_history.length;
   
   this._widget = PusherChatWidget._createHTML(this.settings.appendTo);
 /*
@@ -67,18 +67,21 @@ PusherChatWidget.instances = [];
 PusherChatWidget.prototype._chatMessageReceived = function(data) {
   var self = this;
   
-  if(this._itemCount === 0) {
+
+if(this._itemCount === 0) {
     this._messagesEl.html('');
   }
+
   
   var messageEl = PusherChatWidget._buildListItem(data);
+ 
   messageEl.hide();
   this._messagesEl.append(messageEl);
   messageEl.slideDown(function() {
     if(self._autoScroll) {
       var messageEl = self._messagesEl.get(0);
       var scrollableHeight = (messageEl.scrollHeight - self._messagesEl.height());
-      $(self._messagesEl).animate({ scrollTop: $(self._messagesEl)[0].scrollHeight}, 400);
+      $(self._messagesEl).animate({ scrollTop: $(self._messagesEl)[0].scrollHeight}, 0);
       //self._messagesEl.scrollTop(messageEl.scrollHeight);
     }
   });
@@ -164,6 +167,11 @@ PusherChatWidget.prototype._startTimeMonitor = function() {
 
 /* @private */
 PusherChatWidget._createHTML = function(appendTo) {
+	x = fetchHistory(message_history);
+	y = '';
+	$.each(x, function(key, element) {
+	y += element;
+	});
   var html = '' +
   '<div class="pusher-chat-widget">' +
   '<div id="chat-title">PlusOne Group Chat</div>' +
@@ -177,11 +185,11 @@ PusherChatWidget._createHTML = function(appendTo) {
 */
     '<div id="pusher-chat-widget-messages"class="pusher-chat-widget-messages">' +
       '<ul class="chat-activity-stream">' +
-        '<li class="waiting">No chat messages available</li>' +
+        y +
       '</ul>' +
     '</div>' +
     '<div class="pusher-chat-widget-input">' +
-      '<textarea name="message" id="chat-widget-message-box"></textarea>' +
+      '<textarea name="message" id="chat-widget-message-box" maxlength=250></textarea>' +
       '<button class="pusher-chat-widget-send-btn" hidden="hidden" id="pusher-chat-widget-send-btn">Send</button>' +
     '</div>' +
 /*
@@ -247,6 +255,8 @@ PusherChatWidget.getValidChannelName = function(from) {
 * converts a string or date parameter into a 'social media style'
 * time description.
 */
+
+
 PusherChatWidget.timeToDescription = function(time) {
   if(time instanceof Date === false) {
     time = new Date(Date.parse(time));
@@ -261,17 +271,43 @@ PusherChatWidget.timeToDescription = function(time) {
     desc = "just now";
   }
   else if(minutes < 1) {
-    desc = seconds + " second" + (seconds !== 1?"s":"") + " ago";
+    desc = 'about ' + seconds + " second" + (seconds !== 1?"s":"") + " ago";
   }
   else if(minutes < 60) {
-    desc = minutes + " minute" + (minutes !== 1?"s":"") + " ago";
+    desc = 'about ' + minutes + " minute" + (minutes !== 1?"s":"") + " ago";
   }
   else if(hours < 24) {
-    desc = hours + " hour" + (hours !== 1?"s":"") + " ago";
+    desc = 'about ' + hours + " hour" + (hours !== 1?"s":"") + " ago";
   }
   else {
     desc = time.getDay() + " " + ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"][time.getMonth()]
   }
   return desc;
 };
+
+
+function fetchHistory(message_history) {
+	messageList = [];
+	$.each(message_history, function (i, elem) {
+			 var pic = {url : 'http://www.gravatar.com/avatar/00000000000000000000000000000000?d=wavatar&s=48', width : 48, height : 48 };
+			var author = {displayName : elem[2], objectType :  'person',  image : pic};
+			var data = { id : elem[0], body : elem[3], published : elem[4], type : 'chat-message', actor : author};
+			var messageEl = buildHistoryListItem(data);
+			messageList.push(messageEl);
+	    });
+	   return  messageList;
+	   };
+
+	function buildHistoryListItem(data) {
+		var imageInfo = data.actor.image;
+		var s5 = '<div class="chat-activity-row"><div class="chat-text">' + data.body.replace(/\\('|&quot;)/g, '$1') + '</div></div>';
+		
+		var s4 = '<div class="chat-activity-row  history_content"><span class="user-name"><a class="chat-screen-name" title="' 
+		+ data.actor.displayName + '">' + data.actor.displayName + '</a></span><a ' + (data.link?'href="' + data.link + '" ':'') + ' class="timestamp history_timestamp"><span title="' 
+		+ data.published + '" data-activity-published="' + data.published + '">' + PusherChatWidget.timeToDescription(data.published) + '</span></a></div>' + s5;
+		var s3 = '<div class="chat-content">' + s4 + '</div>';
+		var s2 = '<div class="test"><div class="image"><img src="' + imageInfo.url + '" width="' + imageInfo.width + '" height="' + imageInfo.height + '" /></div>' +s3;
+		var s1 = '<li class="chat-activity" data-activity-id = "' + data.id +  '"><div class="chat-stream-item-content">' + s2 +'</div></li>';			
+		return s1;
+		};
 

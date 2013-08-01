@@ -4,6 +4,7 @@
 	<div id="dashboard_group_chat_panel">
 	</div>
 	<div id="dashboard_main_panel_wrapper">
+<!-- 		<?php require_once 'file_upload/index.php' ?> -->
 	</div> <?php // end of dashboard_main_panel_wrapper ?>
 	
 	<div id="dashboard_options_panel"> </div>	

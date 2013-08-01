@@ -136,11 +136,18 @@ class PusherModel extends Model
 		}		
 		$channel_name = $this->get_channel_name($_SERVER['HTTP_REFERER']);		
 		$options = $this->sanitize_input($chat_info);		
-		$options = $chat_info;		
-		$activity = new Activity('chat-message', $options['text'], $options);		
+		$activity = new Activity('chat-message', $options['text'], $options);
 		$pusher = new Pusher(APP_KEY, APP_SECRET, APP_ID);
 		$data = $activity->getMessage();		
 		$response = $pusher->trigger($channel_name, 'chat_message', $data, null, true);
+		$message_id = $data['id'];
+		$author_id = $_SESSION['user_id'];
+		$author_name = $_SESSION['name_of_user'];
+		$timestamp = $data['published'];
+		$date = date('mdy');
+		$text = $data['body'];
+		$qry = "(message_id, author_id, author_name, text, timestamp, session_id) VALUES ('$message_id', '$author_id', '$author_name' ,'$text','$timestamp','$date')";
+		$this->saveToDatabase('group_chat', $qry);
 		header('Cache-Control: no-cache, must-revalidate');
 		header('Content-type: application/json');		
 		$result = array('activity' => $data, 'pusherResponse' => $response);
@@ -165,6 +172,36 @@ class PusherModel extends Model
 	  $options['get_gravatar'] = true;
 	  return $options;
 	}
+	
+	public function saveToDatabase($table, $query)
+	{
+		$MySql_username 	= DB_USER; //mysql username
+		$MySql_password 	= DB_PASS; //mysql password
+		$MySql_hostname 	= DB_HOST; //hostname
+		$MySql_databasename = DB_NAME; //databasename	
+		$dbconn = mysql_connect($MySql_hostname, $MySql_username, $MySql_password)or die("Unable to connect to MySQL");
+		mysql_select_db($MySql_databasename,$dbconn);
+		mysql_query("INSERT INTO $table $query");
+		mysql_close($dbconn);
+	}
+	
+	function messageHistory($table) {
+			$messages = array();
+			$MySql_username 	= DB_USER; //mysql username
+			$MySql_password 	= DB_PASS; //mysql password
+			$MySql_hostname 	= DB_HOST; //hostname
+			$MySql_databasename = DB_NAME; //databasename	
+			$dbconn = mysql_connect($MySql_hostname, $MySql_username, $MySql_password)or die("Unable to connect to MySQL");
+			mysql_select_db($MySql_databasename,$dbconn);
+			$session = date('mdy');
+			$qry = "SELECT *  FROM (SELECT  message_id, author_id, author_name, text, timestamp FROM $table WHERE (session_id = '$session') ORDER BY entry_id DESC LIMIT 50) AS scope ORDER BY timestamp ASC";			
+			$result = mysql_query($qry,$dbconn);
+			mysql_close($dbconn);
+			while ($row = mysql_fetch_row($result)) {
+			$messages[] = $row;
+			}			
+			return $messages;			
+		}	
 			
 	
 	
