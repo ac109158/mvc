@@ -123,12 +123,12 @@ PusherActivityStreamer._buildListItem = function(activity) {
   content.append(message);
   
   var time = $('<div class="activity-row">' + 
-                '<a href="' + activity.link + '" class="timestamp">' +
+                '<a href="' + activity.link + '" class="stream-timestamp">' +
                   '<span title="' + activity.published + '">' + PusherActivityStreamer._timeToDescription(activity.published) + '</span>' +
                 '</a>' +
                 '<span class="activity-actions">' +
                   '<span class="tweet-action action-favorite">' +
-                    '<a href="#" class="like-action" data-activity="like" title="Like"><span><i></i><b>Like</b></span></a>' +
+                    '<a href="#" class="stream-like-action" data-activity="like" title="Like"><span><i></i><b>Like</b></span></a>' +
                   '</span>' +
                 '</span>' +
               '</div>');

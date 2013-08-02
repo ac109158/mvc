@@ -174,7 +174,6 @@ PusherChatWidget._createHTML = function(appendTo) {
 	});
   var html = '' +
   '<div class="pusher-chat-widget">' +
-  '<div id="chat-title">PlusOne Group Chat</div>' +
 /*
 '<div class="pusher-chat-widget-header">' +
 '<label for="nickname">Name</label>' +
@@ -226,7 +225,7 @@ PusherChatWidget._buildListItem = function(activity) {
                   '<a class="chat-screen-name" title="' + activity.actor.displayName + '">' + activity.actor.displayName + '</a>' +
                   //'<span class="full-name">' + activity.actor.displayName + '</span>' +
                 '</span>' +
-                 '<a ' + (activity.link?'href="' + activity.link + '" ':'') + ' class="timestamp">' +
+                 '<a ' + (activity.link?'href="' + activity.link + '" ':'') + ' class="chat-timestamp">' +
                   '<span title="' + activity.published + '" data-activity-published="' + activity.published + '">' + PusherChatWidget.timeToDescription(activity.published) + '</span>' +
                 '</a>' +
               '</div>');
@@ -289,7 +288,7 @@ PusherChatWidget.timeToDescription = function(time) {
 function fetchHistory(message_history) {
 	messageList = [];
 	$.each(message_history, function (i, elem) {
-			 var pic = {url : 'http://www.gravatar.com/avatar/00000000000000000000000000000000?d=wavatar&s=48', width : 48, height : 48 };
+			 var pic = {url : 'http://www.gravatar.com/avatar/00000000000000000000000000000000?d=wavatar&s=48', width : 40, height : 40 };
 			var author = {displayName : elem[2], objectType :  'person',  image : pic};
 			var data = { id : elem[0], body : elem[3], published : elem[4], type : 'chat-message', actor : author};
 			var messageEl = buildHistoryListItem(data);
@@ -303,7 +302,7 @@ function fetchHistory(message_history) {
 		var s5 = '<div class="chat-activity-row"><div class="chat-text">' + data.body.replace(/\\('|&quot;)/g, '$1') + '</div></div>';
 		
 		var s4 = '<div class="chat-activity-row  history_content"><span class="user-name"><a class="chat-screen-name" title="' 
-		+ data.actor.displayName + '">' + data.actor.displayName + '</a></span><a ' + (data.link?'href="' + data.link + '" ':'') + ' class="timestamp history_timestamp"><span title="' 
+		+ data.actor.displayName + '">' + data.actor.displayName + '</a></span><a ' + (data.link?'href="' + data.link + '" ':'') + ' class="chat-timestamp history_timestamp"><span title="' 
 		+ data.published + '" data-activity-published="' + data.published + '">' + PusherChatWidget.timeToDescription(data.published) + '</span></a></div>' + s5;
 		var s3 = '<div class="chat-content">' + s4 + '</div>';
 		var s2 = '<div class="test"><div class="image"><img src="' + imageInfo.url + '" width="' + imageInfo.width + '" height="' + imageInfo.height + '" /></div>' +s3;

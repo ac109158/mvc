@@ -1,13 +1,6 @@
-<!-- <link rel="stylesheet/less" type="text/css" href="chat-widget/css/twitter-bootstrap/lib/bootstrap.less"> -->
-<!-- <script src="chat-widget/css/less/less-1.1.5.min.js"></script> -->
-    
-<!-- <link href="chat-widget/css/styles.css" rel="stylesheet" /> -->
-<!-- <link href="chat-widget/css/pusher-chat-widget.css" rel="stylesheet" /> -->
-    
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
+<link href="css/jquery.cssemoticons.css" media="screen" rel="stylesheet" type="text/css" />
+<!-- <script src="javascripts/jquery-1.4.2.min.js" type="text/javascript"></script> -->
+<script src="js/jquery.cssemoticons.min.js" type="text/javascript"></script>
 
 
     
@@ -19,11 +12,30 @@ $(document).keypress(function(event){
         $('#pusher-chat-widget-send-btn').click();
         $(".chat-activity-stream").animate({ scrollTop: "5000px"}, 0);
     }
-    
-/* $('#pusher-chat-widget-messages').scrollTop( '100%' ); */
-
-
-
 });
    </script>
+   
+ <script type="text/javascript">
+		$(document).ready(function(){
+			$('.chat-text').emoticonize({
+				//delay: 800,
+				//animate: false,
+				//exclude: 'pre, code, .no-emoticons'
+			});
+			$('#toggle-headline').toggle(
+				function(){
+					$('#large').unemoticonize({
+						//delay: 800,
+						//animate: false
+					})
+				}, 
+				function(){
+					$('#large').emoticonize({
+						//delay: 800,
+						//animate: false
+					})
+				}
+			);
+		})
+	</script>
    

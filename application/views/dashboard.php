@@ -18,6 +18,9 @@
 <script src="scripts/jquery.pusherchat.js" type="text/javascript"></script>
 <script>
 var message_history = <?php echo json_encode($vars['message_history']); ?>;
+$("#notify-body").hide();
+$("#dashboard_group_chat_panel").toggle();
+$("#dashboard_chat_widget_panel").hide();
 /*
 var message_data = message_history.pop();
 var author = {displayName : message_data[1], objectType :  'person',  image : null};
@@ -40,9 +43,8 @@ var notifier3 = new PusherNotifier(channel3);
   appendTo: '#dashboard_group_chat_panel',
   maxItems: 50,
 });
-$("#pusher-chat-widget-messages").slideToggle();
- $("#chat-widget-message-box").slideToggle();
-$(".pusher-chat-widget").toggle();
+/* $("#dashboard_chat_widget_panel").slideToggle(); */
+
  
 
   </script>
@@ -138,22 +140,70 @@ $(document).keypress(function(event){
     if(keycode == '13'){
         $('#pusher-chat-widget-send-btn').click();  
         $(".chat-activity-stream").animate({ scrollTop: "5000px"}, 10);
+        $('.chat-text').emoticonize({
+					delay: 0,
+					animate: true,
+					//exclude: 'pre, code, .no-emoticons'
+				});
     }
 });
    </script>
    
     <script>
   $("#chat-title").click(function(){
-	  $("#pusher-chat-widget-messages").slideToggle();
-	  $("#chat-widget-message-box").slideToggle();
+	  $("#dashboard_group_chat_panel").slideToggle();
     });
-
+</script>
+<script>
+  $("#notify-title").click(function(){
+	  $("#notify-body").slideToggle();
+    });
+</script>
+<script>
+  $("#stream-title").click(function(){
+	  $("#stream-body").slideToggle();
+    });
 </script>
  <script>
   $("#group").click(function(){
-	  $(".pusher-chat-widget").toggle();
+	  $("#dashboard_chat_widget_panel ").toggle();
     });
+</script>
+
+
+<script type="text/javascript">
+
+function handle_mousedown(e){
+    window.my_dragging = {};
+    my_dragging.pageX0 = e.pageX;
+    my_dragging.pageY0 = e.pageY;
+    my_dragging.elem = this;
+    my_dragging.offset0 = $(this).offset();
+    function handle_dragging(e){
+        var left = my_dragging.offset0.left + (e.pageX - my_dragging.pageX0);
+        var top = my_dragging.offset0.top + (e.pageY - my_dragging.pageY0);
+        $(my_dragging.elem)
+        .offset({top: top, left: left});
+    }
+    function handle_mouseup(e){
+        $('body')
+        .off('mousemove', handle_dragging)
+        .off('mouseup', handle_mouseup);
+    }
+    $('body')
+    .on('mouseup', handle_mouseup)
+    .on('mousemove', handle_dragging);
+}
+$('#').mousedown(handle_mousedown);
+
 
 </script>
+<script>
+$("#dashboard_chat_widget_panel").show();
+</script>
+
+	
+	
+
 
 

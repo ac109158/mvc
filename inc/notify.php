@@ -1,4 +1,8 @@
-<div>
+<div id="notify-widget">
+<div id="notify-title">
+Notification Center
+</div>
+<div id="notify-body">
 <center>
 <textarea id="notifyMessage" style=" font-size:.6em; width:94%;resize:none;border-radius:0px;">HTML5 Realtime Push Notification</textarea><br />
 </center>
@@ -34,4 +38,5 @@
 </select><br /> 
 
 <button class="notify">Notify</button>
+</div>
 </div>

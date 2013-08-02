@@ -1,8 +1,6 @@
 <?php require_once VIEW . 'dash_header.php' ?>
 <div id="dashboard_wrapper">
 <div id="dashboard_top">
-	<div id="dashboard_group_chat_panel">
-	</div>
 	<div id="dashboard_main_panel_wrapper">
 <!-- 		<?php require_once 'file_upload/index.php' ?> -->
 	</div> <?php // end of dashboard_main_panel_wrapper ?>
@@ -12,6 +10,11 @@
 		<div id="side_panel_content">
 			<div id="side_panel_info_panel">
 				<?php echo $_SESSION['name_of_user'] ?>	
+			</div>
+			<div id="dashboard_chat_widget_panel">
+			 <div id="chat-title">PlusOne Group Chat</div>
+			<div id="dashboard_group_chat_panel">
+			</div>
 			</div>
 			<div id="side_panel_notify_panel">
 				<?php require_once 'inc/notify.php'; ?>	
@@ -29,3 +32,5 @@
 	<div id="dashboard_bottom">
 	
 	</div><?php //end of dashboard _bottom ?>
+	
+	

@@ -1,4 +1,11 @@
-	<ul id="activity_stream" class="activity-stream no-actions"></ul>
+<div id="stream-widget">
+<div id="stream-title">
+Activity Stream
+</div>
+<div id="stream-body">
+<ul id="activity_stream" class="activity-stream no-actions"></ul>
+</div>
+</div>
     
     <!--[if lt IE 9]>
 <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>

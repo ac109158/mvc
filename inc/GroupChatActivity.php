@@ -58,8 +58,8 @@ class Activity {
                         'displayName' => null,
                         'image' => array(
                             'url' => 'http://www.gravatar.com/avatar/00000000000000000000000000000000?d=wavatar&s=48',
-                            'width' => 48,
-                            'height' => 48
+                            'width' => 40,
+                            'height' => 40
                          )
                       );
     foreach ($defaults as $key => $value) {
