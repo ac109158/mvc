@@ -23,7 +23,7 @@
 	<script src="js/slider/jquery.anythingslider.video.js"></script>
 	
 <!-- Include all the pusher files -->
-<script src="http://js.pusher.com/2.1/pusher.min.js"></script>
+<script src="http://js.pusher.com/2.1/pusher.min.js"></script
 
 </head>
 <body id="<?php echo $vars['tab']; ?>">

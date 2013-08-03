@@ -91,6 +91,7 @@ if(this._itemCount === 0) {
   if(this._itemCount > this.settings.maxItems) {
    this._messagesEl.children(':first').remove();
   }
+ this._startEmoticonMonitor();
 };
 /* @private */
 PusherChatWidget.prototype._sendChatButtonClicked = function() {
@@ -157,13 +158,23 @@ PusherChatWidget.prototype._startTimeMonitor = function() {
   
   setInterval(function() {
     self._messagesEl.children('.chat-activity').each(function(i, el) {
-      var timeEl = $(el).find('a.timestamp span[data-activity-published]');
+      var timeEl = $(el).find('a.chat-timestamp span[data-activity-published]');
       var time = timeEl.attr('data-activity-published');
       var newDesc = PusherChatWidget.timeToDescription(time);
       timeEl.text(newDesc);
+
     });
   }, 10 * 1000)
 };
+
+PusherChatWidget.prototype._startEmoticonMonitor = function() {
+    $('.chat-activity :last-child').find('.emoticon').removeClass('emoticon').emoticonize({
+				//delay: 800,
+				//animate: false,
+				//exclude: 'pre, code, .no-emoticons'
+			});	      	
+      	}
+
 
 /* @private */
 PusherChatWidget._createHTML = function(appendTo) {
@@ -232,7 +243,7 @@ PusherChatWidget._buildListItem = function(activity) {
   content.append(user);
   
   var message = $('<div class="chat-activity-row">' +
-                    '<div class="chat-text">' + activity.body.replace(/\\('|&quot;)/g, '$1') + '</div>' +
+                    '<div class="chat-text emoticon">' + activity.body.replace(/\\('|&quot;)/g, '$1') + '</div>' +
                   '</div>');
   content.append(message);
   return li;
@@ -299,7 +310,7 @@ function fetchHistory(message_history) {
 
 	function buildHistoryListItem(data) {
 		var imageInfo = data.actor.image;
-		var s5 = '<div class="chat-activity-row"><div class="chat-text">' + data.body.replace(/\\('|&quot;)/g, '$1') + '</div></div>';
+		var s5 = '<div class="chat-activity-row"><div class="chat-text emoticon">' + data.body.replace(/\\('|&quot;)/g, '$1') + '</div></div>';
 		
 		var s4 = '<div class="chat-activity-row  history_content"><span class="user-name"><a class="chat-screen-name" title="' 
 		+ data.actor.displayName + '">' + data.actor.displayName + '</a></span><a ' + (data.link?'href="' + data.link + '" ':'') + ' class="chat-timestamp history_timestamp"><span title="' 
@@ -309,4 +320,6 @@ function fetchHistory(message_history) {
 		var s1 = '<li class="chat-activity" data-activity-id = "' + data.id +  '"><div class="chat-stream-item-content">' + s2 +'</div></li>';			
 		return s1;
 		};
+		
+
 

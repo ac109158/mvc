@@ -10,7 +10,8 @@
 <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 <link href="css/chat-style.css" rel="stylesheet">
-    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+ 
+<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <!-- Include Gritter Css for real time notifications -->
 <link rel="stylesheet" type="text/css" href="lib/gritter/css/jquery.gritter.css" />
 <script src="lib/gritter/js/jquery.gritter.min.js"></script>
@@ -201,9 +202,16 @@ $('#').mousedown(handle_mousedown);
 <script>
 $("#dashboard_chat_widget_panel").show();
 </script>
-
-	
-	
+<link href="css/jquery.cssemoticons.css" media="screen" rel="stylesheet" type="text/css" />
+<script src="js/jquery.cssemoticons.min.js" type="text/javascript"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script>
+$("#side_panel").click(function () {
+    $('#dashboard_side_panel').toggle("slide", {
+        direction: "right"
+    }, 500);
+});
+</script>	
 
 
 

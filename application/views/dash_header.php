@@ -21,7 +21,7 @@
 						<li id="group">GM</li>
 					</ul>	
 					<ul id="system_tray_list">
-						<li>SS</li>
+						<li id="side_panel">SS</li>
 						<li>US</li>
 						<li>AB</li>
 					</ul>					
