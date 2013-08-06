@@ -4,9 +4,8 @@
 </li>
 <li><iframe src="http://plusoneportal.com" ></iframe></li>
 <li><iframe src="http://login.incontact.com" ></iframe></li>
-<!-- <li style="display:block;"><iframe src="https://docs.google.com/a/plusonecompany.info/spreadsheet/ccc?key=0AgJrkijjqJ_PdGRoaDZXTXIwb3JqMGtjaFI5a0xuNmc#gid=0" ></iframe></li> -->
 <li><iframe src="http://plusone.snowfly.com" ></iframe></li >
-<li><iframe src="http://www.facebook.com" ></iframe></li >
+<!-- <li style="display:block;"><iframe src="https://docs.google.com/a/plusonecompany.info/spreadsheet/ccc?key=0AgJrkijjqJ_PdGRoaDZXTXIwb3JqMGtjaFI5a0xuNmc#gid=0" ></iframe></li> -->
 </ul>
 </div>
 

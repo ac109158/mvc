@@ -61,6 +61,12 @@ class ControllerAjax extends Controller{
 		{	
 			App::fetchModel('user', 'file_upload');
 			exit;
+		}
+		
+	public function chat_list() 
+		{	
+			App::fetchModel('pusher', 'getChatList');
+			exit;
 		}	
 
 

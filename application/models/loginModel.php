@@ -44,7 +44,7 @@ class LoginModel extends Model
 				}          
 			$username = $this->SanitizeForSQL($username);
 			$pwdmd5 = md5($password);
-			$qry = "Select CONCAT(first_name, ' ', last_name) as name, email, user_id from $this->tablename where username='$username' and password='$pwdmd5' and confirmcode='y'";	
+			$qry = "Select CONCAT(first_name, ' ', last_name) as name, email, user_id, role from $this->tablename where username='$username' and password='$pwdmd5' and confirmcode='y'";	
 			$result = mysql_query($qry,$this->connection);		
 			if(!$result || mysql_num_rows($result) <= 0)
 				{
@@ -54,6 +54,7 @@ class LoginModel extends Model
 			$name = $_SESSION['name_of_user']  = $row['name'];
 			$_SESSION['email_of_user'] = $row['email'];				
 			$_SESSION['user_id'] = $row['user_id'];
+			$_SESSION['role'] = $row['role'];
 			require_once('pusher_config.php');
 			if(!$this->setActive($username, $_SESSION['email_of_user'])){return false;}			
 			return true;

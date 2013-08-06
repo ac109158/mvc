@@ -34,7 +34,15 @@ class ControllerDashboard extends Controller
 		$view = App::fetchView();
 		$vars = App::getDefaultVars($vars, $msg);
 		$vars = ControllerDashboard::getLocalVars($vars);
-		$vars['message_history'] = App::fetchModel('pusher', 'messageHistory', 'group_chat');
+		$table = 'group_chat';
+		$session = date('mdy');	
+		$qry = "SELECT *  FROM (SELECT  message_id, author_id, author_name, text, timestamp FROM $table WHERE (session_id = '$session') ORDER BY entry_id DESC LIMIT 50) AS scope ORDER BY timestamp ASC";
+		$vars['message_history'] = App::fetchModel('pusher', 'widgetHistory', $qry);			
+		$table = 'activity_stream';
+		$role = $_SESSION['user_role'];
+/* 		$session = date('mdy');	 */
+		$qry = "SELECT *  FROM (SELECT  activity_id, author_id, author_name, text, timestamp FROM $table WHERE (session_id = '$session') ORDER BY entry_id DESC LIMIT 50) AS scope ORDER BY timestamp ASC";
+		$vars['stream_history'] = App::fetchModel('pusher', 'widgetHistory', $qry);
 		$vars['msg'] = $msg;
         $view::render('dashboard',$vars,1);
         exit;

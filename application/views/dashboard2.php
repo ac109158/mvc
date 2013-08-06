@@ -20,6 +20,9 @@
 				<?php require_once 'inc/notify.php'; ?>	
 			</div>
 			<div id="side_panel_stream_panel">
+				<div id="stream-title">
+				Activity Stream
+				</div>
 				<?php require_once 'inc/activity_stream.php'; ?>	
 			</div>
 	</div> 

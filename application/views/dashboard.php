@@ -21,6 +21,7 @@
 var message_history = <?php echo json_encode($vars['message_history']); ?>;
 $("#notify-body").hide();
 $("#dashboard_group_chat_panel").toggle();
+$("#stream-widget").toggle();
 $("#dashboard_chat_widget_panel").hide();
 /*
 var message_data = message_history.pop();
@@ -75,9 +76,10 @@ var notifier3 = new PusherNotifier(channel3);
     $.fn.pusherChat({
         'pusherKey':'71d3c4ea25f712272ad3',
         'authPath':'index.php?controller=ajax&task=pusher_auth&user_id='+id+'&name='+name,
-        'friendsList' : 'ajax/friends-list.json',
+/*         'friendsList' : 'ajax/friends-list.json', */
+        'friendsList' : '?controller=ajax&task=chat_list',
         'serverPath' : 'index.php?controller=ajax&task=pusher_server',
-        'profilePage':true,
+        'profilePage':false,
         'onFriendConnect': function(member){
             if (member.id) $('#user_'+member.id).hide();
             if (!$('.account a:visible').html()) $('.hide').show();
@@ -162,7 +164,7 @@ $(document).keypress(function(event){
 </script>
 <script>
   $("#stream-title").click(function(){
-	  $("#stream-body").slideToggle();
+	  $("#stream-widget").slideToggle();
     });
 </script>
  <script>
@@ -204,6 +206,26 @@ $("#dashboard_chat_widget_panel").show();
 </script>
 <link href="css/jquery.cssemoticons.css" media="screen" rel="stylesheet" type="text/css" />
 <script src="js/jquery.cssemoticons.min.js" type="text/javascript"></script>
+
+
+<script> //date/Clock Widgit
+document.querySelector(".date").addEventListener("mouseover", function(){
+    var txt = document.querySelector(".date").innerHTML;
+  var currentTime = new Date ( );    
+  var currentHours = currentTime.getHours ( );   
+  var currentMinutes = currentTime.getMinutes ( );   
+  currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;   
+  var timeOfDay = ( currentHours < 12 ) ? "AM" : "PM";    
+  currentHours = ( currentHours > 12 ) ? currentHours - 12 : currentHours;    
+  currentHours = ( currentHours == 0 ) ? 12 : currentHours;    
+  var currentTimeString = currentHours + ":" + currentMinutes + " " + timeOfDay;       
+    document.querySelector(".date").innerHTML = currentTimeString;
+    this.addEventListener("mouseout", function(){
+        document.querySelector(".date").innerHTML = txt;
+    });
+});
+</script> 
+
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script>
 $("#side_panel").click(function () {
@@ -211,7 +233,7 @@ $("#side_panel").click(function () {
         direction: "right"
     }, 500);
 });
-</script>	
+</script>
 
 
 

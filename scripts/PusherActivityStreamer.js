@@ -1,4 +1,4 @@
-function PusherActivityStreamer(activityChannel, ulSelector, options) {
+function PusherActivityStreamer(activityChannels, ulSelector, options) {
   var self = this;
   
   this._email = null;
@@ -8,9 +8,27 @@ function PusherActivityStreamer(activityChannel, ulSelector, options) {
     maxItems: 10
   }, options);
   
-  this._activityChannel = activityChannel;
-  this._activityList = $(ulSelector);
+  this._activityList = $(ulSelector);  
+  $.each(activityChannels, function(key, element) { 
   
+	element.bind('activity', function(activity) {
+	self._handleActivity.call(self, activity, activity.type);
+	});
+	
+	element.bind('page-load', function(activity) {
+	self._handleActivity.call(self, activity, 'page-load');
+	});
+	
+	});
+  
+  
+  
+  /*
+this._activityChannel = activityChannel;
+  this._activityList = $(ulSelector);
+*/
+  
+/*
   this._activityChannel.bind('activity', function(activity) {
       self._handleActivity.call(self, activity, activity.type);
     });
@@ -26,6 +44,7 @@ function PusherActivityStreamer(activityChannel, ulSelector, options) {
   this._activityChannel.bind('like', function(activity) {
       self._handleActivity.call(self, activity, 'like');
     });
+*/
     
   this._itemCount = 0;
 };
@@ -137,3 +156,38 @@ PusherActivityStreamer._buildListItem = function(activity) {
   
   return li;
 };
+
+
+PusherActivityStreamer.prototype.setEmail = function(value) {
+  this._email = value;
+};
+
+function buildHistoryStreamItem (data) {
+	var time = '<div class="activity-row"><a href="' + data.link + '" class="stream-timestamp"><span title="' + activity.published + '">' + PusherActivityStreamer._timeToDescription(data.published) + '</span>' +
+	'</a><span class="activity-actions"><span class="tweet-action action-favorite"><a href="#" class="stream-like-action" data-activity="like" title="Like"><span><i></i><b>Like</b></span></a></span></span></div>';
+	
+	var message = '<div class="activity-row"><div class="text">' + activity.body + '</div></div>';
+	
+	var user = '<div class="activity-row"><span class="user-name"><a class="screen-name" title="' + activity.actor.displayName + '">' + activity.actor.displayName + '</a></span></div>';
+	
+	var content = '<div class="content">' + user + message + time + '</div>';
+	
+	var imageInfo =data.actor.image;
+	var image = '<div class="image"><img src="' + imageInfo.url + '" width="' + imageInfo.width + '" height="' + imageInfo.height + '" /></div>';
+	
+	var item = '<li class="activity" data-activity-id = "' + activity.id +'"><div class="stream-item-content">' + image + '</div></li>';   
+	return item;
+};
+
+function fetchStreamHistory(stream_history) {
+	messageList = [];
+	$.each(stream_history, function (i, elem) {
+			 var pic = {url : 'http://www.gravatar.com/avatar/00000000000000000000000000000000?d=wavatar&s=48', width : 40, height : 40 };
+			var author = {displayName : elem[2], objectType :  'person',  image : pic};
+			var data = { id : elem[0], body : elem[3], published : elem[4], type : 'chat-message', actor : author};
+			var messageEl = buildHistoryStreamItem(data);
+			messageList.push(messageEl);
+	    });
+	   return  messageList;
+	   };
+
